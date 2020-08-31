@@ -1,1 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+    --main-color: 
+    --brand-color:
+    --general-size:
+}
+
+@mixin display-flex($display, $flex-direction, $justify-content, $align-items) {
+    display: $display;
+    flex-direction: $flex-direction;
+    justify-content: $justify-content;
+    align-items: $align-items;
+}
+
+
+a {
+    color: var(--brand-color);
+    text-decoration: none !important;
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.button {
+    background-color: var(--brand-color);
+}
