@@ -1,6 +1,6 @@
 @import '../../../styles.scss';
 
-$size:991px;
+$size:990px;
 @mixin size {
     @media screen and (max-width: #{$size}){
         @content;

@@ -1,19 +1,25 @@
 <div class="main-container">
-    <div class="column">
+  
+    <div class="profileUser">       
+        <div class=img-profile>
+            <img src="https://via.placeholder.com/150" alt="profile-img" class ="userPic" >
+        </div>
+
         <div>
-            <h2>Seguidores</h2> <!--Añadir ngFor para que se carguen de manera automatica--> 
-        </div>   
+          <p>user_name</p>
+        </div>
 
-        <div class="users">
-            <div class="pic-profile">
-                <img src="https://via.placeholder.com/150" alt="profile-img">
+        <div class="followers-number">
+            <div class="followers">
+                <p>Followers</p>
+
             </div>
-
-            <div class="name">
-                <p>Nombre usuario</p>
+            <div class="followed">
+                <p>Follow</p>
             </div>
+        </div>
 
-            <div class="icon">           
+        <div class="icon">           
 <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0 -->
                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                     viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
@@ -28,51 +34,82 @@
                             182.001,420.333 182.001,448 152.001,448 152.001,420.333 102.333,420.333 102.333,512 409.667,512 409.667,420.333 		"/>
                     </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
                 </svg>
-            </div>
+            </div>    
+         </div>
 
-            <div class="follow">
-                <p>Seguir</p>
-            </div>
-        </div> 
+    <div class="container-columns">
+        <div class="column">
+            <div>
+                <h2>Seguidores</h2> <!--Añadir ngFor para que se carguen de manera automatica--> 
+            </div>   
+
+            <div class="users">
+                <div class="pic-profile">
+                    <img src="https://via.placeholder.com/150" alt="profile-img followers">
+                </div>
+
+                <div class="name">
+                    <p>Nombre usuario</p>
+                </div>
+
+                <div class="icon">           
+    <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0 -->
+                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                    <g>	<g>
+                            <path d="M378.667,49c-7.064,0-14.087,0.635-20.985,1.893C333.745,18.835,296.48,0,256,0c-40.48,0-77.745,18.835-101.682,50.893
+                                C147.42,49.635,140.396,49,133.333,49C69.186,49,17,101.187,17,165.333c0,27.86,10.003,54.813,28.167,75.895
+                                c15.125,17.554,35.088,30.144,57.166,36.248v112.857h307.334V277.476c22.078-6.103,42.041-18.693,57.166-36.248
+                                C484.997,220.146,495,193.193,495,165.333C495,101.187,442.813,49,378.667,49z"/>
+                        </g>
+                    </g><g>	<g>
+                            <polygon points="359.999,420.333 359.999,448 329.999,448 329.999,420.333 271,420.333 271,448 241,448 241,420.333 
+                                182.001,420.333 182.001,448 152.001,448 152.001,420.333 102.333,420.333 102.333,512 409.667,512 409.667,420.333 		"/>
+                        </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
+                    </svg>
+                </div>
+
+                <div class="follow">
+                    <p>Seguir</p>
+                </div>
+            </div> 
+        </div>
+        
+        <div class="column">
+            <div>
+                <h2>Seguidos</h2>
+            </div>   
+
+            <div class="users">
+                <div class="pic-profile">
+                    <img src="https://via.placeholder.com/150" alt="profile-img followed">
+                </div>
+
+                <div class="name">
+                    <p>Nombre usuario</p>
+                </div>
+
+                <div class="icon">           
+    <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0 -->
+                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                    <g>	<g>
+                            <path d="M378.667,49c-7.064,0-14.087,0.635-20.985,1.893C333.745,18.835,296.48,0,256,0c-40.48,0-77.745,18.835-101.682,50.893
+                                C147.42,49.635,140.396,49,133.333,49C69.186,49,17,101.187,17,165.333c0,27.86,10.003,54.813,28.167,75.895
+                                c15.125,17.554,35.088,30.144,57.166,36.248v112.857h307.334V277.476c22.078-6.103,42.041-18.693,57.166-36.248
+                                C484.997,220.146,495,193.193,495,165.333C495,101.187,442.813,49,378.667,49z"/>
+                        </g>
+                    </g><g>	<g>
+                            <polygon points="359.999,420.333 359.999,448 329.999,448 329.999,420.333 271,420.333 271,448 241,448 241,420.333 
+                                182.001,420.333 182.001,448 152.001,448 152.001,420.333 102.333,420.333 102.333,512 409.667,512 409.667,420.333 		"/>
+                        </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
+                    </svg>
+                </div>
+
+                <div class="follow">
+                    <p>Dejar de seguir</p>
+                </div>
+            </div> 
+        </div>    
     </div>
-    
-    <div class="column">
-        <div>
-            <h2>Seguidos</h2>
-        </div>   
-
-        <div class="users">
-            <div class="pic-profile">
-                <img src="https://via.placeholder.com/150" alt="profile-img">
-            </div>
-
-            <div class="name">
-                <p>Nombre usuario</p>
-            </div>
-
-            <div class="icon">           
-<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0 -->
-                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                    viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
-                <g>	<g>
-                        <path d="M378.667,49c-7.064,0-14.087,0.635-20.985,1.893C333.745,18.835,296.48,0,256,0c-40.48,0-77.745,18.835-101.682,50.893
-                            C147.42,49.635,140.396,49,133.333,49C69.186,49,17,101.187,17,165.333c0,27.86,10.003,54.813,28.167,75.895
-                            c15.125,17.554,35.088,30.144,57.166,36.248v112.857h307.334V277.476c22.078-6.103,42.041-18.693,57.166-36.248
-                            C484.997,220.146,495,193.193,495,165.333C495,101.187,442.813,49,378.667,49z"/>
-                    </g>
-                </g><g>	<g>
-                        <polygon points="359.999,420.333 359.999,448 329.999,448 329.999,420.333 271,420.333 271,448 241,448 241,420.333 
-                            182.001,420.333 182.001,448 152.001,448 152.001,420.333 102.333,420.333 102.333,512 409.667,512 409.667,420.333 		"/>
-                    </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
-                </svg>
-            </div>
-
-            <div class="follow">
-                <p>Dejar de seguir</p>
-            </div>
-        </div> 
-    </div>
-    
-
-
 </div>

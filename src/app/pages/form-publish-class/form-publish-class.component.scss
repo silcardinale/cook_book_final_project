@@ -1,18 +1,1 @@
 @import '../../../styles.scss';
-
-.main-container {
-    @include display-flex(flex, column , center, center);
-    padding-top: 50px;
-    form {
-        padding-top: 50px;
-        input {
-            width: 100% !important;
-        }
-    }
-    .btn-group {
-        width: 100%;  
-        button:nth-child(n+2) {
-            margin-left: 5px;
-        }  
-    }
-}

@@ -1,0 +1,21 @@
+@import '../../../styles.scss';
+
+
+.main-container{
+    @include display-flex(flex, column , center, center);
+    padding-top: 50px;
+    form {
+        text-align: center;
+        width: 70%;
+        padding-top: 50px;
+        @include size($size) {
+            width: 45%;
+        }
+        @include size($size2) {
+            width: 35%;
+        }
+        input {
+            width: 100%;
+        }
+    }
+}

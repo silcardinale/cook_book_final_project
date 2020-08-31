@@ -8,6 +8,7 @@ import { NavBarComponent } from './pages/nav-bar/nav-bar.component';
 import { FormPublishRecipesComponent } from './pages/form-publish-recipes/form-publish-recipes.component';
 import { FollowPageComponent } from './pages/follow-page/follow-page.component';
 import { FormPublishClassComponent } from './pages/form-publish-class/form-publish-class.component';
+import { SearchRecipesComponent } from './pages/search-recipes/search-recipes.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { FormPublishClassComponent } from './pages/form-publish-class/form-publi
     NavBarComponent,
     FormPublishRecipesComponent,
     FollowPageComponent,
-    FormPublishClassComponent
+    FormPublishClassComponent,
+    SearchRecipesComponent
   ],
   imports: [
     BrowserModule,

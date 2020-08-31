@@ -1,13 +1,53 @@
 @import '../../../styles.scss';
 
 .main-container {
+    @include display-flex(flex, column , space-around, center);
+    .profileUser{
+        padding: 50px 0px;
+        text-align: center;
+        .img-profle {
+            padding-bottom: 20px;
+        }
+        img {
+            border-radius: 100%;
+            width: 150px;
+            
+        }
+        .followers-number {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            grid-template-areas: 
+            "followers followed";
+            .followers {
+                grid-area: followers;
+            }
+            .followed {
+                grid-area: followed
+            }
+        }
+        .icon {
+            margin-top: -45px;
+            padding-bottom: 10px;
+            svg {
+                height: 20px !important;
+            }      
+        }
+       
+    }
+}
+
+.container-columns {
     @include display-flex(flex, row , space-around, center);
     padding-top: 50px;
-    .column > .users {
+    width: 100%;
+    .column h2 {
+        text-align: center;
+    }
+    .column .users {
         height: 100px;
-        padding-top: 50px;
+        padding: 50px 8px;
         display: grid;
-        column-gap: 25px;
+        column-gap: 15px;
         row-gap: 0px;
         grid-template-rows: 1fr 3fr;
         grid-template-areas: 
@@ -18,7 +58,7 @@
             grid-area: pic-profile;
             height: 80x;
             img {
-                height: 90px;
+                height: 80px;
                 border-radius: 100%;
             }
         }
@@ -39,7 +79,4 @@
             grid-area: follow;
         }
     }
-
-
-
 }
