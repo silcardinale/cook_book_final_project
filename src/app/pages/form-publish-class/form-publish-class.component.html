@@ -1,8 +1,8 @@
 <div class="main-container">
     <div>
-        <h2>Publicar receta</h2>
+        <h2>Publicar clase</h2>
     </div>
-   <form  novalidate>
+   <form  novalidate> <!--Añadir validaciones, importante fecha-->
         <div class="form-group">
             <div class="fields">
                 <input type="text" name="titulo" minlength="3" required placeholder="Titulo">
@@ -10,12 +10,12 @@
         </div>
         <div class="form-group">
             <div>
-                <input type="text" name="ingredientes" required  placeholder="Introduzca los ingredientes">
+                <input type="date" name="fecha" required  placeholder="Fecha">
             </div>    
         </div>
         <div class="form-group">
             <div>
-                <input type="text" name="duracion" required  placeholder="Duración">
+                <input type="text" name="horario" required  placeholder="horario">
             </div>    
         </div>
         <div class="form-group">
@@ -25,12 +25,15 @@
         </div>
 
         <div class="form-group">
-            <div class="btn-group">
-                <button>Vegano</button>
-                <button>Saludable</button>
-                <button>Picoteo</button>
-                <button>Postres</button>
-            </div>
+            <div>
+                <input type="text" name="precio" required  placeholder="Precio">
+            </div>    
+        </div>
+
+        <div class="form-group">
+            <div>
+                <input type="text" name="ingredientes" required  placeholder="ingredientes">
+            </div>    
         </div>
 
         <div class="form-group">
@@ -41,7 +44,7 @@
 
         <div class="form-group">
             <div>
-                <input type="text" name="foto"  required  placeholder="foto">
+                <input type="text" name="foto"  required  placeholder="Foto">
             </div>    
         </div>
 
