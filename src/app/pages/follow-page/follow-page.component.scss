@@ -1,0 +1,45 @@
+@import '../../../styles.scss';
+
+.main-container {
+    @include display-flex(flex, row , space-around, center);
+    padding-top: 50px;
+    .column > .users {
+        height: 100px;
+        padding-top: 50px;
+        display: grid;
+        column-gap: 25px;
+        row-gap: 0px;
+        grid-template-rows: 1fr 3fr;
+        grid-template-areas: 
+        "pic-profile name-follow"
+        "pic-profile icon"
+        "pic-profile follow";
+        .pic-profile {
+            grid-area: pic-profile;
+            height: 80x;
+            img {
+                height: 90px;
+                border-radius: 100%;
+            }
+        }
+        .name {
+            grid-area: name-follow;
+            font-weight: bold;
+        }
+        .icon {
+            grid-area: icon;
+            margin-top: -15px;
+            padding-bottom: 10px;
+            height: fit-content ;
+            svg {
+                height: 20px;
+            }      
+        }
+        .follow {
+            grid-area: follow;
+        }
+    }
+
+
+
+}
