@@ -1,5 +1,15 @@
 @import '../../../styles.scss';
 
+$size:700px;
+$size2: 1000px;
+$size3: 1200px;
+
+@mixin size ($val) {
+    @media screen and (min-width: #{$val}){
+        @content;
+    }
+}
+    
 .main-container {
     @include display-flex(flex, column , space-around, center);
     .profileUser{
@@ -10,8 +20,8 @@
         }
         img {
             border-radius: 100%;
-            width: 150px;
-            
+            width: 160px;
+                
         }
         .followers-number {
             align-items: center;
@@ -62,8 +72,14 @@
             grid-area: pic-profile;
             height: 80x;
             img {
-                height: 40px;
+                height: 45px;
                 border-radius: 100%;
+                @include size($size) {
+                    height: 50px
+                }
+                @include size($size2) {
+                    height: 60px
+                }
             }
         }
         .name {

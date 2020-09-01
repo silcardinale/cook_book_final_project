@@ -5,8 +5,15 @@
 
 $size:800px;
 $size2: 1200px;
+
 @mixin size ($val) {
     @media screen and (min-width: #{$val}){
+        @content;
+    }
+}
+
+@mixin size-max ($val) {
+    @media screen and (max-width: #{$val}){
         @content;
     }
 }
@@ -22,9 +29,10 @@ $size2: 1200px;
     align-items: $align-items;
 }
 
+
 .main-container-forms {
     @include display-flex(flex, column , center, center);
-    padding-top: 50px;
+    padding-top: 40px;
     form {
         text-align: center;
         width: 70%;
