@@ -7,8 +7,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FollowPageComponent implements OnInit {
 
-  constructor() { }
+  public colorHat: boolean;
+  public count: number;
 
+  constructor() {
+    this.count = 0;
+    this.colorHat = false;
+  }
+
+  changeColor() {
+
+    if (this.colorHat === false) {
+
+      this.colorHat = true;
+      this.count++;
+
+    } else if (this.count > 0) {
+      this.colorHat = false;
+      this.count--;
+
+    }
+  }
   ngOnInit(): void {
   }
 

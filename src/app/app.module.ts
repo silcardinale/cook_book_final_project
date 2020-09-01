@@ -9,7 +9,6 @@ import { FormPublishRecipesComponent } from './pages/form-publish-recipes/form-p
 import { FollowPageComponent } from './pages/follow-page/follow-page.component';
 import { FormPublishClassComponent } from './pages/form-publish-class/form-publish-class.component';
 import { SearchRecipesComponent } from './pages/search-recipes/search-recipes.component';
-import { ProfileEditComponent } from './pages/profile-edit/profile-edit.component';
 
 @NgModule({
   declarations: [
@@ -18,8 +17,7 @@ import { ProfileEditComponent } from './pages/profile-edit/profile-edit.componen
     FormPublishRecipesComponent,
     FollowPageComponent,
     FormPublishClassComponent,
-    SearchRecipesComponent,
-    ProfileEditComponent
+    SearchRecipesComponent
   ],
   imports: [
     BrowserModule,

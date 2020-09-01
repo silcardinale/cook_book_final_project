@@ -29,7 +29,6 @@ $size2: 1200px;
     align-items: $align-items;
 }
 
-
 .main-container-forms {
     @include display-flex(flex, column , center, center);
     padding-top: 40px;

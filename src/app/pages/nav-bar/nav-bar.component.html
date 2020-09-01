@@ -27,16 +27,24 @@
 
     </div>
 
-    <div class="profile-edit">
+    <div class="profile-edit" >
 
-        <a><img src="../../../assets/settings.svg" alt="settings"></a>
+        <a (click)="show()"><img src="../../../assets/settings.svg"></a>
 
-        <div class="edit" id="edit-profile" >
+        <div class="edit" id="edit-profile"  >
             <div class="header-title">
                 <p>Editar Perfil</p>
             </div>
             
             <form div class="container"> <!--Hay que añadir NgModel y #name-->
+                <div class=" text photo">
+                    <img src="https://via.placeholder.com/150" alt="profile-img" class ="userPic" >
+                </div>        
+                <div class="input details">
+                    <p>Nombre usuario</p>
+                    <p>Email</p>
+                    
+                </div>
         
                 <div class=" text email">
                     <p>Email</p>
