@@ -1,0 +1,28 @@
+<div class="container">
+
+    <div class="title">
+        <p><strong>Recetas</strong></p>
+        <hr>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-2">
+        <div class="col mb-4" *ngFor="let recipe of recipes; let i = index">
+            <div class="card">
+                <img [src]="recipe.img" class="card-img-top" [alt]="recipe.name">
+                <div class="card-body">
+                    <p class="card-title"><strong>{{recipe.name}}</strong></p>
+
+
+
+                    <p class="card-text">{{ recipe.dificulty }}<br>
+                        <i class="fas fa-utensils"></i> {{ recipe.portions }} <br>
+                        <i class="far fa-clock"></i> {{ recipe.prepTime }} min.
+                    </p>
+                    <button (click)="getRecipes(i)" type="button" class="btn btn-outline-info btn-block">
+                        Ir a receta...
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

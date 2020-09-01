@@ -1,0 +1,17 @@
+.container{
+    width: 100%;
+    border:none;
+    .title-recipe{
+        text-align: center;
+    }
+}
+.icon {
+    margin-top: -45px;
+    padding-bottom: 10px;
+    svg {
+        height: 20px !important;
+    }
+}
+.comment-container{
+    margin-top: 80px;
+}

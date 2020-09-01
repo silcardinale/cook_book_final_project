@@ -1,0 +1,73 @@
+@import '../../../styles.scss';
+.main-container {
+    @include display-flex(flex, column , space-around, center);
+    .profileUser{
+        padding: 50px 0px;
+        text-align: center;
+        .img-profle {
+            padding-bottom: 20px;
+        }
+        img {
+            border-radius: 100%;
+            width: 150px;
+        }
+        .followers-number {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            grid-template-areas:
+            "followers followed";
+            .followers {
+                grid-area: followers;
+            }
+            .followed {
+                grid-area: followed
+            }
+        }
+        .icon {
+            margin-top: -45px;
+            padding-bottom: 10px;
+            svg {
+                height: 20px !important;
+            }
+        }
+    }
+}
+hr{
+    width:80%;
+}
+.prueba{
+    @include display-flex(flex, column , center, center);
+    width: 80%;
+    margin:0 auto;
+}
+.details{
+    @include display-flex(flex, row , center, center);
+    width:80%;
+    p{
+        line-height: 40px;
+        margin-left: 150px;
+    }
+    button{
+        margin-left: 150px;
+        width: 50%;
+    }
+}
+.materials{
+    padding-top: 50px;
+    p{
+        text-align: center;
+    }
+}
+@media screen and (max-width: 400px){
+    .details{
+        flex-direction:column;
+        width:90%;
+        p{
+            margin-left: 0px;
+        }
+        button{
+            margin-left: 0px;
+            width:100%;
+        }
+    }
+}

@@ -1,3 +1,4 @@
+import { ClassesResultComponent } from './pages/classes-result/classes-result.component';
 
 import { FollowPageComponent } from './pages/follow-page/follow-page.component';
 import { SearchRecipesComponent } from './pages/search-recipes/search-recipes.component';
@@ -10,7 +11,8 @@ const routes: Routes = [
   {path: 'publishRecipe', component: FormPublishRecipesComponent},
   {path: 'publishClass', component: FormPublishClassComponent},
   {path: 'searchRecipe', component: SearchRecipesComponent},
-  {path: 'followers', component: FollowPageComponent}
+  {path: 'followers', component: FollowPageComponent},
+  {path: 'lessons', component: ClassesResultComponent}
 ];
 
 @NgModule({

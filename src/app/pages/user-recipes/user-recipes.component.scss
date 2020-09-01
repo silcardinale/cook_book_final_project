@@ -1,0 +1,78 @@
+@import '../../../styles.scss';
+.mainContainer{
+    margin: 20px;
+}
+.profileUser{
+    @include display-flex(flex, column , center, center);
+    padding-top: 10px;
+    font-size:1rem;
+    .foll{
+        font-size:0.8rem;
+        margin-bottom: 0;
+    }
+    .foll a{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .userPic{
+        img{
+        border-radius: 50%;
+        width: 90px;
+        }
+    }
+}
+hr{
+    margin-top: 0;
+    margin-bottom: 5px;
+    width: 80%;
+}
+.favRecipe{
+    display:grid;
+    grid-template-columns: 40% 60% ;
+    align-items: flex-start;
+    padding: 10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+        .recipePic{
+            width:80%;
+            padding-right: 10px;
+        }
+        .comment{
+            font-size: 0.8rem;
+        }
+        .hat{
+            font-size: 1rem;
+            text-align: center;
+        }
+        .receta{
+            font-size:1rem;
+            display: flex;
+            flex-direction: column;
+            text-align: justify;
+            h6{
+               font-size:1.1rem;
+               font-weight: bold;
+            }
+            p{
+                font-size:1rem;
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 4;
+                -webkit-box-orient: vertical;
+            }
+        }
+        .moreInfo{
+            font-size:inherit;
+            color: rgb(23, 178, 189);
+            text-decoration-line: underline;
+            font-weight: bold;
+            float: right;
+            padding-bottom: 14px;
+        }
+   }
+@media screen and (min-width: 400px){
+   .favRecipe{
+    padding-top: 20px;
+   }
+}
+

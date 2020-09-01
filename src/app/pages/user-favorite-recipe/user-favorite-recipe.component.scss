@@ -1,0 +1,93 @@
+@import '../../../styles.scss';
+.profileUser{
+    @include display-flex(flex, column , center, center);
+    padding-top: 10%;
+    .foll{
+        font-size:2.2vw;
+        margin-bottom: 0;
+    }
+    .foll a{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .userPic{
+        img{
+        border-radius: 50%;
+        width: 90px;
+        }
+    }
+}
+hr{
+    margin-top: 0;
+    margin-bottom: 5px;
+    width: 80%;
+}
+.favRecipe{
+    display:grid;
+    grid-template-columns: 40% 60% ;
+    align-items: flex-start;
+    padding: 10px;
+    padding-top: 4px;
+    padding-right:20px ;
+        .recipePic{
+            padding-top: 25px;
+            max-width:100%;
+            height: auto;
+            padding-right: 10px;
+        }
+        .comment{
+            font-size: 3vw;
+            padding-left:15% ;
+        }
+        .userFavRecipe{
+            align-items:center ;
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 5px;
+            img{
+                width: 40px;
+                height: 40px;
+                border-radius: 100%;
+                margin-right: 7px;
+            }
+            .profileOther{
+                font-size:2.2vw
+            }
+            a:nth-child(1){
+                padding-right: 15px;
+            }
+        }
+        .receta{
+            font-size:2.2vw;
+            margin-top: 0;
+            display: flex;
+            flex-direction: column;
+            font-size: 70%;
+            text-align: justify;
+            h6{
+                font-size:3.2vw;
+            }
+            p{
+                font-size:3.2vw;
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 5;
+                -webkit-box-orient: vertical;
+            }
+        .moreInfo{
+            color: rgb(23, 178, 189);
+            text-decoration-line: underline;
+            font-size:3.2vw;
+            font-weight: bold;
+            float: right;
+        }
+   }
+}
+   @media screen and (min-width: 400px){
+   .favRecipe{
+    padding-top: 20px;
+   }
+   .userPic img{
+       width: 3000px;
+   }
+}

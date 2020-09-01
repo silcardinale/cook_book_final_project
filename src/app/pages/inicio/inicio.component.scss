@@ -1,0 +1,24 @@
+@import '../../../styles.scss';
+.main-container-forms {
+    .btn-group {
+       width: 100%;
+        button:nth-child(n+2) {
+            margin-left: 5px;
+        }
+    }
+}
+img{
+    padding-top: 50px;
+}
+.container-data{
+    width:100%;
+    display:flex;
+    justify-content: center;
+    margin-top:40px;
+}
+.container-data a{
+    font-size:14px;
+    text-decoration:none;
+    margin:15px;
+    color:black;
+}

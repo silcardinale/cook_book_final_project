@@ -89,7 +89,7 @@ $size3: 1200px;
         }
         .icon {
             @include display-flex(flex, "" , space-around, center);
-            padding-bottom  : 10px;
+            padding-bottom: 10px;
             svg {
                 height: 15px;
                 text-align: left;

@@ -9,6 +9,15 @@ import { FormPublishRecipesComponent } from './pages/form-publish-recipes/form-p
 import { FollowPageComponent } from './pages/follow-page/follow-page.component';
 import { FormPublishClassComponent } from './pages/form-publish-class/form-publish-class.component';
 import { SearchRecipesComponent } from './pages/search-recipes/search-recipes.component';
+import { RecipesComponent } from './pages/recipes/recipes.component';
+import { RecipeComponent } from './pages/recipe/recipe.component';
+import { LoginComponent } from './pages/login/login.component';
+import { InicioComponent } from './pages/inicio/inicio.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { ClassesComponent } from './pages/classes/classes.component';
+import { UserRecipesComponent } from './pages/user-recipes/user-recipes.component';
+import { UserFavoriteRecipeComponent } from './pages/user-favorite-recipe/user-favorite-recipe.component';
+import { ClassesResultComponent } from './pages/classes-result/classes-result.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +26,16 @@ import { SearchRecipesComponent } from './pages/search-recipes/search-recipes.co
     FormPublishRecipesComponent,
     FollowPageComponent,
     FormPublishClassComponent,
-    SearchRecipesComponent
+    SearchRecipesComponent,
+    RecipesComponent,
+    RecipeComponent,
+    LoginComponent,
+    InicioComponent,
+    RegisterComponent,
+    ClassesComponent,
+    UserRecipesComponent,
+    UserFavoriteRecipeComponent,
+    ClassesResultComponent
   ],
   imports: [
     BrowserModule,
