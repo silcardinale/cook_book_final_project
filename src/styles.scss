@@ -11,6 +11,10 @@ $size2: 1200px;
     }
 }
 
+.header-title {
+    font-size: 1.4rem;
+}
+
 @mixin display-flex($display, $flex-direction, $justify-content, $align-items) {
     display: $display;
     flex-direction: $flex-direction;

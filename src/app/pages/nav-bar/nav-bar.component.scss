@@ -10,7 +10,7 @@ $size:990px;
 .nav-bar {
     width: 100vw;
     background-color: white;
-    @include display-flex(flex, "" , space-between, center);
+    @include display-flex(flex, "" , center, center);
     height: 80px;
     padding: 0px 40px;
     font-size: 1.07rem;
@@ -20,20 +20,31 @@ $size:990px;
     .logo {
         img {
             height:45px;
+            @include size {
+                height: 40px;
+            }
         }
     }
     .tabs {
         width: 75%;
-        @include display-flex(flex, row ,space-between, center); 
+        @include display-flex(flex, row , space-around, center); 
         .dropdown-content {
             display: none;
             position: absolute;
-            min-width: 160px;
+            min-width: 120px;
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            margin-bottom: 5px;
             z-index: 1;
         }
         .dropdown:hover .dropdown-content {
             display: block;
-          }
-    }     
+        } 
+    }  
+    a img {
+        height: 40px;
+        @include size {
+            height: 25px;
+        }
+    }   
+
 }
