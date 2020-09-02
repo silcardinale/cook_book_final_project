@@ -17,21 +17,20 @@
               <input type="text" name="ingredient" required placeholder="Ingrediente" #ingredient>
               
           </div>  
-          <button class="btn-ingredients" [ngClass]="{'hide': i == 5}" (click)="showInput(ingredient.value)">Añadir otro</button>
+          <button class="btn-ingredients" [ngClass]="{'hide': count == 4}" (click)="showInput(ingredient.value)">Añadir otro</button>
       </div>
    
-        <div class="header-title">
-            <p>Tipo de comida</p>
-        </div>
 
         <div class="form-group">
             <div class="btn-group">
-                <button>Vegano</button>
+                <button class = "badge badge-pill badge-primary" >Vegano</button>
                 <button>Saludable</button>
                 <button>Picoteo</button>
                 <button>Postres</button>
             </div>
         </div>
+
+        <button>Buscar</button>
     </form>
     
 

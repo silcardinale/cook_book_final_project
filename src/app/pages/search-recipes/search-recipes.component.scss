@@ -26,6 +26,8 @@ $size3: 1200px;
         .btn-ingredients {
             display: inline-block;
             width:10% !important;
+            width: inherit; 
+           
 
         }
         input {
@@ -35,11 +37,23 @@ $size3: 1200px;
             padding: 10px 0px;
         }
         .btn-group {
-            width: 100%;
+            width: 80%;
+            button {
+            background-color: #e27d5f;
+            border-radius: 5%;
+            width: 20%;
+            height: 50px !important;
+            height: auto;
+            &:active {
+                background-color: #db4e23;
+            }
+            }
              button:nth-child(n+2) {
                  margin-left: 3px;
+                 
             }  
         }
+     
     }
     .carousel {
         width: 65%; 
@@ -90,5 +104,5 @@ $size3: 1200px;
 }
 
 .hide {
-    display: hidden;
+    display: hidden !important;
 }

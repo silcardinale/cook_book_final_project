@@ -10,6 +10,7 @@ export class SearchRecipesComponent implements OnInit {
 
   public recipes: Recipe[];
   public ingredients: any[];
+  public count: number;
 
   constructor() {
 
@@ -31,6 +32,8 @@ export class SearchRecipesComponent implements OnInit {
    showInput(ingredient: string) {
      if (ingredient && this.ingredients.length <= 3 ) {
       this.ingredients.push(ingredient);
+      this.count++;
+      
      }
      else {
        return;

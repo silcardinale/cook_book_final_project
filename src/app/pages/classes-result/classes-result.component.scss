@@ -3,6 +3,22 @@
 }
 .card{
     border: none;
+    :hover {
+        opacity: 0.95;
+    }
+
+
+    .card-title {
+        text-align: center;
+        font-size: 1.3rem;
+        padding-top: 20px;
+        font-weight: bold;
+    }
+    .card-text {
+        text-align: center;
+        margin-top: -10px;
+        padding-bottom: 20px;
+    }
 }
 .row{
     img{
@@ -10,28 +26,20 @@
         height: 350px;
     }
 }
-.icon {
-    margin-top: -45px;
-    padding-bottom: 10px;
-        svg {
-            height: 5px !important;
-        }      
+hr {
+    width: 90%;
 }
+
 .animated {
     -webkit-animation-duration: 1s;
     animation-duration: 1s;
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
 }
-.fast {
-    -webkit-animation-duration: 0.4s;
-    animation-duration: 0.4s;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
-}
+
 @keyframes fadeIn {
     from {
-        opacity: 0;
+        opacity: 0.4;
     }
     to {
     opacity: 1;
