@@ -1,7 +1,7 @@
 <nav class="nav-bar">
     <div class="logo">
     
-        <a routerLink="followers"><img src="../../../assets/img/logo.png" alt="logo"></a>
+        <a routerLink="userRecipes"><img src="../../../assets/img/logo.png" alt="logo"></a>
 
     </div>
 
@@ -31,18 +31,20 @@
 
         <a (click)="show()"><img src="../../../assets/img/settings.svg"></a>
 
-        <div class="edit" id="edit-profile"  >
+        <div class="edit" id="edit-profile" [ngClass]= "{'animation': animation == true}"  >
             <div class="header-title">
                 <p>Editar Perfil</p>
+                <hr>
             </div>
+           
             
             <form div class="container"> <!--Hay que añadir NgModel y #name-->
                 <div class=" text photo">
-                    <img src="https://via.placeholder.com/150" alt="profile-img" class ="userPic" >
+                    <img src="../../../assets/img/logo.png" alt="profile-img" class ="userPic" >
                 </div>        
                 <div class="input details">
                     <p>Nombre usuario</p>
-                    <p>Email</p>
+                    <p>Cambiar foto</p>
                     
                 </div>
         
@@ -52,7 +54,7 @@
         
                 <div class="input">
                     <div>
-                        <input type="text" name="dificultad" required  placeholder="Cambiar email">
+                        <input type="text" name="email" required  placeholder="Cambiar email">
                     </div>
                 </div>
         
@@ -62,7 +64,7 @@
         
                 <div class="input">
                     <div>
-                        <input type="text" name="dificultad" required  placeholder="Cambiar teléfono">
+                        <input type="text" name="telefono" required  placeholder="Cambiar teléfono">
                     </div>
                 </div>
         
@@ -72,16 +74,21 @@
         
                 <div class="input">
                     <div>
-                        <input type="text" name="dificultad" required  placeholder="Cambiar contraseña">
+                        <input type="text" name="contraseña" required  placeholder="Cambiar contraseña">
                     </div>
                 </div>
+
+                
+                    <div>
+                        <p>Eliminar cuenta</p>
+                    </div>
+              
             </form>
         
         </div>
-        
-   
-
+       
     </div>
     
-
 </nav>
+
+<hr>

@@ -1,24 +1,24 @@
 <div class ="container">
-    <div class ="title">
-        <p><strong>Clases</strong></p>
-        <hr>
-    </div>  
-  <div class="row row-cols-1 row-cols-md-2">
-    <div class="col mb-4" *ngFor="let lesson of classes; let i = index">
-      <div class="card">
-        <img [src]="lesson.img" class="card-img-top" [alt]="lesson.name">
-        <div class="card-body">
-          <p class="card-title"><strong>{{lesson.name}}</strong></p>
-          <p class="card-text"><br>
-            <i class="fas fa-utensils"></i> Fecha:  {{ lesson.date }} <br>
-            <i class="far fa-clock"></i> Horario: {{ lesson.timetable }} h <br>
-            <i class="fas fa-utensils"></i> Dificultad: {{ lesson.dificulty}} <br>
-            <i class="far fa-clock"></i> Precio: {{ lesson.price }} €
-           </p>
-           <button (click)="getClasses(i)" type="button" class="btn btn-outline-info btn-block">
-            Más información
-           </button>
-        </div>
+  <div class ="header-title">
+      <p>Clases</p>
+      <hr>
+  </div>  
+<div class="row row-cols-1 row-cols-md-2">
+  <div class="col mb-4" *ngFor="let lesson of classes; let i = index">
+    <div class="card">
+      <img [src]="lesson.img" class="card-img-top" [alt]="lesson.name">
+      <div class="card-body">
+        <p class="card-title"><strong>{{lesson.name}}</strong></p>
+        <p class="card-text"><br>
+          <i class="far fa-calendar-alt"></i> {{ lesson.date }} <br>
+          <i class="far fa-clock"></i>  {{ lesson.timetable }} h <br>
+          <i class="fas fa-question"></i> {{ lesson.dificulty}} <br>
+          <i class="fas fa-euro-sign"></i>  {{ lesson.price }} 
+         </p>
+         <button (click)="getClasses(i)" type="button" class="btn btn-outline-info btn-block">
+          Más información
+         </button>
       </div>
-   </div>
+    </div>
+ </div>
 </div>

@@ -1,26 +1,43 @@
 @import '../../../styles.scss';
+$size:700px;
+$size2: 1000px;
+$size3: 1200px;
+@mixin size ($val) {
+    @media screen and (min-width: #{$val}){
+        @content;
+    }
+}
 .mainContainer{
-    margin: 20px;
+    padding: 25px;
 }
 .profileUser{
-    @include display-flex(flex, column , center, center);
-    padding-top: 10px;
-    font-size:1rem;
-    .foll{
-        font-size:0.8rem;
-        margin-bottom: 0;
+    padding: 0px 0px;
+    text-align: center;
+    .img-profile {
+        padding-bottom: 8px;
     }
-    .foll a{
-        padding-left: 10px;
-        padding-right: 10px;
+    img {
+        border-radius: 100%;
+        width: 90px;                
     }
-    .userPic{
-        img{
-        border-radius: 50%;
-        width: 90px;
+    .followers-number {
+        align-items: center;
+        display: grid;
+        grid-template-rows: 0fr 0fr;
+        grid-template-areas: 
+        "followers followed";
+        .followers {
+            grid-area: followers;
+            text-align: center;
+        }
+        .followed {
+            grid-area: followed
         }
     }
 }
+.activa{
+    color:var(--brand-color) !important;
+ }
 hr{
     margin-top: 0;
     margin-bottom: 5px;
@@ -29,16 +46,18 @@ hr{
 .favRecipe{
     display:grid;
     grid-template-columns: 40% 60% ;
+    grid-gap: 20px;
     align-items: flex-start;
     padding: 10px;
-    padding-top: 4px;
+    padding-right:20px ;
+    padding-top: 4%;
     padding-bottom: 4px;
         .recipePic{
-            width:80%;
-            padding-right: 10px;
+            width:100%;
         }
         .comment{
             font-size: 0.8rem;
+            text-align:center;
         }
         .hat{
             font-size: 1rem;
@@ -52,6 +71,15 @@ hr{
             h6{
                font-size:1.1rem;
                font-weight: bold;
+               display: inline-block;
+               margin-bottom: 4%;
+            }
+            svg{
+                height: 20px;
+                margin-bottom: 5px;
+                padding-left: 10px;
+                padding-right: 10px;
+                fill: white;
             }
             p{
                 font-size:1rem;
@@ -70,9 +98,63 @@ hr{
             padding-bottom: 14px;
         }
    }
-@media screen and (min-width: 400px){
-   .favRecipe{
-    padding-top: 20px;
-   }
-}
+   @media screen and (min-width: 1000px) {
+    .favRecipe{
+        display:grid;
+        grid-template-columns: 40% 60% ;
+        grid-gap: 0px ;
+        align-items: flex-start;
+        padding: 10px;
+        margin-top: 5%;
+        padding-bottom: 4px;
+            .recipePic{
+                width:60% !important;
+                padding-right: 10px;
+                margin-left: 20%;
+            }
+            .receta{
+                justify-content: center;
+            }
+        }
+ }
+ @media screen and (min-width: 786px){
+    .recipePic{
+        width:80% !important;
+    }
+    .favRecipe{
+     margin-left: 10%;
+     margin-right: 10%;
+     }
+     .nav{
+         margin-top: 10px;
+         width: 80%;
+         margin-left: 10%;
+     }
+     .receta{
+        p{
+            -webkit-line-clamp: 7 !important;
+        }
+    }
+ }
+ @media screen and (max-width: 400px){
+    .favRecipe{
+        display:grid;
+        grid-template-columns: 100% ;
+        padding: 30px;
+            .recipePic{
+                width:80%;
+                margin-left: 10%;
+            }
+        }
+ }
+
+
+
+
+
+
+
+
+
+
 

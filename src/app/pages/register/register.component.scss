@@ -1,12 +1,10 @@
 @import '../../../styles.scss';
-.main-container-forms {
-    .btn-group {
-       width: 100%;
-        button:nth-child(n+2) {
-            margin-left: 5px;
-        }
-    }
+button {
+    background-color: black;
 }
 img{
     padding-top: 50px;
+}
+.container-links a{
+    color:black;
 }

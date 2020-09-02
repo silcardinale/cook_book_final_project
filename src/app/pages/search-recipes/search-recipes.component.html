@@ -6,11 +6,20 @@
    <form  novalidate>
         <div class="form-group">
             <div class="fields">
-                <input type="text" name="ingrediente" required placeholder="Ingrediente">
+                <input type="text" name="ingredient" required placeholder="Ingrediente" #ingredient>
             </div>    
+            <button class="btn-ingredients" (click)="showInput(ingredient.value)">Add other</button>
         </div>
-   
+        
 
+        <div class="form-group" *ngFor ="ingredient of ingredients, let i=index">
+          <div class="fields">
+              <input type="text" name="ingredient" required placeholder="Ingrediente" #ingredient>
+              
+          </div>  
+          <button class="btn-ingredients" [ngClass]="{'hide': i == 5}" (click)="showInput(ingredient.value)">Añadir otro</button>
+      </div>
+   
         <div class="header-title">
             <p>Tipo de comida</p>
         </div>
@@ -24,38 +33,29 @@
             </div>
         </div>
     </form>
+    
 
-    <div  class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img  src="https://via.placeholder.com/150" alt="First slide">
-            <div class="carousel-caption d-none d-md-block">
-              <h5>Titulo receta</h5>
-              <p>Tomate, zanahoria, patatas</p>
-              <div>
+    <div class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner" >
+        <div class="carousel-item" [class.active] = "isFirst" *ngFor="let recipe of recipes; first as isFirst"> 
+          <img [src]="recipe.img" class="d-block w-100 photo" [alt]="recipe.name">
+          <div class="text">
+            <p>{{recipe.name}}<p>
           </div>
-          <div class="carousel-item">
-            <img  src="https://via.placeholder.com/150" alt="Second slide">
-            <div class="carousel-caption d-none d-md-block">
-              <h5>Titulo receta</h5>
-              <p>Tomate, zanahoria, patatas</p>
-              <div>
-          </div>
-          <div class="carousel-item">
-            <img src="https://via.placeholder.com/150" alt="Third slide">
-            <div class="carousel-caption d-none d-md-block">
-              <h5>Titulo receta</h5>
-              <p>Tomate, zanahoria, patatas</p>
-              <div>
-          </div>
+  
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
+
+  
+
       </div>
+
+      <a class="carousel-control-prev control" href="#carouselExampleCaptions" role="button" data-slide="prev">
+        <span    class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span  class="sr-only">Anterior</span>
+      </a>
+      <a class="carousel-control-next control" href="#carouselExampleCaptions" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Proxima</span>
+      </a>
+    </div>
 </div>

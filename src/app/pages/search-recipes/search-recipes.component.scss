@@ -1,6 +1,8 @@
 @import '../../../styles.scss';
 
 $size: 1100px;
+$size2: 800px;
+$size3: 1200px;
 
 .main-container {
     width: 90%;
@@ -13,13 +15,21 @@ $size: 1100px;
         width: inherit;
         padding-top: 30px;
         @include size($size) {
-            width: 45%;
+            width: 65%;
         }
-        @include size($size2) {
-            width: 35%;
+        @include size($size3) {
+            width: 55%;
+        }
+        .form-group .fields{
+            display: inline-block;
+        }
+        .btn-ingredients {
+            display: inline-block;
+            width:10% !important;
+
         }
         input {
-            width: 100%;
+            width: 80%;
         }
         .header-title {
             padding: 10px 0px;
@@ -32,17 +42,53 @@ $size: 1100px;
         }
     }
     .carousel {
-        width: 60%;
+        width: 65%; 
         @include size-max($size) {
             width: 90%;
         }
-        img{
-            width: inherit;
-            height: 54vh;
-            @include size-max($size) {
-                height: 32vh;
+        @include size($size3) {
+            width: 55%;
+        }
+        .carousel-inner {
+            width: 100%;
+            p:first-child {
+                font-size: 1.5rem; 
+                font-weight: bold;
+                position: relative;
+            }    
+            .carousel-item {
+                position: relative;
+                z-index: 0;
+                img {
+                    background-size: cover;
+                    width: inherit;
+                    height: 47vh;
+                    position: relative;
+                    z-index: -1;
+                    @include size-max($size2) {
+                        height: 40vh;
+                    }
+                }
+                .text {
+                    text-align: center;
+                    p:first-child{
+                        font-size: 1.3rem;
+                    }
+                    @include size-max($size2) {
+                       position: relative;
+                       background-color: white;
+                       opacity: 1;
+                       text-align: left;
+                        margin-left: 0;
+                        padding-left: 0px;
+                    }
+                }
+                
             }
         }
-    }
-    
+    }  
+}
+
+.hide {
+    display: hidden;
 }

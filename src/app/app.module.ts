@@ -18,6 +18,7 @@ import { ClassesComponent } from './pages/classes/classes.component';
 import { UserRecipesComponent } from './pages/user-recipes/user-recipes.component';
 import { UserFavoriteRecipeComponent } from './pages/user-favorite-recipe/user-favorite-recipe.component';
 import { ClassesResultComponent } from './pages/classes-result/classes-result.component';
+import { CookbookService } from './shared/cookbook.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,7 @@ import { ClassesResultComponent } from './pages/classes-result/classes-result.co
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [CookbookService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

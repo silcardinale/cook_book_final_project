@@ -6,26 +6,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent implements OnInit {
-  public test: boolean;
+  public animation: boolean;
 
   constructor() {
 
-    this.test = false;
+    this.animation = false;
   }
-
 
     show() {
 
       if (document.getElementById('edit-profile').style.visibility === 'visible') {
+        this.animation = false;
 
         document.getElementById('edit-profile').style.visibility = 'hidden';
       } else {
         document.getElementById('edit-profile').style.visibility = 'visible';
-        document.getElementById('edit-profile').style.opacity = '0.7';
+        document.getElementById('edit-profile').style.opacity = '1';
+        this.animation = true;
       }
-      
-    }
 
+    }
 
   ngOnInit(): void {
   }
