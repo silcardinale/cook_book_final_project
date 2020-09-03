@@ -10,7 +10,8 @@ export class RecipeComponent implements OnInit {
   recipe: any = {};
   public colorHat: boolean;
   public count: number;
-  
+  public animation: boolean;
+
   constructor(private cookbookService: CookbookService, private activatedRoute: ActivatedRoute) {
 
     this.activatedRoute.params.subscribe(params => {
@@ -18,12 +19,12 @@ export class RecipeComponent implements OnInit {
       //console.log(params ['id']);
 
       this.recipe = this.cookbookService.getRecipe(params['id']);
-
+      this.animation = false;
     });
   }
   ngOnInit(): void {
   }
-
+  
   changeColor() {
 
     if (this.colorHat === false) {

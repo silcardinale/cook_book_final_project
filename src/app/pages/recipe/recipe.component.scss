@@ -8,6 +8,29 @@
   .title-recipe{
       text-align: center;
   }
+  .userComment{
+    padding:1%;
+    margin:2.5%;
+    width: 45%;
+      .userFavRecipe{
+          align-items:center ;
+          display: flex;
+          flex-direction: row;          
+          margin-bottom: 5px;
+          img{
+              width: 40px;
+              height: 40px;
+              border-radius: 100%;
+              margin-right: 7px;
+          }
+          .profileOther{
+              font-size:1rem
+          }
+          a:nth-child(1){
+              padding-right: 15px;
+          }
+      }
+  }
 }
 .icon {
   display: flex;
@@ -18,8 +41,23 @@
       margin-bottom: 5px;
   }
 }
+hr{
+  width: 100%;
+
+}
 .comment-container{
-  margin-top: 80px;
+  
+  margin-top: 5%;
+  padding-left: 20%;
+  padding-right: 20%;
+  width: 100%;
+  
+    h4{
+      font-size: 1rem;
+      text-align: center;
+      margin-bottom: 4%;
+    }
+  
   button {
     background-color: white;
     border: 1px solid var(--brand-color) ;
@@ -40,12 +78,14 @@
       align-items: center;
   }
   button{
-      width: 90%;
-      margin-left: 15px;
-      padding-left:5px;
+      width: 100%;
+    
   }
   .receta{
       margin-top: 15px;
+  }
+  .userComment{
+    width: 100% !important;
   }
 }
 
