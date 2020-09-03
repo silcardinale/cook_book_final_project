@@ -1,7 +1,8 @@
 @import '../../../styles.scss';
 
+
 .mainContainer{
-    padding: 25px;
+    padding: 25px;  
 }
 .profileUser{
     padding: 0px 0px;
@@ -33,14 +34,24 @@
             grid-area: followed;
             padding-left: 50px;
         }
+    
     }
+  
    
 }
+.nav {
+    padding-bottom: 40px;
 
-.nav > .nav-item a {
-    font-size: 1.5rem;
-    padding-bottom: 30px;
+    a {
+        font-size: 1.3rem;
+        padding-bottom: 60px;
+        &:nth-child(1){
+            padding-right: 40px;
+        }
+        
+    }
 }
+
 .activa{
     color:var(--brand-color) !important;
  }
@@ -86,6 +97,7 @@ hr{
                 -webkit-line-clamp: 4;
                 -webkit-box-orient: vertical;
             }
+            
         }
         .more {
             text-align: right;

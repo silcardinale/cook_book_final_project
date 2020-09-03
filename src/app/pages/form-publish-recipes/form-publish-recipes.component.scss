@@ -6,5 +6,26 @@
         button:nth-child(n+2) {
             margin-left: 5px;
         }  
+        button {
+            background-color: white;
+            color: var(--brand-color);
+            border: 1px solid var(--brand-color);
+            font-weight: bold;
+            &:focus{
+                background-color: var(--brand-color); 
+                color: white;
+            }
+
+        }
     }
 }
+
+textarea,
+select {
+    width: 100%;
+}
+
+
+
+
+

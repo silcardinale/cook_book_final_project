@@ -8,9 +8,9 @@
                 <input type="text" name="titulo" minlength="3" required placeholder="Titulo">
             </div>    
         </div>
-        <div class="form-group">
+        <div class="form-group textarea">
             <div>
-                <input type="text" name="ingredientes" required  placeholder="Introduzca los ingredientes">
+                <textarea type="textarea" rows="2" name="ingredientes" required  placeholder="Introduzca los ingredientes"></textarea>
             </div>    
         </div>
         <div class="form-group">
@@ -19,9 +19,11 @@
             </div>    
         </div>
         <div class="form-group">
-            <div>
-                <input type="text" name="dificultad" required  placeholder="Dificultad">
-            </div>    
+            <select name="dofficulty" id="difficulty">
+                <option value="facil">Fácil</option>
+                <option value="media">Media</option>
+                <option value="dificil">Difícil</option>
+              </select> 
         </div>
 
         <div class="form-group">
@@ -34,8 +36,8 @@
         </div>
 
         <div class="form-group">
-            <div>
-                <input type="textarea" name="descripcion" required  placeholder="Descripción">
+            <div class="textarea">
+                <textarea rows="4" cols="50" name="descripcion" required  placeholder="Descripción"></textarea>
             </div>    
         </div>
 

@@ -8,7 +8,7 @@
             <div class="fields">
                 <input type="text" name="ingredient" required placeholder="Ingrediente" #ingredient>
             </div>    
-            <button class="btn-ingredients" (click)="showInput(ingredient.value)">Add other</button>
+            <button class="btn-ingredients" (click)="showInput(ingredient.value)">+</button>
         </div>
         
 
@@ -17,20 +17,20 @@
               <input type="text" name="ingredient" required placeholder="Ingrediente" #ingredient>
               
           </div>  
-          <button class="btn-ingredients" [ngClass]="{'hide': count == 4}" (click)="showInput(ingredient.value)">Añadir otro</button>
+          <button class="btn-ingredients" [ngClass]="{'hide': count == 4}" (click)="showInput(ingredient.value)">+</button>
       </div>
    
 
         <div class="form-group">
             <div class="btn-group">
-                <button class = "badge badge-pill badge-primary" >Vegano</button>
+                <button >Vegano</button>
                 <button>Saludable</button>
                 <button>Picoteo</button>
                 <button>Postres</button>
             </div>
         </div>
 
-        <button>Buscar</button>
+        <button routerLink="/recipes">Buscar</button>
     </form>
     
 
@@ -42,9 +42,7 @@
             <p>{{recipe.name}}<p>
           </div>
   
-        </div>
-
-  
+        </div>  
 
       </div>
 

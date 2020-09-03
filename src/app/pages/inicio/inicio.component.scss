@@ -1,12 +1,5 @@
 @import '../../../styles.scss';
-.main-container-forms {
-    .btn-group {
-       width: 100%;
-        button:nth-child(n+2) {
-            margin-left: 5px;
-        }
-    }
-}
+
 img{
     padding-top: 50px;
 }
@@ -15,10 +8,12 @@ img{
     display:flex;
     justify-content: center;
     margin-top:40px;
+    .container-inicio {
+        border-right: 1px solid black;
+    }
 }
 .container-data a{
-    font-size:14px;
-    text-decoration:none;
+    font-size:1.3rem;
     margin:15px;
-    color:black;
+    
 }

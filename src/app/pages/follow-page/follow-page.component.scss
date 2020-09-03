@@ -9,6 +9,9 @@ $size3: 1200px;
         @content;
     }
 }
+.header-title {
+    font-size: 1.4rem;
+}
     
 .main-container {
     @include display-flex(flex, column , space-around, center);

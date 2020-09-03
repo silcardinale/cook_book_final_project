@@ -7,7 +7,7 @@ $size3: 1200px;
 .main-container {
     width: 90%;
     @include display-flex(flex, column , center, center);
-    padding-top: 40px;
+    padding-top: 25px;
     margin: 0 auto;
     form {
         padding-bottom: 20px;
@@ -25,10 +25,9 @@ $size3: 1200px;
         }
         .btn-ingredients {
             display: inline-block;
-            width:10% !important;
-            width: inherit; 
-           
-
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
         }
         input {
             width: 80%;
@@ -37,16 +36,18 @@ $size3: 1200px;
             padding: 10px 0px;
         }
         .btn-group {
-            width: 80%;
+            width: 100%;
             button {
-            background-color: #e27d5f;
-            border-radius: 5%;
-            width: 20%;
+            background-color:white;
+            border: 1px solid var(--brand-color);
             height: 50px !important;
             height: auto;
-            &:active {
-                background-color: #db4e23;
-            }
+            color:var(--brand-color);
+            font-weight: bold;
+                &:focus{
+                    background-color: var(--brand-color); 
+                    color: white;
+                }
             }
              button:nth-child(n+2) {
                  margin-left: 3px;
@@ -55,6 +56,7 @@ $size3: 1200px;
         }
      
     }
+
     .carousel {
         width: 65%; 
         @include size-max($size) {
@@ -85,17 +87,11 @@ $size3: 1200px;
                 }
                 .text {
                     text-align: center;
+                    padding-top: 20px;
                     p:first-child{
                         font-size: 1.3rem;
                     }
-                    @include size-max($size2) {
-                       position: relative;
-                       background-color: white;
-                       opacity: 1;
-                       text-align: left;
-                        margin-left: 0;
-                        padding-left: 0px;
-                    }
+                    
                 }
                 
             }

@@ -1,3 +1,4 @@
+import { InicioComponent } from './pages/inicio/inicio.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LoginComponent } from './pages/login/login.component';
 import { UserRecipesComponent } from './pages/user-recipes/user-recipes.component';
@@ -13,6 +14,8 @@ import { UserFavoriteRecipeComponent } from './pages/user-favorite-recipe/user-f
 import { RecipeComponent } from './pages/recipe/recipe.component';
 import { RecipesComponent } from './pages/recipes/recipes.component';
 
+import { ClassesComponent } from './pages/classes/classes.component';
+
 const routes: Routes = [
   {path: 'publishRecipe', component: FormPublishRecipesComponent},
   {path: 'publishClass', component: FormPublishClassComponent},
@@ -25,6 +28,9 @@ const routes: Routes = [
   {path: 'recipe/:id', component : RecipeComponent},
   {path: 'login', component : LoginComponent},
   {path: 'register', component : RegisterComponent},
+  {path: 'welcome', component: InicioComponent},
+  {path: 'lesson', component: ClassesComponent},
+  {path: '**', component: SearchRecipesComponent}
 
 
 ];

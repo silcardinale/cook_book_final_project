@@ -75,13 +75,16 @@ button {
 
 }
 
-input {
+input,
+textarea,
+select {
     background: -webkit-linear-gradient(top left, #E8E5E1, #D2D0D3);
     background: -moz-linear-gradient(top left, #E8E5E1, #D2D0D3);
     background: linear-gradient(to bottom right, #E8E5E1, #D2D0D3);
     border:none;
     padding: 10px 100px 10px 20px;
     font-size: 0.9rem;
+    
 }
 
 .icon {
@@ -94,4 +97,28 @@ input {
     } 
 }
 
+
+.animated {
+    -webkit-animation-duration: 2s;
+    animation-duration: 2s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+  }
+  .fast {
+    -webkit-animation-duration: 0.6s;
+    animation-duration: 0.6s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  .fadeIn {
+    animation-name: fadeIn;
+  }
 
