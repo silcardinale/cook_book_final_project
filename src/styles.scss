@@ -97,6 +97,18 @@ select {
     } 
 }
 
+.arrow svg  {
+    
+    width: 20px !important;
+    fill:  var(--brand-hover);
+    transition: transform 1s ease;
+    margin-left: 30px;
+        &:hover {
+            transform: scale(1.2);
+        
+        }
+
+    }
 
 .animated {
     -webkit-animation-duration: 2s;
@@ -121,4 +133,25 @@ select {
   .fadeIn {
     animation-name: fadeIn;
   }
+
+
+.animation {
+    animation-name: run;
+    animation-duration: 2s;
+    
+}
+
+@keyframes run {
+    0% {
+
+      transform: translateY(-100px);
+    }
+    100% {
+      
+      transform: translateY(0px);
+    }
+}
+
+
+
 

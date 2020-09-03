@@ -1,6 +1,8 @@
+import {NgForm} from '@angular/forms';
 import { CookbookService } from 'src/app/shared/cookbook.service';
 import { Recipe } from './../../models/recipe';
-import { Component, OnInit } from '@angular/core';;
+import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-search-recipes',
@@ -17,26 +19,34 @@ export class SearchRecipesComponent implements OnInit {
 
     this.ingredients = [];
     this.recipes = this.recipesList.getRecipes();
-   
+    this.count = 0;
 
    }
-   
 
-   showInput(ingredient: string) {
-     if (ingredient && this.ingredients.length <= 3 ) {
-      this.ingredients.push(ingredient);
-      this.count++;
-     }
-     else {
-       return;
-     }
-  }
+    showInput(ingredient: string) {
+      if (ingredient && this.count < 4 ) {
+            this.ingredients.push(ingredient);
+            this.count++;
+      }
+      else  if(this.count ===4) {
+        this.count++;
 
- 
+      } else {
+        return;
+      }
+
+      console.log(this.count)
+      if (this.count === 5) {
+
+        document.getElementById('btn-ingredients').style.visibility = 'hidden';
+      }
+
+    }
+
+
+
   ngOnInit(): void {
-     
 
-    
   }
 
 }

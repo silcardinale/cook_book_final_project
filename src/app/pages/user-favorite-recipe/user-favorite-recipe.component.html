@@ -8,10 +8,10 @@
         </div>
         <div class="followers-number">
             <div class="followers">
-                <a>Seguidores (13)</a>
+                <a routerLink="/followers">Seguidores (3)</a>
             </div>
             <div class="followed">
-                <a>Seguidos (15)</a>
+                <a routerLink="/followers">Seguidos (19)</a>
             </div>
         </div>
  </div>
@@ -105,7 +105,7 @@
             <p>Comenzamos precalentando el horno a 180 grados. Cortar rodajas de berenjenas y colocarlas en una fuente de horno previamente engrasada con un poco de aceite de oliva. Pinchar las rodajas de berenjenas con el tenedor. Hornear durante 40 minutos o hasta que estén tiernas
             </p>
             <div class="more">
-                <button href="" class="moreInfo">Ver más...</button>
+                <button [routerLink]="['recipe/0']" class="moreInfo">Ver más...</button>
            </div>
         </div>
 </div>
@@ -186,7 +186,7 @@
         <div>
             <p>Troceamos todos los ingredientes indicados en la proporción que os he puesto y añadimos 50 ml de aceite de oliva, 250 ml de agua de la nevera y 50 ml de vinagre de Jerez, triturando todo en la batidora de vaso.</p>
             <div class="more">
-                <button href="" class="moreInfo">Ver más...</button>
+                <button [routerLink]="['recipe/0']" class="moreInfo">Ver más...</button>
            </div>
         </div>
 </div>

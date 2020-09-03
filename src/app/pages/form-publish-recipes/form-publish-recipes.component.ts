@@ -7,10 +7,32 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./form-publish-recipes.component.scss']
 })
 export class FormPublishRecipesComponent implements OnInit {
+  public animation: boolean;
+  public form: NgForm;
 
-  constructor() { }
+  constructor() {
+
+    this.animation = false;
+    this.form;
+  }
+
+  show() {
+
+    if (document.getElementById('sucess').style.visibility === 'visible') {
+      this.animation = false;
+
+      document.getElementById('sucess').style.visibility = 'hidden';
+    } else {
+      document.getElementById('sucess').style.visibility = 'visible';
+      this.animation = true;
+    }
+
+  }
+
 
   ngOnInit(): void {
   }
+
+
 
 }

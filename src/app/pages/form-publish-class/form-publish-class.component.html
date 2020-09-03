@@ -28,7 +28,7 @@
 
         <div class="form-group">
             <div>
-                <input type="text" name="precio" required  placeholder="Precio">
+                <input type="text" name="precio" required  placeholder="Precio" >
             </div>    
         </div>
 
@@ -50,7 +50,22 @@
             </div>    
         </div>
 
-        <button>Publicar</button>
+        <button (click)="show()" >Publicar</button>
 
     </form>
+
+
+</div>
+
+<div class="descrp" id="sucess" [ngClass]= "{'animation': animation == true}">
+    <div class="header-title">
+        <div class="window">
+            <a (click)="show()">X</a>
+        </div>
+        <p>Cook Book</p>
+        <hr>
+       <div class ="container-text">
+            <p>Tu clase se ha publicado!</p>
+        </div>
+    </div>
 </div>

@@ -20,6 +20,9 @@ $size3: 1200px;
         @include size($size3) {
             width: 55%;
         }
+        .ingredients{
+            margin-left: -40px;
+        }
         .form-group .fields{
             display: inline-block;
         }
@@ -47,6 +50,11 @@ $size3: 1200px;
                 &:focus{
                     background-color: var(--brand-color); 
                     color: white;
+                    
+                }
+                :hover {
+                    cursor: pointer;
+
                 }
             }
              button:nth-child(n+2) {
@@ -101,4 +109,8 @@ $size3: 1200px;
 
 .hide {
     display: hidden !important;
+}
+
+.disabled {
+    background-color: red ;
 }
