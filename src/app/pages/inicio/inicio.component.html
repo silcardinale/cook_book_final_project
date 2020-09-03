@@ -1,4 +1,22 @@
+
+
 <div class="main-container-forms">
+    
+    <div class="descrp" id="quienes-somos" [ngClass]= "{'animation': animation == true}">    
+        <div class="header-title">
+            <div class="window">
+                <a (click)="show()">X</a>
+            </div>
+            <p>Cook Book</p>
+            <hr>
+           <div class ="container-text">
+                <p>Somos una APP para los amantes de la comida que buscan una fuente de inspiración a la hora de cocinar. <br><br>
+                Puedes elegir entre las miles de recetas que hay en Cook Book, publicar las tuyas para que otros usuarios las puedan degustar o enseñarles cómo hacerlas utilizando nuestro servicio de Clases de Cocina. <br><br>
+                ¡Únete a nuestros Cookers y empieza a disfrutar de la buena comida!
+                </p>
+            </div> 
+        </div>
+    </div>
     <div>
         <img src="assets/img/logo.png" class= "logo">
     </div>
@@ -9,8 +27,20 @@
         <div class = "container-register">
             <a routerLink="/register">Registrate</a>
         </div>
+        
     </div>
+    <br>
+    <br>
+    <br>
+    <div class = "container-somos">
+        <hr>
+        <a class="description" (click)="show()">¡Descubre quienes somos!</a>
+    </div>
+       
 </div>
+
+
+
 
 
 
