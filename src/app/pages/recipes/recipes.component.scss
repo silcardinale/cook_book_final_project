@@ -1,6 +1,10 @@
 @import '../../../styles.scss';
 
 $size: 500px;
+.arrow svg{
+  width:  130px !important;
+  margin: -20px !important
+}
 .container {
   width: 90%;
 }

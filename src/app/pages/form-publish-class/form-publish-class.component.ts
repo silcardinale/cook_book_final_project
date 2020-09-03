@@ -1,4 +1,6 @@
+import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
 @Component({
   selector: 'app-form-publish-class',
@@ -7,7 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormPublishClassComponent implements OnInit {
 
-  constructor() { }
+  public animation: boolean;
+  public form: NgForm;
+
+  constructor() {
+
+    this.animation = false;
+    this.form;
+  }
+
+  show() {
+
+    if (document.getElementById('sucess').style.visibility === 'visible') {
+      this.animation = false;
+      document.getElementById('sucess').style.visibility = 'hidden';
+
+    } else {
+      document.getElementById('sucess').style.visibility = 'visible';
+      this.animation = true;
+    }
+
+
+  }
 
 
   ngOnInit(): void {

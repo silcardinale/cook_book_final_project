@@ -126,23 +126,4 @@ $size:990px;
 }  
 
 
-.animation {
-    animation-name: run;
-    animation-duration: 2s;
-    
-}
-
-@keyframes run {
-    0% {
-
-      transform: translateY(-100px);
-    }
-    100% {
-      
-      transform: translateY(0px);
-    }
-}
-
-
-
 

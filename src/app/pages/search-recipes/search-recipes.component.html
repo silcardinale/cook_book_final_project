@@ -1,4 +1,5 @@
 <div class="main-container">
+ 
     <div class="header-title">
         <p>Buscar receta</p>
     </div>
@@ -8,16 +9,16 @@
             <div class="fields">
                 <input type="text" name="ingredient" required placeholder="Ingrediente" #ingredient>
             </div>    
-            <button class="btn-ingredients" (click)="showInput(ingredient.value)">+</button>
+            <button id="btn-ingredients" class="btn-ingredients" (click)="showInput(ingredient.value)">+</button>
         </div>
         
 
-        <div class="form-group" *ngFor ="ingredient of ingredients, let i=index">
+        <div class="form-group ingredients" *ngFor ="ingredient of ingredients, let i=index">
           <div class="fields">
               <input type="text" name="ingredient" required placeholder="Ingrediente" #ingredient>
               
           </div>  
-          <button class="btn-ingredients" [ngClass]="{'hide': count == 4}" (click)="showInput(ingredient.value)">+</button>
+          
       </div>
    
 

@@ -26,6 +26,45 @@ select {
 }
 
 
+.descrp{
+    visibility:  hidden;
+    display: flex;;
+    height: 2   00px;
+    width: 500px;
+    top: 50px;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    background-color: #9DDAC9;
+    transition: opacity .24s ease-out;
+    position: absolute;
+    .header-title{
+        font-size: 2rem;
+        color: black;
+        padding-top:10px;
+        margin-top: 5px;
+        hr{
+            border: 1px solid var(--brand-color);
+            width: 90%;
+        }
+        .window a{
+            margin-left: 80%;
+            margin-top: 5px;
+            font-size: 1.3rem;
+            color: var(--brand-color);
+        }
+    }
+    .container-text{
+        font-size: 1rem;
+        color: black;
+        text-align: center;
+        padding-left: 20px;
+        padding-right:20px;
+        margin-top:10px;
+    }
+}
+
+
 
 
 

@@ -41,7 +41,7 @@ import { CookbookService } from './shared/cookbook.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [CookbookService],
   bootstrap: [AppComponent]

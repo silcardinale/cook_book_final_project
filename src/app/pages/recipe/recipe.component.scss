@@ -90,16 +90,8 @@ hr{
 }
 
 
-.arrow svg 
-{
-  display: block;
-  width: 40px;
-  fill:  var(--brand-hover);
-  transition: transform 1s ease;
-  margin-left: 20px;
-  &:hover {
-    transform: scale(1.2);
-  
-  }
+.arrow svg{
+  margin-left: 40px;
+
 }
 
