@@ -2,48 +2,50 @@
     <div class="header-title">
         <p>Publicar receta</p>
     </div>
-   <form  novalidate>
+   <form  [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
         <div class="form-group">
             <div class="fields">
-                <input type="text" name="titulo" minlength="3" required placeholder="Titulo">
+                <input type="text" name="titulo" placeholder="Titulo" formControlName="titulo" [class.is-invalid]= "formNoValidTitle">
+                <small *ngIf="formNoValidTitle" class="text-danger">Ingresa un titulo con al menos 5 letras</small>
             </div>    
         </div>
         <div class="form-group textarea">
             <div>
-                <textarea type="textarea" rows="2" name="ingredientes" required  placeholder="Introduzca los ingredientes"></textarea>
+                <textarea type="text" name="ingredientes" placeholder="Ingredientes" formControlName="ingredientes"[class.is-invalid]="formNoValidIngredients"></textarea>
+                <small *ngIf="formNoValidIngredients" class="text-danger">Añade los ingredientes</small>
             </div>    
         </div>
         <div class="form-group">
             <div>
-                <input type="text" name="duracion" required  placeholder="Duración">
+                <input type="text" name="duracion" placeholder="Duración" formControlName="duracion"[class.is-invalid]="formNoValidTime">
+                <small *ngIf="formNoValidTime" class="text-danger">Introduce la duración</small>
             </div>    
         </div>
-        <div class="form-group">
-            <select name="dofficulty" id="difficulty">
+        <div class="form-group" >
+            <select name="difficulty" formControlName="dificultad">
                 <option value="facil">Fácil</option>
                 <option value="media">Media</option>
                 <option value="dificil">Difícil</option>
               </select> 
         </div>
 
-        <div class="form-group">
-            <div class="btn-group">
-                <button>Vegano</button>
-                <button>Saludable</button>
-                <button>Picoteo</button>
-                <button>Postres</button>
+        <div class="form-group" >
+            <div class="btn-group" formArraylName="comida">
+                <button *ngFor ="let item of food.value; let i = index">{{item}}</button>
             </div>
         </div>
 
         <div class="form-group">
             <div class="textarea">
-                <textarea rows="4" cols="50" name="descripcion" required  placeholder="Descripción"></textarea>
+                <textarea type="textarea" name="descripcion"  placeholder="Descripción" formControlName="descripcion" [class.is-invalid]="formNoValidDescription"></textarea>
+                <small *ngIf="formNoValidDescription" class="text-danger">Añade una descripción de mínimo 20 caracteres</small>
             </div>    
         </div>
 
         <div class="form-group">
             <div>
-                <input type="text" name="foto"  required  placeholder="foto">
+                <input type="text" name="foto" placeholder="Foto" formControlName="foto"[class.is-invalid]="formNoValidPhoto">
+                <small *ngIf="formNoValidPhoto" class="text-danger">Añade una foto</small>
             </div>    
         </div>
 
