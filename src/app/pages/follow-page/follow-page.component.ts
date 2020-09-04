@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CookbookService } from 'src/app/shared/cookbook.service';
 
 @Component({
   selector: 'app-follow-page',
@@ -9,10 +10,12 @@ export class FollowPageComponent implements OnInit {
 
   public colorHat: boolean;
   public count: number;
+  public arrow: void;
 
-  constructor() {
+  constructor(private cookbookService: CookbookService) {
     this.count = 0;
     this.colorHat = false;
+    
   }
 
   changeColor() {
@@ -28,6 +31,11 @@ export class FollowPageComponent implements OnInit {
 
     }
   }
+  
+  goBack(){
+    this.arrow = this.cookbookService.backClicked()
+  }
+
   ngOnInit(): void {
   }
 

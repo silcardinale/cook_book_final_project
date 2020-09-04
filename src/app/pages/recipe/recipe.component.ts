@@ -11,6 +11,7 @@ export class RecipeComponent implements OnInit {
   public colorHat: boolean;
   public count: number;
   public animation: boolean;
+  public arrow: void;
 
   constructor(private cookbookService: CookbookService, private activatedRoute: ActivatedRoute) {
 
@@ -24,7 +25,12 @@ export class RecipeComponent implements OnInit {
   }
   ngOnInit(): void {
   }
-  
+
+  goBack(){
+    this.arrow = this.cookbookService.backClicked()
+  }
+
+
   changeColor() {
 
     if (this.colorHat === false) {

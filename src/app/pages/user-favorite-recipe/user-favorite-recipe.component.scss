@@ -55,11 +55,19 @@
         padding-right: 15px;
     }
 }
-
-.nav > .nav-item a {
-    font-size: 1.3rem;
-    padding-bottom: 30px;
+.nav {
+   
+    a {
+        font-size: 1.3rem;
+        padding-bottom: 30px;
+        &:nth-child(1){
+            padding-right: 40px;
+        }
+        
+    }
 }
+
+
 .activa{
     color:var(--brand-color) !important;
  }

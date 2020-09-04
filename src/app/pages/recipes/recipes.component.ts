@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class RecipesComponent implements OnInit {
 
   public recipes: Recipe[] = [];
+  public arrow: void;
 
   constructor(private cookbookService: CookbookService, private router: Router) { }
 
@@ -17,7 +18,10 @@ export class RecipesComponent implements OnInit {
     this.recipes = this.cookbookService.getRecipes();
     console.log(this.recipes);
   }
-  
+
+  goBack(){
+    this.arrow = this.cookbookService.backClicked()
+  }
   showRecipe(index: number) {
     this.router.navigate(['/recipe', index]);
   }
