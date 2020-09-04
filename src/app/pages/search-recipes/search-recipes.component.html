@@ -38,7 +38,7 @@
     <div class="carousel slide" data-ride="carousel">
       <div class="carousel-inner" >
         <div class="carousel-item" [class.active] = "isFirst" *ngFor="let recipe of recipes; first as isFirst"> 
-          <img [src]="recipe.img" class="d-block w-100 photo" [alt]="recipe.name">
+          <a routerLink="/recipe/0"><img [src]="recipe.img" class="d-block w-100 photo" [alt]="recipe.name"></a>
           <div class="text">
             <p>{{recipe.name}}<p>
           </div>
