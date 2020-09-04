@@ -38,7 +38,7 @@
 }
 
 .userFavRecipe{
-    align-items:center ;
+   
     display: flex;
     flex-direction: row;
     margin-bottom: 5px;
@@ -48,8 +48,13 @@
         border-radius: 100%;
         margin-right: 7px;
     }
-    .profileOther{
-        font-size:1rem
+    .profileOther{      
+        font-size:1rem;
+        p{
+        margin-top: 15%;
+        margin-bottom: 0;
+        }
+        
     }
     a:nth-child(1){
         padding-right: 15px;

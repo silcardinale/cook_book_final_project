@@ -14,7 +14,7 @@
 
   }
   .userComment{
-    padding:1%;
+   
     margin:2.5%;
     width: 45%;
       .userFavRecipe{
@@ -29,6 +29,7 @@
               margin-right: 7px;
           }
           .profileOther{
+              font-weight: bold;
               font-size:1rem
           }
           a:nth-child(1){

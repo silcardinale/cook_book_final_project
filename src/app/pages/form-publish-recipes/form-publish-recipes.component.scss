@@ -1,31 +1,33 @@
 @import '../../../styles.scss';
-
 .main-container-forms {
     .btn-group {
-       width: 100%; 
-        button:nth-child(n+2) {
+       width: 100%;
+       a:focus {
+        background-color: var(--brand-color) !important;
+        color: white;
+       }
+        a:nth-child(n+2) {
             margin-left: 5px;
-        }  
-        button {
+        }
+        .button {
             background-color: white;
             color: var(--brand-color);
             border: 1px solid var(--brand-color);
             font-weight: bold;
-            &:focus{
-                background-color: var(--brand-color); 
+            &:hover {
+                opacity: 0.9;
+            }
+            &:active {
+                background-color: var(--brand-color);
                 color: white;
             }
-
         }
     }
 }
-
 textarea,
 select {
     width: 100%;
 }
-
-
 .descrp{
     visibility:  hidden;
     display: flex;;
@@ -63,8 +65,3 @@ select {
         margin-top:10px;
     }
 }
-
-
-
-
-
