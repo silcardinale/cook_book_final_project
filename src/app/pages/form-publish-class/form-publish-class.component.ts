@@ -1,4 +1,4 @@
-import {FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {FormGroup, FormBuilder, Validators, ControlValueAccessor, FormArray } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-form-publish-class',
@@ -8,18 +8,35 @@ import { Component, OnInit } from '@angular/core';
 export class FormPublishClassComponent implements OnInit {
   public animation: boolean;
   public form: FormGroup;
+  public dificultyLevels: {};
+
+
   constructor(private fb: FormBuilder) {
     this.animation = false;
     this.createForm();
+
+    this.dificultyLevels = ['hola', "adios"]
   }
+
   show() {
     if (document.getElementById('sucess').style.visibility === 'visible') {
       this.animation = false;
       document.getElementById('sucess').style.visibility = 'hidden';
     }
   }
-  ngOnInit(): void {
+
+  
+  resetForm() {
+    this.form.reset({
+      comida: [['Vegano'], ['Saludable'], ['Picoteo'], ['Postres']]
+    });
+
   }
+  ngOnInit(): void {
+
+
+  }
+
   get formNoValidTitle() {
     return this.form.get('titulo').invalid && this.form.get('titulo').touched;
   }
@@ -41,6 +58,7 @@ export class FormPublishClassComponent implements OnInit {
   get formNoValidPhoto() {
     return this.form.get('foto').invalid && this.form.get('foto').touched;
   }
+
   createForm() {
     this.form = this.fb.group({
       titulo: ['', [Validators.required, Validators.minLength(5)]],
@@ -53,6 +71,13 @@ export class FormPublishClassComponent implements OnInit {
       foto: ['', Validators.required]
     });
   }
+
+  /*changeCity(e) {
+    console.log(e.value)
+    this.setValue(e.target.value, {
+      onlySelf: true
+  });
+}*/
   /*[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$*/
   onSubmit() {
     console.log(this.form);
@@ -63,7 +88,7 @@ export class FormPublishClassComponent implements OnInit {
     } else {
       document.getElementById('sucess').style.visibility = 'visible';
       this.animation = true;
-      this.form.reset();
+      console.log(this.form);
     }
   }
 }

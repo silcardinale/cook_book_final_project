@@ -28,7 +28,7 @@ export class SearchRecipesComponent implements OnInit {
             this.ingredients.push(ingredient);
             this.count++;
       }
-      else  if(this.count ===4) {
+      else  if(this.count === 4) {
         this.count++;
 
       } else {
@@ -36,7 +36,7 @@ export class SearchRecipesComponent implements OnInit {
       }
 
       console.log(this.count)
-      if (this.count === 5) {
+      if (this.count === 4) {
 
         document.getElementById('btn-ingredients').style.visibility = 'hidden';
       }

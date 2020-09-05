@@ -2,7 +2,8 @@
     <div class="header-title">
         <p>Publicar receta</p>
     </div>
-   <form  [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+
+    <form  [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="form-group">
             <div class="fields">
                 <input type="text" name="titulo" placeholder="Titulo" formControlName="titulo" [class.is-invalid]= "formNoValidTitle">
@@ -21,17 +22,15 @@
                 <small *ngIf="formNoValidTime" class="text-danger">Introduce la duración</small>
             </div>
         </div>
-        <div class="form-group" >
-            <select name="difficulty" formControlName="dificultad" >
-                <option value="" hidden>Dificultad</option>
-                <option value="facil">Fácil</option>
-                <option value="media">Media</option>
-                <option value="dificil">Difícil</option>
+        <div class="form-group">
+            <select name="difficulty" formGroupName="dificultad">
+                <option value="" hidden> Dificultad</option>
+                <option  formControlName="item" *ngFor ="let item of dificulty.value; let i = index">{{item}}</option>
               </select>
         </div>
         <div class="form-group" >
             <div class="btn-group" formArraylName="comida">
-                <a type="button" class="button" *ngFor ="let item of food.value; let i = index">{{item}}</a>
+                <a type="button" [ngValue]="item" class="button" *ngFor ="let item of food.value; let i = index">{{item}}</a>
             </div>
         </div>
         <div class="form-group">

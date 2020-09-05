@@ -83,6 +83,9 @@ $size3: 1200px;
             .carousel-item {
                 position: relative;
                 z-index: 0;
+                &:hover {
+                    opacity: 0.9;
+                }
                 img {
                     background-size: cover;
                     width: inherit;
@@ -107,10 +110,3 @@ $size3: 1200px;
     }  
 }
 
-.hide {
-    display: hidden !important;
-}
-
-.disabled {
-    background-color: red ;
-}
