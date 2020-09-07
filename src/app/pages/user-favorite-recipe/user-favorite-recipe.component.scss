@@ -63,6 +63,7 @@
 .nav {
    
     a {
+        
         font-size: 1.3rem;
         padding-bottom: 30px;
         &:nth-child(1){
@@ -167,8 +168,19 @@ hr{
     }
  }
  @media screen and (max-width: 400px){
+    
+    .nav {padding: 0 0 0 0%;
+        a {
+            font-size: 1.1rem;
+            text-align: center ;
+            &:nth-child(1){
+                padding-right: 11px;
+                padding-left: 11px;
+            }
+        }
+    }
     .favRecipe{
-        display:grid;
+       
         grid-template-columns: 100% ;
         padding: 30px;
             .recipePic{
@@ -176,6 +188,9 @@ hr{
                 margin-left: 10%;
             }
         }
+
+        
+        
  }
 
 
