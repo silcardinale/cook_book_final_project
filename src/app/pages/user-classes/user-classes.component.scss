@@ -54,24 +54,24 @@
 .activa{
     color:var(--brand-color) !important;
  }
+
+
 hr{
     margin-top: 0;
     margin-bottom: 5px;
     width: 80%;
 }
+
 .favRecipe{
     display:grid;
     grid-template-columns: 40% 60%;
     grid-gap: 20px;
     padding: 4% 20px 4px 10px;
-        .recipePic{
-            width:100%;
-        }
-        .comment{
-            font-size: 0.9rem;
-            text-align:center;
-            padding-top: 10px;
-        }
+    
+    .recipePic{
+        width:100%;
+    }
+        
         .receta{
             font-size:1rem;
             display: flex;
@@ -81,14 +81,7 @@ hr{
                font-weight: bold;
                display: inline-block;
             }
-            svg{
-                height: 20px;
-                margin-bottom: 5px;
-                display: inline-block;
-                padding-left:10px;
-                padding-right: 10px;
-                fill: white;
-            }
+            
             p{
                 font-size:1rem;
                 overflow: hidden;

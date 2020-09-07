@@ -19,6 +19,7 @@ import { UserRecipesComponent } from './pages/user-recipes/user-recipes.componen
 import { UserFavoriteRecipeComponent } from './pages/user-favorite-recipe/user-favorite-recipe.component';
 import { ClassesResultComponent } from './pages/classes-result/classes-result.component';
 import { CookbookService } from './shared/cookbook.service';
+import { UserClassesComponent } from './pages/user-classes/user-classes.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { CookbookService } from './shared/cookbook.service';
     ClassesComponent,
     UserRecipesComponent,
     UserFavoriteRecipeComponent,
-    ClassesResultComponent
+    ClassesResultComponent,
+    UserClassesComponent
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,9 @@
 
 .mainContainer{
     padding: 25px;
+    .header-title{
+    margin: 3%;
+    }
 }
 .profileUser{
     padding: 0px 0px;
@@ -55,12 +58,17 @@ hr{
         width: 50%;
     }
 }
-.materials{
-    padding-top: 50px;
-    p{
-        text-align: center;
+
+    .description{
+        display:grid;
+        grid-template-columns: 40% 60%;
+         grid-gap: 12%;
+        padding: 4% 20% 4% 20%;
+        .title{
+                text-align: center;
+        }
     }
-}
+
 @media screen and (max-width: 800px){
     .details{
         flex-direction:column;
@@ -76,5 +84,12 @@ hr{
             margin-left: 0px;
             width:100%;
         }
+    }
+
+    .description{
+        grid-gap: 3%;
+        padding: 8% 20% 1% 20%;
+        grid-template-columns: 100%;
+      
     }
 }

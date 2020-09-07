@@ -13,30 +13,9 @@
     padding-bottom: 20px;
 
   }
-  .userComment{
-   
-    margin:2.5%;
-    width: 45%;
-      .userFavRecipe{
-          align-items:center ;
-          display: flex;
-          flex-direction: row;          
-          margin-bottom: 5px;
-          img{
-              width: 40px;
-              height: 40px;
-              border-radius: 100%;
-              margin-right: 7px;
-          }
-          .profileOther{
-              font-weight: bold;
-              font-size:1rem
-          }
-          a:nth-child(1){
-              padding-right: 15px;
-          }
-      }
-  }
+
+ 
+  
 }
 .icon {
   display: flex;
@@ -47,6 +26,13 @@
       margin-bottom: 5px;
   }
 }
+
+.dateRecipe{
+  padding-top:3% ;
+  text-align: right;
+  color: grey;
+}
+
 hr{
   width: 100%;
 
@@ -63,7 +49,7 @@ hr{
       text-align: center;
       margin-bottom: 4%;
     }
-  
+      
   button {
     background-color: white;
     border: 1px solid var(--brand-color) ;
@@ -71,6 +57,29 @@ hr{
     font-weight: bold;
   }
  
+}
+
+.bothComments{
+  display:grid;
+  grid-template-columns: 50% 50%;
+  .userComment{
+   margin-top: 7%;
+    width: 90%;
+      .userFavRecipe{
+          align-items:center ;
+          display: flex;
+          flex-direction: row;          
+          margin-bottom: 5px;
+          .profileOther{
+              font-weight: bold;
+              font-size:1rem
+          }
+          a:nth-child(1){
+              padding-right: 15px;
+          }
+      }
+  }
+
 }
 
 @media only screen and (max-width: 768px) {
@@ -90,8 +99,18 @@ hr{
   .receta{
       margin-top: 15px;
   }
-  .userComment{
-    width: 100% !important;
+  .bothComments{
+      grid-template-columns:100% ;
+      .userComment{
+      width: 100%;
+      align-content: center;
+      }
+  }
+  .comment-container{
+ 
+  padding: 0 1% 0 1%;
+    width: 100%;
+    
   }
 }
 
