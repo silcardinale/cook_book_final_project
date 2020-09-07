@@ -1,33 +1,7 @@
 @import '../../../styles.scss';
-.main-container-forms {
-    .btn-group {
-       width: 100%;
-       a:focus {
-        background-color: var(--brand-color) !important;
-        color: white;
-       }
-        a:nth-child(n+2) {
-            margin-left: 5px;
-        }
-        .button {
-            background-color: white;
-            color: var(--brand-color);
-            border: 1px solid var(--brand-color);
-            font-weight: bold;
-            &:hover {
-                opacity: 0.9;
-            }
-            &:active {
-                background-color: var(--brand-color);
-                color: white;
-            }
-        }
-    }
-}
-textarea,
-select {
-    width: 100%;
-}
+
+//confirmation publish recipe
+$size:800px;
 .descrp{
     visibility:  hidden;
     display: flex;;
@@ -65,3 +39,37 @@ select {
         margin-top:10px;
     }
 }
+
+//radio-buttons food
+.radio-group {
+    .food,
+    .dificulty {
+       display: flex;
+       justify-content: space-evenly;
+        width: 100%;   
+    }
+    .food {
+        .outer-circle-left,
+        .outer-circle-right{
+            left: 12px;     
+        }
+        .outer-circle-middle{
+            left: 18px; 
+        }
+    }
+    .dificulty {
+        .outer-circle-left,
+        .outer-circle-right{
+            left: 5px !important;     
+        }
+        .outer-circle-middle{
+            left: 8px; 
+        }
+        
+    }
+
+}
+
+
+
+

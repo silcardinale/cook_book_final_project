@@ -40,10 +40,43 @@ select {
     .container-text{
         font-size: 1rem;
         color: black;
-        text-align: center;
+      
         padding-left: 20px;
         padding-right:20px;
         margin-top:10px;
     }
 }
+
+.button {
+    background-color: white;
+    color: var(--brand-color);
+    border: 1px solid var(--brand-color);
+    font-weight: bold;
+    &:hover {
+        opacity: 0.9;
+    }
+    &:active {
+        background-color: var(--brand-color);
+        color: white;
+    }
+}
+
+//radio-buttons dificulty
+.radio-group {
+    .dificulty {
+       display: flex;
+       justify-content: space-evenly;
+        width: 100%;   
+    }
+    .dificulty {
+        .outer-circle-left,
+        .outer-circle-right{
+            left: 5px !important;     
+        }
+        .outer-circle-middle{
+            left: 8px; 
+        }
+    }
+}
+
 

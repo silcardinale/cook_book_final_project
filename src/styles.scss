@@ -2,6 +2,8 @@
     --main-color: black;
     --brand-color: #40B3A2;
 }
+
+// media queries
 $size:800px;
 $size2: 1200px;
 @mixin size ($val) {
@@ -24,6 +26,7 @@ $size2: 1200px;
     justify-content: $justify-content;
     align-items: $align-items;
 }
+
 .main-container-forms {
     @include display-flex(flex, column , center, center);
     padding-top: 40px;
@@ -42,6 +45,8 @@ $size2: 1200px;
         }
     }
 }
+
+// style for links
 a {
     color: black;
     text-decoration: none !important;
@@ -50,6 +55,8 @@ a {
         color:  var(--brand-color);
     }
 }
+
+// style for buttons
 .button,
 button {
     background-color: var(--brand-color);
@@ -66,6 +73,8 @@ button {
         outline:0 !important;;
     }
 }
+
+// style for forms
 input,
 textarea,
 select {
@@ -75,13 +84,16 @@ select {
     border:none;
     padding: 10px 100px 10px 20px;
     font-size: 0.9rem;
+    width: 100%;
     &:focus {
         outline-color: var(--brand-color) !important;
     }
 }
-::placeholder {
-    color: black !important;
+select {
+    color:grey;
 }
+
+// style for icons
 .icon {
     display: flex;
     justify-content: center;
@@ -96,10 +108,65 @@ select {
     fill:  var(--brand-hover);
     transition: transform 1s ease;
     margin-left: 30px;
-        &:hover {
-            transform: scale(1.2);
-        }
+    &:hover {
+        transform: scale(1.2);
     }
+}
+
+
+// radio-buttons
+.radio-group {
+    display: flex;
+    justify-content: space-around;   
+    align-items: center;
+    text-align: left;
+    font-size: 0.8rem;
+    div:nth-child(1) {
+        padding-bottom: 10px;   
+    }
+    label {
+        display: inline-block;
+        position:relative;
+        padding-bottom: 10px;       
+        input {
+            display: block;
+            margin-bottom: 10px;   
+            visibility: hidden;            
+        }
+        :hover {
+            cursor: pointer;
+        }   
+    }
+}
+
+span {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    border: 3px solid var(--brand-color);
+    display: block;
+    position: absolute;
+    top: -4px;
+    right:0;
+    bottom: 0;
+    margin-right: 30px;
+    &:after {
+        content: "";
+        height: 11px;
+        width: 11px;
+        background: var(--brand-color);
+        background-color: var(--brand-color);
+        top: 50%;
+        position: absolute;    
+        transform: translate(-50%, -50%) scale(0);
+        border-radius: 50%;
+        transition: 300ms ease 0s;
+    }   
+}
+
+
+
+// animations
 .animated {
     -webkit-animation-duration: 2s;
     animation-duration: 2s;

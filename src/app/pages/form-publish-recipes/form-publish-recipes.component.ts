@@ -9,13 +9,16 @@ export class FormPublishRecipesComponent implements OnInit {
 
   public animation: boolean;
   public form: FormGroup;
+  public foodOptions: {};
+  public dificultyLevels: {};
 
   constructor(private fb: FormBuilder) {
 
     this.animation = false;
+    this.dificultyLevels = ['Fácil', 'Media', 'Difícil'];
+    this.foodOptions = ['Vegana', 'Saludable', 'Picoteo', 'Postres'];
     this.createForm();
   }
-
 
   show() {
     if (document.getElementById('sucess').style.visibility === 'visible') {
@@ -24,18 +27,15 @@ export class FormPublishRecipesComponent implements OnInit {
     }
   }
 
+  resetForm() {
+    this.form.getRawValue();
+  }
+
   ngOnInit(): void {
 
   }
-  // Form
-
-  get dificulty() {
-    return this.form.get('dificultad') as FormArray;
-  }
-  get food() {
-    return this.form.get('comida') as FormArray;
-  }
-
+ 
+// Getter method to access formcontrols
   get formNoValidTitle() {
     return this.form.get('titulo').invalid && this.form.get('titulo').touched;
   }
@@ -56,29 +56,39 @@ export class FormPublishRecipesComponent implements OnInit {
     return this.form.get('foto').invalid && this.form.get('foto').touched;
   }
 
+  // Create a form
   createForm() {
 
     this.form = this.fb.group({
       titulo: ['', [Validators.required, Validators.minLength(5)]],
       ingredientes: ['', [Validators.required, Validators.minLength(3)]],
       duracion: ['', Validators.required],
-      dificultad: this.fb.array([['Facil'], ['Media'], ['Difícil']]),
-      comida: this.fb.array([['Vegano'], ['Saludable'], ['Picoteo'], ['Postres']]),
+      dificultad: ['', Validators.required],
+      comida: ['', Validators.required],
       descripcion: ['', [Validators.required, Validators.minLength(20)]],
       foto: ['', Validators.required]
     });
   }
-  /*[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$*/
-  async onSubmit() {
+
+  // get values of the radio-buttons
+  valueDificulty(element) {
+    this.fb.control(element);
+   }
+ 
+  valueFood(element){
+    this.fb.control(element);
+  }
+
+  onSubmit() {
      if (this.form.invalid) {
-      await Object.values (this.form.controls).forEach(control => {
+      Object.values (this.form.controls).forEach(control => {
         control.markAsTouched();
+
       });
     } else {
       document.getElementById('sucess').style.visibility = 'visible';
       this.animation = true;
-      console.log(this.form);
-
+      this.form.reset();
     }
   }
 }

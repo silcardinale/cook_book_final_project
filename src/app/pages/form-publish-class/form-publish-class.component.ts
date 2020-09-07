@@ -1,4 +1,4 @@
-import {FormGroup, FormBuilder, Validators, ControlValueAccessor, FormArray } from '@angular/forms';
+import {FormGroup, FormBuilder, Validators, ControlValueAccessor, FormArray, Form } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-form-publish-class',
@@ -10,12 +10,10 @@ export class FormPublishClassComponent implements OnInit {
   public form: FormGroup;
   public dificultyLevels: {};
 
-
   constructor(private fb: FormBuilder) {
     this.animation = false;
     this.createForm();
-
-    this.dificultyLevels = ['hola', "adios"]
+    this.dificultyLevels = ['Fácil', 'Media', 'Difícil'];
   }
 
   show() {
@@ -25,40 +23,42 @@ export class FormPublishClassComponent implements OnInit {
     }
   }
 
-  
   resetForm() {
     this.form.reset({
       comida: [['Vegano'], ['Saludable'], ['Picoteo'], ['Postres']]
     });
-
   }
+
   ngOnInit(): void {
 
-
   }
 
+// Getter method to access formcontrols
   get formNoValidTitle() {
     return this.form.get('titulo').invalid && this.form.get('titulo').touched;
   }
-  get formNoValidDate() {
-    return this.form.get('fecha').invalid && this.form.get('fecha').touched;
-  }
-  get formNoValidTime() {
-    return this.form.get('horario').invalid && this.form.get('horario').touched;
-  }
-  get formNoValidPrice() {
-    return this.form.get('precio').invalid && this.form.get('precio').touched;
-  }
+
   get formNoValidIngredients() {
     return this.form.get('ingredientes').invalid && this.form.get('ingredientes').touched;
   }
+
+  get formNoValidTime() {
+    return this.form.get('horario').invalid && this.form.get('horario').touched;
+  }
+
   get formNoValidDescription() {
     return this.form.get('descripcion').invalid && this.form.get('descripcion').touched;
   }
+
   get formNoValidPhoto() {
     return this.form.get('foto').invalid && this.form.get('foto').touched;
   }
 
+  get formNoValidPrice() {
+    return this.form.get('precio').invalid && this.form.get('precio').touched;
+  }
+
+  //create a form
   createForm() {
     this.form = this.fb.group({
       titulo: ['', [Validators.required, Validators.minLength(5)]],
@@ -72,15 +72,13 @@ export class FormPublishClassComponent implements OnInit {
     });
   }
 
-  /*changeCity(e) {
-    console.log(e.value)
-    this.setValue(e.target.value, {
-      onlySelf: true
-  });
-}*/
+  // get values of the radio-buttons
+  valueDificulty(element) {
+   this.fb.control(element);
+  }
+
   /*[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$*/
   onSubmit() {
-    console.log(this.form);
     if (this.form.invalid) {
       Object.values (this.form.controls).forEach(control => {
         control.markAsTouched();
@@ -88,7 +86,7 @@ export class FormPublishClassComponent implements OnInit {
     } else {
       document.getElementById('sucess').style.visibility = 'visible';
       this.animation = true;
-      console.log(this.form);
+      this.resetForm();
     }
   }
 }
