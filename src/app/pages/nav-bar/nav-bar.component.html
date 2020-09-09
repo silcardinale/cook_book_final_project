@@ -38,46 +38,54 @@
             </div>
            
             
-            <form div class="container"> <!--Hay que añadir NgModel y #name-->
+            <form div class="container"> 
                 <div class=" text photo">
-                    <img src="https://tapiceriaeleganciaenmuebles.com/wp-content/uploads/2018/01/sample-sally-persona.png" alt="profile-img">
+                    <img [src]="profileUser.picture" [alt]="picture">
                 </div>        
                 <div class="input details">
-                    <p>Nombre usuario</p>
-                    <p>Cambiar foto</p>
+                    <p>{{profileUser.user_name}}</p>
+                 
                     
                 </div>
-        
-                <div class=" text email">
-                    <p>Email</p>
-                </div>
-        
-                <div class="input">
-                    <div>
-                        <input type="text" name="email" required  placeholder="Cambiar email">
-                    </div>
-                </div>
-        
-                <div class="text phone">
-                    <p>Teléfono</p>
-                </div>
-        
-                <div class="input">
-                    <div>
-                        <input type="text" name="telefono" required  placeholder="Cambiar teléfono">
-                    </div>
-                </div>
-        
+
                 <div class="text password">
                     <p>Contraseña</p>
                 </div>
         
                 <div class="input">
                     <div>
-                        <input type="text" name="contraseña" required  placeholder="Cambiar contraseña">
+                        <input type="text" name="contraseña" #password required  placeholder="Cambiar contraseña">
                     </div>
                 </div>
-            
+
+                
+                <div class=" text email">
+                    <p>Email</p>
+                </div>
+        
+                <div class="input">
+                    <div>
+                        <input type="text" name="email" #email required  placeholder="Cambiar email">
+                    </div>
+                </div>
+        
+        
+                <div class="text picture">
+                    <p>Imagen de Perfil</p>
+                </div>
+        
+                <div class="input">
+                    <div>
+                        <input type="text" name="picture" #picture required  placeholder="Cambiar foto">
+                    </div>
+                </div>
+        
+                
+                <div class="input">
+                    <div>
+                        <button type="button" (click)= "editProfile(password.value, email.value, picture.value)"> Guardar</button>
+                    </div>
+                </div>
                 <div class="remove">
                     <p>Eliminar cuenta</p>
                 </div>

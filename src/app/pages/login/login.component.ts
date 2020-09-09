@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../shared/user.service';
+import { Router } from '@angular/router';
+
+
+
+import{ User } from '../../models/user';
 
 @Component({
   selector: 'app-login',
@@ -8,10 +14,12 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
 
   public animation: boolean;
+  public user;
 
-  constructor() {
+  constructor(private userService: UserService, private router: Router) {
 
     this.animation = false;
+    
   }
 
     show() {
@@ -28,7 +36,22 @@ export class LoginComponent implements OnInit {
 
     }
 
+    login(user_name:string, password:string){
+      
+      let user1 = new User(user_name,password)
+      this.userService.loginUser(user1).subscribe((data:User)=>{
+        this.userService.userProfile = data[0];
+        
+
+        this.router.navigate(['/', 'searchRecipe']);
+
+      
+
+      })
+    }
+
   ngOnInit(): void {
+    
   }
 
 }

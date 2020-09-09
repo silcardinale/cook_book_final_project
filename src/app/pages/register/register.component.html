@@ -5,20 +5,20 @@
     <form  novalidate>
         <div class="form-group">
             <div class="fields">
-                <input type="email" name="email" required placeholder="Correo electrónico">
+                <input type="email" name="email" #email required placeholder="Correo electrónico">
             </div>
         </div>
         <div class="form-group">
             <div>
-                <input type="text" name="user_name" required  placeholder="Nombre de usuario">
+                <input type="text" name="user_name" #user_name required  placeholder="Nombre de usuario">
             </div>
         </div>
         <div class="form-group">
             <div>
-                <input type="password" name="password" required  placeholder="Contraseña">
+                <input type="password" name="password" #password required  placeholder="Contraseña">
             </div>
         </div>
-        <button routerLink="/searchRecipe">Registrarse</button>
+        <button type= "button" (click)="register(email.value, user_name.value, password.value)" routerLink="/searchRecipe">Registrarse</button>
     </form>
     <br>
     <br>

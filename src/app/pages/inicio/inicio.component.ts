@@ -1,5 +1,7 @@
 import { CookbookService } from 'src/app/shared/cookbook.service';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute} from '@angular/router';
+
 
 @Component({
   selector: 'app-inicio',
@@ -12,7 +14,7 @@ export class InicioComponent implements OnInit {
   public test: boolean;
 
   
-  constructor(public navService: CookbookService) {
+  constructor(private activatedRoute: ActivatedRoute) { 
     this.animation = false;
     this.test = true;
   }
