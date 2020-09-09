@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { SearchRecipeService } from './../../shared/search-recipe.service';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Recipe } from '../../models/recipe';
 import { CookbookService } from '../../shared/cookbook.service';
 import { Router } from '@angular/router';
@@ -9,20 +10,38 @@ import { Router } from '@angular/router';
 })
 export class RecipesComponent implements OnInit {
 
-  public recipes: Recipe[] = [];
+  
   public arrow: void;
+  public test: string;
+  public resultRecipes: Recipe[];
+  public resultRecipe: Recipe[] ;
 
-  constructor(private cookbookService: CookbookService, private router: Router) { }
 
-  ngOnInit(): void {
-    this.recipes = this.cookbookService.getRecipes();
-    console.log(this.recipes);
-  }
 
-  goBack(){
-    this.arrow = this.cookbookService.backClicked()
-  }
-  showRecipe(index: number) {
-    this.router.navigate(['/recipe', index]);
-  }
+  constructor(public apiSearchRecipe: SearchRecipeService, private cookbookService: CookbookService, private router: Router ) { }
+
+
+    goBack(){
+
+        this.arrow = this.cookbookService.backClicked();
+    }
+
+    showRecipesResult() {
+
+        this.resultRecipes = this.apiSearchRecipe.resultRecipes;
+    }
+
+    showRecipe(i)  {
+      this.resultRecipe = this.resultRecipes.filter(recipe => recipe.recipe_id === i);
+      this.apiSearchRecipe.resultRecipe = this.resultRecipe;
+      this.router.navigate(['/', 'recipe']);
+    }
+
+
+    ngOnInit(): void {
+        this.showRecipesResult();
+    }
+
+
+
 }

@@ -1,3 +1,4 @@
+import { CookbookService } from 'src/app/shared/cookbook.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 export class NavBarComponent implements OnInit {
   public animation: boolean;
 
-  constructor() {
+  constructor(public nav: CookbookService) {
 
     this.animation = false;
+    
+  }
+
+  Nav() {
+    this.nav.test;
   }
 
     show() {

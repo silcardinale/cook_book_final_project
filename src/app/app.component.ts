@@ -8,7 +8,11 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  public test = false;
+
   title = 'cookBook';
+
+
 }
 
 

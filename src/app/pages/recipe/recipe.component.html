@@ -9,11 +9,11 @@
 <div class="container">
   <div class=" title-recipe">
     <p class="animated fadeIn Fast header-title">
-      {{ recipe.name }}
+      {{ resultRecipe[0].title }}
     </p>
     <div class="icon">
         <div>
-            <p>Likes: {{recipe.count}}</p>
+            <p>Likes: </p>
         </div>
         <div>
             <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0 -->
@@ -77,24 +77,24 @@
 </div>
     <br>
     <p>
-      <i class="fas fa-question"></i> {{ recipe.dificulty }} - <i class="fas fa-utensils"></i
-      > {{  recipe.portions }} (porciones) - <i class="far fa-clock"></i>
-      {{ recipe.prepTime }} min.
+      <i class="fas fa-question"></i> {{ resultRecipe[0].dificulty }} - <i class="fas fa-utensils"></i
+      > (porciones) - <i class="far fa-clock"></i>
+      {{ resultRecipe[0].duration }}.
     </p>
   </div>
 
   <div class="row animated fadeIn Fast">
     <div class="col-md-12 col-lg-4 img-recipe" >
-      <img [src]="recipe.img" class="img-fluid" [alt]="recipe.name" />
+      <img [src]="resultRecipe[0].picture" class="img-fluid" [alt]="resultRecipe[0].title" />
 
     </div>
     <br>
     <div class="col-lg-8">
       <p><strong>Ingredientes:</strong></p>
-      <li>{{ recipe.ingredients }}</li>
+      <li></li>
       <br>
       <p><strong>Preparación:</strong></p>
-      <li>{{ recipe.procedure }}</li>
+      <li>{{ resultRecipe[0].description }}</li>
     </div>
     </div>
     <div >

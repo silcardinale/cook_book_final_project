@@ -7,18 +7,19 @@
           c11.046,0,20-8.954,20-20C512,244.954,503.046,236,492,236z"/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg></a>
 </div>
 <div class="container">
-  
+    {{test}}
   
     <div class ="header-title">
         <p class="animated fadeIn Fast header-title">Sugerencias del chef</p>
         <hr>
     </div>
     <div class="row row-cols-1 row-cols-md-2">
-        <div class="col mb-4" *ngFor="let recipe of recipes; let i = index">
-            <div class="card animated fadeIn fast">
-               <a (click)="showRecipe(i)" ><img [src]="recipe.img" class="card-img-top" [alt]="recipe.name"></a> 
+        <div class="col mb-4" *ngFor="let recipe of resultRecipes; let i = index">
+            <div class="card animated fadeIn fast" >
+               
+               <a (click)="showRecipe(recipe.recipe_id)" ><img [src]="recipe.picture"  class="card-img-top" [alt]="recipe.name"></a> 
                 <div class="card-body">
-                    <p class="card-title">{{recipe.name}}</p>
+                    <p class="card-title">{{recipe.title}}</p>
                    
                         <nobr><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                             viewBox="0 0 469.333 469.333" style="enable-background:new 0 0 469.333 469.333;" xml:space="preserve">
@@ -79,8 +80,8 @@
                      
                     <p class="card-text"><br>
                         
-                        <i class="fas fa-utensils"></i> {{ recipe.portions }} - 
-                        <i class="far fa-clock"></i> {{ recipe.prepTime }} min. -                   
+                       <!-- <i class="fas fa-utensils"></i> {{ recipe.portions }} - -->
+                        <i class="far fa-clock"></i> {{ recipe.duration }} min. -                   
                         <i class="fas fa-question"></i> {{ recipe.dificulty}} 
                        
                     </p>

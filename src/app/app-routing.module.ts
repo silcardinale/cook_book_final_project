@@ -27,7 +27,7 @@ const routes: Routes = [
   {path: 'userClasses', component: UserClassesComponent},
   {path: 'userFavorites', component: UserFavoriteRecipeComponent},
   {path: 'recipes', component : RecipesComponent},
-  {path: 'recipe/:id', component : RecipeComponent},
+  {path: 'recipe', component : RecipeComponent},
   {path: 'login', component : LoginComponent},
   {path: 'register', component : RegisterComponent},
   {path: 'welcome', component: InicioComponent},

@@ -1,3 +1,4 @@
+import { CookbookService } from 'src/app/shared/cookbook.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,10 +9,14 @@ import { Component, OnInit } from '@angular/core';
 export class InicioComponent implements OnInit {
   
   public animation: boolean;
+  public test: boolean;
+
   
-  constructor() { 
+  constructor(public navService: CookbookService) {
     this.animation = false;
+    this.test = true;
   }
+
 
   show() {
     if (document.getElementById('quienes-somos').style.visibility === 'visible') {

@@ -4,8 +4,8 @@
         <p>Buscar receta</p>
     </div>
 
-   <form  novalidate>
-        <div class="form-group">
+   <form novalidate>
+        <div class="form-group" >
             <div class="fields">
                 <input type="text" name="ingredient" required placeholder="Ingrediente" #ingredient>
             </div>    
@@ -16,31 +16,31 @@
         <div class="form-group ingredients" *ngFor ="ingredient of ingredients, let i=index">
           <div class="fields">
               <input type="text" name="ingredient" required placeholder="Ingrediente" #ingredient>
-              
+              <button id="btn-ingredients" class="btn-ingredients" (click)="showInput(ingredient.value)">+</button>
+             
           </div>  
           
       </div>
-   
 
-        <div class="form-group">
+      <div class="form-group">
             <div class="btn-group">
-                <button >Vegano</button>
-                <button>Saludable</button>
-                <button>Picoteo</button>
-                <button>Postres</button>
+                <button (click) ="valueDificulty('Vegano')"  >Vegano</button>
+                <button  (click) ="valueDificulty('Saludable')" >Saludable</button>
+                <button  (click) ="valueDificulty('Picoteo')">Picoteo</button>
+                <button  (click) ="valueDificulty('Postres')" >Postres</button>
             </div>
         </div>
 
-        <button routerLink="/recipes">Buscar</button>
-    </form>
+        <button type="button" (click)="searchRecipes()">Buscar</button>
+  </form>
     
 
     <div class="carousel slide" data-ride="carousel">
       <div class="carousel-inner" >
         <div class="carousel-item" [class.active] = "isFirst" *ngFor="let recipe of recipes; first as isFirst"> 
-          <a routerLink="/recipe/0"><img [src]="recipe.img" class="d-block w-100 photo" [alt]="recipe.name"></a>
+          <a routerLink="/recipe/0"><img [src]="recipe.picture" class="d-block w-100 photo" [alt]="recipe.name"></a>
           <div class="text">
-            <p>{{recipe.name}}<p>
+            <p>{{recipe.title}}<p>
           </div>
   
         </div>  

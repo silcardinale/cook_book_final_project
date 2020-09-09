@@ -1,21 +1,20 @@
 export class Recipe {
-    public name: string;
-    public portions: number;
+    public recipe_id?: number;
+    public title: string;
+    public duration: number;
     public dificulty: string;
-    public prepTime: number;
-    public ingredients: string;
-    public procedure: string;
-    public img: string;
+    public type: number;
+    public description: string;
+    public picture: string;
     public count?: number;
 
-    constructor(name: string, portions: number, dificulty: string, prepTime: number, ingredients: string, procedure: string, img: string, count?:number) {
-        this.name = name;
-        this.portions = portions;
+    constructor(recipe_id: number, title: string, duration: number, dificulty: string, type: number, description: string, picture: string) {
+        this.recipe_id = recipe_id;
+        this.title = title;
+        this.duration = duration;
         this.dificulty = dificulty;
-        this.prepTime = prepTime;
-        this.ingredients = ingredients;
-        this.procedure = procedure;
-        this.img = img;
-        this.count = count;
+        this.type = type;
+        this.description = description;
+        this.picture = picture;
     }
 }

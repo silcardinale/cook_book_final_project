@@ -10,27 +10,28 @@
                 <small *ngIf="formNoValidTitle" class="text-danger">Ingresa un titulo con al menos 5 letras</small>
             </div>
         </div>
-        <div class="form-group textarea">
-            <div>
-                <textarea type="text" name="ingredientes" placeholder="Ingredientes" formControlName="ingredientes"[class.is-invalid]="formNoValidIngredients"></textarea>
+        <div class="form-group dropdown-ingredients">
+            <select formControlName="ingredientes" multiple>
+               
+                <option *ngFor="let ingredient of ingredients" (click) ="valueIngredient(ingredient.name)" [class.is-invalid]="formNoValidIngredients">{{ingredient.name}} </option>
                 <small *ngIf="formNoValidIngredients" class="text-danger">Añade los ingredientes</small>
-            </div>
+            </select>
         </div>
         <div class="radio-group">
             <div>Tipo de comida</div>
 
             <div class="food">
                 <label>
-                    <input type="radio" formControlName="comida"   value="vegana" (click) ="valueFood(vegana.value)" #vegana>Vegana
+                    <input type="radio" formControlName="comida"   value="vegana" (click) ="valueFood(vegana)" #vegana>Vegana
                     <span class="outer-circle-left"></span>
                 </label>   
                 <label> 
-                    <input type="radio" formControlName="comida"   value="saludable" (click) ="valueFood(saludable.value)" #saludable>Saludable 
+                    <input type="radio" formControlName="comida"   value="saludable" (click) ="valueFood(saludable)" #saludable>Saludable 
                     <span class="outer-circle-middle"></span>
                 </label>
                 
                 <label>
-                    <input type="radio" formControlName="comida"  value="picoteo" (click) ="valueFood(picoteo.value)" #picoteo>Picoteo
+                    <input type="radio" formControlName="comida"  value="picoteo" (click) ="valueFood(picoteo)" #picoteo>Picoteo
                     <span class="outer-circle-right"></span>
                 </label>
                 <label>
@@ -52,27 +53,19 @@
             <div>Dificultad</div>
             <div class="dificulty">
                 <label>
-                    <input type="radio" formControlName="dificultad"   value="facil" (click) ="valueDificulty(facil.value)" #facil> Fácil
+                    <input type="radio" formControlName="dificultad"   value="facil" (click) ="valueDificulty(facil)" #facil> Fácil
                     <span class="outer-circle-left"></span>
                 </label>   
                 <label> 
-                    <input type="radio" formControlName="dificultad"   value="media" (click) ="valueDificulty(media.value)" #media>Media 
+                    <input type="radio" formControlName="dificultad"   value="media" (click) ="valueDificulty(media)" #media>Media 
                     <span class="outer-circle-middle"></span>
                 </label>
                 <label>
-                    <input type="radio" formControlName="dificultad"  value="dificil" (click) ="valueDificulty(dificil.value)" #dificil>Difícil
+                    <input type="radio" formControlName="dificultad"  value="dificil" (click) ="valueDificulty(dificil)" #dificil>Difícil
                     <span class="outer-circle-right"></span>
                 </label>
             </div>
         </div>
-
-       
-       <!--<div class="form-group" >
-            <select class="btn-group" name="comida" formControlName="comida">
-                <option value="" hidden> Tipo de comida</option>
-                <option  class= "button"  [ngValue]="item" (click) ="valueFood(item)" *ngFor ="let item of foodOptions; let i = index">{{item}}</option>
-            </select>
-        </div>-->
 
         <div class="form-group">
             <div class="textarea">

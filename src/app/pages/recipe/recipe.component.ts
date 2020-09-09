@@ -1,5 +1,6 @@
+import { Recipe } from 'src/app/models/recipe';
+import { SearchRecipeService } from './../../shared/search-recipe.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { CookbookService } from 'src/app/shared/cookbook.service';
 @Component({
   selector: 'app-recipe',
@@ -7,29 +8,32 @@ import { CookbookService } from 'src/app/shared/cookbook.service';
   styleUrls: ['./recipe.component.scss']
 })
 export class RecipeComponent implements OnInit {
-  recipe: any = {};
-  public colorHat: boolean;
-  public count: number;
-  public animation: boolean;
-  public arrow: void;
+    public resultRecipe: Recipe[];
+    public colorHat: boolean;
+    public count: number;
+    public animation: boolean;
+    public arrow: void;
 
-  constructor(private cookbookService: CookbookService, private activatedRoute: ActivatedRoute) {
+    constructor(public apiSearchRecipe: SearchRecipeService, private cookbookService: CookbookService) {
 
-    this.activatedRoute.params.subscribe(params => {
+    }
 
-      //console.log(params ['id']);
 
-      this.recipe = this.cookbookService.getRecipe(params['id']);
-      this.animation = false;
-    });
-  }
+    showRecipeResult() {
+
+        this.resultRecipe = this.apiSearchRecipe.resultRecipe;
+    }
+
+    goBack(){
+        this.arrow = this.cookbookService.backClicked()
+    }
+
+
   ngOnInit(): void {
+       this.showRecipeResult();
   }
 
-  goBack(){
-    this.arrow = this.cookbookService.backClicked()
-  }
-
+  
 
   changeColor() {
 

@@ -2,6 +2,13 @@
     --main-color: black;
     --brand-color: #40B3A2;
 }
+.nav {
+    display:none !important;
+}
+
+.nav-display {
+    visibility: visible
+}
 
 // media queries
 $size:800px;
@@ -156,15 +163,18 @@ span {
         width: 11px;
         background: var(--brand-color);
         background-color: var(--brand-color);
-        top: 50%;
+        top: 52%;
+        left: 50%;
         position: absolute;    
         transform: translate(-50%, -50%) scale(0);
         border-radius: 50%;
-        transition: 300ms ease 0s;
+        transition: 250ms ease 0s;
     }   
 }
 
-
+input:checked ~ span:after {
+    transform: translate(-50%, -50%) scale(1);
+}
 
 // animations
 .animated {
