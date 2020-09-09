@@ -1,5 +1,7 @@
 import {FormGroup, FormBuilder, Validators, ControlValueAccessor, FormArray, Form } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { LessonServiceService } from 'src/app/shared/lesson-service.service';
+import { Lessons } from 'src/app/models/lessons';
 @Component({
   selector: 'app-form-publish-class',
   templateUrl: './form-publish-class.component.html',
@@ -10,7 +12,7 @@ export class FormPublishClassComponent implements OnInit {
   public form: FormGroup;
   public dificultyLevels: {};
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,  private apiService:LessonServiceService) {
     this.animation = false;
     this.createForm();
     this.dificultyLevels = ['Fácil', 'Media', 'Difícil'];
@@ -86,7 +88,17 @@ export class FormPublishClassComponent implements OnInit {
     } else {
       document.getElementById('sucess').style.visibility = 'visible';
       this.animation = true;
-      this.resetForm();
+      //this.resetForm();
+     
+      
+      let myLesson = new Lessons(this.form.value.titulo, this.form.value.fecha, this.form.value.horario, this.form.value.dificultad, this.form.value.precio, this.form.value.ingredientes, this.form.value.descripcion, this.form.value.foto, 1)
+      console.log(myLesson)
+      
+      this.apiService.addLesson(myLesson).subscribe((data) => {
+      console.log(data)
+      })
+      
+      
     }
   }
 }

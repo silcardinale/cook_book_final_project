@@ -19,6 +19,7 @@ import { ClassesComponent } from './pages/classes/classes.component';
 import { UserRecipesComponent } from './pages/user-recipes/user-recipes.component';
 import { UserFavoriteRecipeComponent } from './pages/user-favorite-recipe/user-favorite-recipe.component';
 import { ClassesResultComponent } from './pages/classes-result/classes-result.component';
+import { LessonServiceService } from './shared/lesson-service.service';
 import { UserClassesComponent } from './pages/user-classes/user-classes.component';
 
 //Services
@@ -54,7 +55,8 @@ import { UserService } from './shared/user.service';
   ],
   providers: [
     CookbookService,
-    UserService],
+    UserService,
+    LessonServiceService],
 
   bootstrap: [AppComponent]
 })
