@@ -19,7 +19,9 @@ import { UserRecipesComponent } from './pages/user-recipes/user-recipes.componen
 import { UserFavoriteRecipeComponent } from './pages/user-favorite-recipe/user-favorite-recipe.component';
 import { ClassesResultComponent } from './pages/classes-result/classes-result.component';
 import { CookbookService } from './shared/cookbook.service';
+import { LessonServiceService } from './shared/lesson-service.service';
 import { UserClassesComponent } from './pages/user-classes/user-classes.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -44,9 +46,10 @@ import { UserClassesComponent } from './pages/user-classes/user-classes.componen
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [CookbookService],
+  providers: [CookbookService,LessonServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -5,18 +5,18 @@
    <form [formGroup]="form" (ngSubmit)="onSubmit()"> 
         <div class="form-group">
             <div class="fields">
-                <input type="text" name="titulo"  placeholder="Titulo" formControlName="titulo" [class.is-invalid]= "formNoValidTitle">
+                <input type="text" #title name="titulo"  placeholder="Titulo" formControlName="titulo" [class.is-invalid]= "formNoValidTitle">
                 <small *ngIf="formNoValidTitle" class="text-danger">Ingresa un titulo con al menos 5 letras</small>
             </div>
         </div>
         <div class="form-group">
             <div>
-                <input type="date" name="fecha" style="color: grey" placeholder="Fecha" formControlName="fecha" >
+                <input type="date" #date name="fecha" style="color: grey" placeholder="Fecha" formControlName="fecha" >
             </div>
         </div>
         <div class="form-group">
             <div>
-                <input type="text" name="horario" placeholder="Horario" formControlName="horario" [class.is-invalid]="formNoValidTime">
+                <input type="text" #timetable name="horario" placeholder="Horario" formControlName="horario" [class.is-invalid]="formNoValidTime">
                 <small *ngIf="formNoValidTime" class="text-danger">Ingresa un horario valido</small>
             </div>
         </div>
@@ -25,44 +25,45 @@
             <div>Dificultad</div>
             <div class="dificulty">
                 <label>
-                    <input type="radio" formControlName="dificultad"   value="facil" (click) ="valueDificulty(facil.value)" #facil> Fácil
+                    <input type="radio"  formControlName="dificultad"   value="facil" (click) ="valueDificulty(facil)" #facil> Fácil
                     <span class="outer-circle-left"></span>
                 </label>   
                 <label> 
-                    <input type="radio" formControlName="dificultad"   value="media" (click) ="valueDificulty(media.value)" #media>Media 
+                    <input type="radio" formControlName="dificultad"   value="media" (click) ="valueDificulty(media)" #media>Media 
                     <span class="outer-circle-middle"></span>
                 </label>
                 <label>
-                    <input type="radio" formControlName="dificultad"  value="dificil" (click) ="valueDificulty(dificil.value)" #dificil>Difícil
+                    <input type="radio" formControlName="dificultad"  value="dificil" (click) ="valueDificulty(dificil)" #dificil>Difícil
                     <span class="outer-circle-right"></span>
                 </label>
             </div>
         </div>
         <div class="form-group">
             <div>
-                <input type="text" name="precio" placeholder="Precio" formControlName="precio" [class.is-invalid]="formNoValidPrice">
+                <input type="text" #price
+                name="precio" placeholder="Precio" formControlName="precio" [class.is-invalid]="formNoValidPrice">
                 <small *ngIf="formNoValidPrice" class="text-danger">Añade el precio de la clase</small>
             </div>
         </div>
         <div class="form-group">
             <div>
-                <textarea type="text" name="ingredientes" placeholder="Ingredientes" formControlName="ingredientes"[class.is-invalid]="formNoValidIngredients"></textarea>
+                <textarea type="text" #ingredients name="ingredientes" placeholder="Ingredientes" formControlName="ingredientes"[class.is-invalid]="formNoValidIngredients"></textarea>
                     <small *ngIf="formNoValidIngredients" class="text-danger">Añade los ingredientes</small>
             </div>
         </div>
         <div class="form-group">
             <div>
-                <textarea type="textarea" name="descripcion"  placeholder="Descripción" formControlName="descripcion" [class.is-invalid]="formNoValidDescription"></textarea>
+                <textarea type="textarea" #description name="descripcion"  placeholder="Descripción" formControlName="descripcion" [class.is-invalid]="formNoValidDescription"></textarea>
                     <small *ngIf="formNoValidDescription" class="text-danger">Añade una descripción de mínimo 20 caracteres</small>
             </div>
         </div>
         <div class="form-group">
             <div>
-                <input type="text" name="foto" placeholder="Foto" formControlName="foto"[class.is-invalid]="formNoValidPhoto">
+                <input type="text"  #picture name="foto" placeholder="Foto" formControlName="foto"[class.is-invalid]="formNoValidPhoto">
                 <small *ngIf="formNoValidPhoto" class="text-danger">Añade una foto</small>
             </div>
         </div>
-        <button >Publicar</button>
+        <button>Publicar</button>
     </form>
 </div>
 <div class="descrp" id="sucess" [ngClass]= "{'animation': animation == true}">

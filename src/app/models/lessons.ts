@@ -1,18 +1,28 @@
 export class Lessons {
-    public name: string;
-    public date: string;
+    
+    public title: string;
+    public date: Date;
     public timetable: string;
     public dificulty: string;
     public price: number;
-    public img: string;
+    public ingredients: string;
+    public description: string;
+    public image: string;
+    public user_id?: number;
+    public lesson_id?: number;
 
-    constructor(name: string,  date: string, timetable: string, dificulty: string, price: number, img: string){
-        this.name = name;
+    constructor (title: string,  date: Date, timetable: string, dificulty: string, price: number,ingredients:string, description:string,image: string, user_id?:number){
+        
+        this.title = title;
         this.date = date;
         this.timetable = timetable;
         this.dificulty = dificulty;
         this.price = price;
-        this.img = img;
+        this.ingredients = ingredients;
+        this.description =description
+        this.image = image;
+        this.user_id = user_id;
+        
     }
 
 }
