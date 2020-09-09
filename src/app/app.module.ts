@@ -24,7 +24,7 @@ import { UserClassesComponent } from './pages/user-classes/user-classes.componen
 //Services
 import { CookbookService } from './shared/cookbook.service';
 import { UserService } from './shared/user.service';
-import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
