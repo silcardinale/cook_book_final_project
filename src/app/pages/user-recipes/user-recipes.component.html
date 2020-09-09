@@ -1,10 +1,10 @@
 <div class="mainContainer">
     <div class="profileUser">       
         <div class=img-profile>
-            <img src="https://tapiceriaeleganciaenmuebles.com/wp-content/uploads/2018/01/sample-sally-persona.png" alt="profile-img" >
+            <img [src]="profile.picture" [alt]="profile.user_name"/>
         </div>
         <div class="user-name">
-          <p>martita</p>
+          <p>{{profile.user_name}}</p>
         </div>
         <div class="followers-number">
             <div class="followers">
@@ -98,7 +98,7 @@
                      <p>Mezclar los 2 ingredientes y colocarlos en un recipiente de silicona para que sea fácil desmoldarlos. Llevar al freezer hasta que se congelen. Retirar del freezer, cortar en forma de bastones y terminar con chocolate fundido en la superficie.
                      </p>
                      <div class="more">
-                        <button (click)="showRecipe(1)" class="moreInfo">Ver más...</button>
+                        <button  class="moreInfo">Ver más...</button>
                     </div>
                  </div>
          </div>
@@ -174,7 +174,7 @@
                  <div>
                      <p>Precalentar el horno a 180 grados. Mezclar todos los ingredientes y formar las galletas. Engrasar una plaza para horno con aceite en spray y distribuirlas. hornear por 10 min aproximadamente</p>
                         <div class="more">
-                            <button (click)="showRecipe(0)" class="moreInfo">Ver más...</button>
+                            <button  class="moreInfo">Ver más...</button>
                        </div>
                  </div>
          </div>

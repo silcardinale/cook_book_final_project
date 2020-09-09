@@ -2,18 +2,18 @@
     <div>
        <a routerLink="/welcome"> <img src="assets/img/logo.png" class= "logo"></a>
     </div>
-    <form  novalidate>
+    <form  novalidate >
         <div class="form-group">
             <div>
-                <input type="text" name="user_name" required  placeholder="Nombre de usuario">
+                <input type="text" name="user_name" #user_name required  placeholder="Nombre de usuario">
             </div>
         </div>
         <div class="form-group">
             <div>
-                <input type="password" name="password" required  placeholder="Contraseña">
+                <input type="password" name="password" #password required  placeholder="Contraseña">
             </div>
         </div>
-        <button>Iniciar sesión</button>
+        <button type="button" (click)="login(user_name.value, password.value)">Iniciar sesión</button>
         <br>
         <br>
         <br>

@@ -18,8 +18,12 @@ import { ClassesComponent } from './pages/classes/classes.component';
 import { UserRecipesComponent } from './pages/user-recipes/user-recipes.component';
 import { UserFavoriteRecipeComponent } from './pages/user-favorite-recipe/user-favorite-recipe.component';
 import { ClassesResultComponent } from './pages/classes-result/classes-result.component';
-import { CookbookService } from './shared/cookbook.service';
 import { UserClassesComponent } from './pages/user-classes/user-classes.component';
+
+//Services
+import { CookbookService } from './shared/cookbook.service';
+import { UserService } from './shared/user.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -44,9 +48,13 @@ import { UserClassesComponent } from './pages/user-classes/user-classes.componen
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [CookbookService],
+  providers: [
+    CookbookService,
+    UserService],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

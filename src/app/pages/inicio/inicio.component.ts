@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute} from '@angular/router';
+
 
 @Component({
   selector: 'app-inicio',
@@ -9,7 +11,7 @@ export class InicioComponent implements OnInit {
   
   public animation: boolean;
   
-  constructor() { 
+  constructor(private activatedRoute: ActivatedRoute) { 
     this.animation = false;
   }
 

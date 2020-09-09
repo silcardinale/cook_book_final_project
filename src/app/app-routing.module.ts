@@ -32,7 +32,7 @@ const routes: Routes = [
   {path: 'register', component : RegisterComponent},
   {path: 'welcome', component: InicioComponent},
   {path: 'lesson', component: ClassesComponent},
-  {path: '**', component: SearchRecipesComponent}
+  //{path: '**', component: SearchRecipesComponent}
 
 
 ];
