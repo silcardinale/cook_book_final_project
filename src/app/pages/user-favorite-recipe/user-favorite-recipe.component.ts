@@ -13,8 +13,7 @@ export class UserFavoriteRecipeComponent implements OnInit {
   public receta: Recipe[] = [];
   constructor( private servicio: CookbookService,  private router: Router) { }
   ngOnInit(): void {
-    this.receta = this.servicio.getRecipes();
-    console.log(this.receta);
+    
   }
 
   showRecipe(index: number) {
