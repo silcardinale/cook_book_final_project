@@ -22,7 +22,7 @@ import { ClassesResultComponent } from './pages/classes-result/classes-result.co
 import { LessonServiceService } from './shared/lesson-service.service';
 import { UserClassesComponent } from './pages/user-classes/user-classes.component';
 
-//Services
+// Services
 import { CookbookService } from './shared/cookbook.service';
 import { UserService } from './shared/user.service';
 
