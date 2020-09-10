@@ -50,20 +50,28 @@ hr{
 .details{
     @include display-flex(flex, row , center, center);
     width:80%;
+    img{
+        width: 500px;
+        height: auto;
+       
+    }
     p{
         line-height: 40px;
-        margin-left: 150px;
+        margin-left: 15%;
+        width: 100%;
     }
     button{
-        margin-left: 150px;
         width: 50%;
+        margin-right: 0;
+        float: right;
     }
+    
 }
 
     .description{
         display:grid;
         grid-template-columns: 40% 60%;
-         grid-gap: 12%;
+        grid-gap: 15%;
         padding: 4% 20% 4% 20%;
         .title{
                 text-align: center;

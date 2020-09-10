@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CookbookService } from 'src/app/shared/cookbook.service';
 import { Lessons } from './../../models/lessons';
 import { LessonServiceService } from "../../shared/lesson-service.service"
-import { Router } from '@angular/router';
+import { User } from 'src/app/models/user';
+import { UserService } from 'src/app/shared/user.service';
+
 
 
 
@@ -13,40 +15,46 @@ import { Router } from '@angular/router';
 })
 export class ClassesComponent implements OnInit {
   public arrow: void;
-  public lesson = Lessons;
-  
-  public lessons ;
-  
+  public lesson: Lessons[];
+  public lessonTeacher: Lessons;
+  public teacher: User
 
-
-  constructor(private cookbookService: CookbookService,private apiService: LessonServiceService, private router: Router)
+  constructor(private cookbookService: CookbookService,private apiService: LessonServiceService, private userService: UserService)
    { 
     this.lesson
+    this.teacher 
   }
 
-  showLesson(i){
-    this.lesson = this.lessons.filter(lesson => lesson.lesson_id === i);
-    //this.apiService.myLesson = this.lesson;
-    this.router.navigate(["/", "lesson",i])
-  }
-
-  obtainOneLesson(lesson_id:number){
-    this.apiService.getLesson(lesson_id).subscribe((data)=> {
+/*
+  obtainOneLesson(){
+    this.apiService.getLesson().subscribe((data)=> {
       this.lesson = data[0];
       console.log("unaClase",data[0])
       });
+  }*/
+
+  showLesson(){
+    this.lesson = this.apiService.lesson
   }
 
- 
 
   goBack(){
     this.arrow = this.cookbookService.backClicked()
   }
+/*
+  profileTeacher(lesson_id){
+
+    this.teacher = this.userService.getLessonfromUser(this.lessonTeacher.lesson_id).subscribe((data)=> {
+      this.teacher = data;
+      console.log("teacher",data)
+      });
+  }
+  */
 
  
   ngOnInit(): void {
+    this.showLesson()
     
-  
   }
 
 }

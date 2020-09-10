@@ -1,6 +1,7 @@
 import {FormGroup, FormBuilder, Validators, ControlValueAccessor, FormArray, Form } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { LessonServiceService } from 'src/app/shared/lesson-service.service';
+import { UserService } from 'src/app/shared/user.service'
 import { Lessons } from 'src/app/models/lessons';
 @Component({
   selector: 'app-form-publish-class',
@@ -12,7 +13,7 @@ export class FormPublishClassComponent implements OnInit {
   public form: FormGroup;
   public dificultyLevels: {};
 
-  constructor(private fb: FormBuilder,  private apiService:LessonServiceService) {
+  constructor(private fb: FormBuilder,  private apiService:LessonServiceService, private userService: UserService) {
     this.animation = false;
     this.createForm();
     this.dificultyLevels = ['Fácil', 'Media', 'Difícil'];
@@ -91,7 +92,7 @@ export class FormPublishClassComponent implements OnInit {
       //this.resetForm();
      
       
-      let myLesson = new Lessons(this.form.value.titulo, this.form.value.fecha, this.form.value.horario, this.form.value.dificultad, this.form.value.precio, this.form.value.ingredientes, this.form.value.descripcion, this.form.value.foto, 1)
+      let myLesson = new Lessons(this.form.value.titulo, this.form.value.fecha, this.form.value.horario, this.form.value.dificultad, this.form.value.precio, this.form.value.ingredientes, this.form.value.descripcion, this.form.value.foto, this.userService.userProfile.user_id)
       console.log(myLesson)
       
       this.apiService.addLesson(myLesson).subscribe((data) => {

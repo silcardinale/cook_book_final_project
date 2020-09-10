@@ -22,6 +22,10 @@ export class UserService {
     return this.http.get(this.url + "/" + id)
   }
 
+  getLessonfromUser(id_lesson){
+    return this.getLessonfromUser(this.url + "/lesson/" + id_lesson)
+  }
+
   loginUser(user:User){
     
    return this.http.post(this.url + '/login', user)

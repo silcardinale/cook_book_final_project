@@ -1,10 +1,10 @@
 <div class="mainContainer">
     <div class="profileUser">       
         <div class=img-profile>
-            <img src="https://tapiceriaeleganciaenmuebles.com/wp-content/uploads/2018/01/sample-sally-persona.png" alt="profile-img" >
+            <img [src]="profile.picture" alt="profile.user_name" >
         </div>
         <div class="user-name">
-          <p>martita</p>
+          <p>{{profile.user_name}}</p>
         </div>
         <div class="followers-number">
             <div class="followers">
@@ -17,7 +17,7 @@
     </div>
 <hr>
  <div>
-    <ul class="nav justify-content-center ">
+    <ul class="categories justify-content-center ">
         <li class="nav-item">
           <a  routerLink="/userRecipes">Publicaciones</a>
         </li>
@@ -28,21 +28,20 @@
             <a class="activa">Mis Clases</a>
         </li>
     </ul>
-     <div class="favRecipe" >
+     <div class="favRecipe" *ngFor="let lesson of lessons; let i = index">
          <div>
-             <img src="https://www.lacocinasingluten.com/wp-content/uploads/2017/07/IMG_20170706_181334-1300x975.jpg" class = "recipePic" alt="Galletas de limon">
+             <img src="{{lesson.image}}" class = "recipePic" alt="Galletas de limon">
         </div>
          <div class="receta">
              <div>
-                 <h6>Cookies de harina de arroz y limón</h6 >
+                 <h6>{{lesson.title}}</h6 >
                 
             </div>
                  <div>
-                     <p>En esta clase os enseñaré  un conjunto de elaboraciones muy versatiles que nos permiten tener un surtido de genero con una larga vida util para poder regalar o vender.
-                     Os animamo a tomar como ejemplo las receta base, realizar vuestras propias creaciones y compartirlas con nosotros en las redes sociales.
+                     <p>{{lesson.description}}
                      </p>
                      <div class="more">
-                        <button class="moreInfo">Ver más...</button>
+                        <button (click)="showLesson(lesson.lesson_id)"  class="moreInfo">Ver más...</button>
                     </div>
                  </div>
          </div>

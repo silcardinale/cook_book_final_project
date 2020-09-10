@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from"@angular/common/http";
 import { Lessons } from "../models/lessons"
+import { UserService } from './user.service';
+
 
 
 @Injectable({
@@ -8,10 +10,16 @@ import { Lessons } from "../models/lessons"
 })
 export class LessonServiceService {
 private url = "http://localhost:3000/lesson";
-public myLesson : Lessons[]
-constructor (private http :HttpClient) {
+
+public lesson :Lessons[];
+public lessons :Lessons[];
+
+
+constructor (private http :HttpClient, private userService :UserService) {
  
+  this.lessons = []
  }
+
 
   getLessons(){
     console.log(this.url)
@@ -21,7 +29,12 @@ constructor (private http :HttpClient) {
 
   getLesson(lesson_id:number){
    
-    return this.http.get(this.url+ "/?=" + lesson_id)
+    return this.http.get(this.url+ "/" + lesson_id)
+  }
+
+  getUserLessons(user_id){
+    console.log(this.url + "/user/" + user_id )
+  return this.http.get(this.url + "/user/" + user_id  )
   }
 
   addLesson(lesson:Lessons){
