@@ -2,7 +2,7 @@ import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../shared/user.service';
 import { Router } from '@angular/router';
-import {NgForm } from '@angular/forms';
+
 
 
 
@@ -54,10 +54,7 @@ export class LoginComponent implements OnInit {
 
     onSubmit() { this.submitted = true; }
 
-    onSubmit(form) {
-
-      console.log("hola")
-    }
+   
 
   ngOnInit(): void {
     
