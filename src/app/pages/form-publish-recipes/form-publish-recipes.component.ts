@@ -107,7 +107,7 @@ export class FormPublishRecipesComponent implements OnInit {
      if (this.form.invalid) {
         Object.values (this.form.controls).forEach(control => {
             control.markAsTouched();
-            console.log(this.form)
+            console.log(this.form);
         });
 
     } else {
