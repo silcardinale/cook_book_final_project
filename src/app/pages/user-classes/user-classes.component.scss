@@ -40,15 +40,15 @@
   
    
 }
-.nav {
-   
+.categories  {
+    display: flex;
+    list-style-type: none;
     a {
         font-size: 1.3rem;
         padding-bottom: 30px;
         &:nth-child(1){
             padding-right: 40px;
         }
-        
     }
 }
 .activa{

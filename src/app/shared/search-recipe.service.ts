@@ -1,6 +1,6 @@
 import { Recipe } from 'src/app/models/recipe';
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 @Injectable({
@@ -27,6 +27,11 @@ export class SearchRecipeService {
       return this.http.get(this.url + '/');
   }
 
+  showRecipesUser(id: number) {
+   
+    return this.http.get(this.url + '/recipe/' + id);
+}
+
   searchRecipes(ingredients: string) {
 
       return this.http.get(this.url + ingredients);
@@ -35,6 +40,16 @@ export class SearchRecipeService {
   newRecipes(recipe: Recipe) {
 
     return this.http.post(this.url + '/recipes', recipe);
+  }
+
+  deleteRecipe(id: number) {
+    const httpOptions = {
+      headers: new HttpHeaders({ 
+        'Content-Type': 'application/json' }),
+        body:{
+          id: id
+        }};
+    return this.http.delete(this.url, httpOptions);
   }
 
 

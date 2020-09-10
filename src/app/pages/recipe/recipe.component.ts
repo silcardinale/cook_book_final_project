@@ -1,3 +1,6 @@
+import { Comments } from './../../models/comments';
+import { UserService } from 'src/app/shared/user.service';
+import { CommentsService } from './../../shared/comments.service';
 import { Recipe } from 'src/app/models/recipe';
 import { SearchRecipeService } from './../../shared/search-recipe.service';
 import { Component, OnInit } from '@angular/core';
@@ -13,20 +16,38 @@ export class RecipeComponent implements OnInit {
     public count: number;
     public animation: boolean;
     public arrow: void;
+    public comments: Comment[]
 
-    constructor(public apiSearchRecipe: SearchRecipeService, private cookbookService: CookbookService) {
+    constructor( private userService: UserService, public apiSearchRecipe: SearchRecipeService, private cookbookService: CookbookService, public apiComments: CommentsService) {
 
     }
-
 
     showRecipeResult() {
 
         this.resultRecipe = this.apiSearchRecipe.resultRecipe;
+        console.log(this.apiSearchRecipe.resultRecipe)
+        this.apiComments.showComments(this.resultRecipe[0].recipe_id).subscribe((data: Comment[]) => this.comments = data);
+
+        this.apiComments.showComments(this.resultRecipe[0].recipe_id).subscribe((data: number) =>  this.apiComments.numberComment = data)
+
     }
 
-    goBack(){
-        this.arrow = this.cookbookService.backClicked()
+    postComment(description: string) {
+      let comment = new Comments(this.userService.userProfile.user_name, description, this.resultRecipe[0].recipe_id, this.userService.userProfile.user_id)
+
+      this.apiComments.createComment(comment).subscribe((data) => {
+        this.showRecipeResult();
+        this.ngOnInit;
+
+      })
+
     }
+
+
+
+    goBack(){
+      this.arrow = this.cookbookService.backClicked()
+  }
 
 
   ngOnInit(): void {

@@ -16,7 +16,8 @@
     }
     img {
         border-radius: 100%;
-        width: 130px;     
+        width: 130px;  
+        height: 130px;   
            
     }
     .followers-number {
@@ -40,15 +41,15 @@
   
    
 }
-.nav {
-   
+.categories  {
+    display: flex;
+    list-style-type: none;
     a {
         font-size: 1.3rem;
         padding-bottom: 30px;
         &:nth-child(1){
             padding-right: 40px;
         }
-        
     }
 }
 .activa{
@@ -109,6 +110,11 @@ hr{
             
             
         }
+   }
+
+   .button-recipes {
+        display: flex;
+        justify-content: space-between;
    }
    @media screen and (min-width: 1250px) {
     .favRecipe{

@@ -122,6 +122,7 @@ select {
 
 
 // radio-buttons
+form {
 .radio-group {
     display: flex;
     justify-content: space-around;   
@@ -170,6 +171,7 @@ span {
         border-radius: 50%;
         transition: 250ms ease 0s;
     }   
+}
 }
 
 input:checked ~ span:after {

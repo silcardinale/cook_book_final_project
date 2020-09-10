@@ -1,3 +1,4 @@
+import { Recipe } from 'src/app/models/recipe';
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 
@@ -10,24 +11,22 @@ export class UserService {
 
   private url = "http://localhost:3000/user";
   public userProfile: User;
+  public userRecipes: Recipe[];
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   getUsers()
   {
     return this.http.get(this.url)
   }
-  getUser(id:number)
+  getUser(id: number)
   {
-    return this.http.get(this.url + "/" + id)
+    return this.http.get(this.url + "/" + id);
   }
 
-  loginUser(user:User){
+  loginUser(user: User){
     
-   return this.http.post(this.url + '/login', user)
-
-    //localhost:3000/user/login?user_name=maria_cocina&password=Maria123
-
+   return this.http.post(this.url + '/login', user);
   }
 
   registerUser (newUser: User)
