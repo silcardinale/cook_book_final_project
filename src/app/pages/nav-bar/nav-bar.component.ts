@@ -59,6 +59,17 @@ export class NavBarComponent implements OnInit {
     
     }
 
+    
+    deleteProfile()
+    {
+      this.userService.deleteUser(this.userService.userProfile.user_id).subscribe((data)=>
+      {
+        console.log(data)
+        console.log(this.userService.userProfile.user_id)
+      }
+      )
+    }
+
   ngOnInit(): void {
     this.showProfile();
   }

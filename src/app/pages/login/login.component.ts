@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../shared/user.service';
 import { Router } from '@angular/router';
+import {NgForm } from '@angular/forms';
 
 
 
@@ -14,11 +15,12 @@ import{ User } from '../../models/user';
 export class LoginComponent implements OnInit {
 
   public animation: boolean;
-  public user;
+  public user: User;
 
   constructor(private userService: UserService, private router: Router) {
 
     this.animation = false;
+    this.user = <User>{};
     
   }
 
@@ -49,6 +51,9 @@ export class LoginComponent implements OnInit {
 
       })
     }
+    submitted = false;
+
+    onSubmit() { this.submitted = true; }
 
   ngOnInit(): void {
     

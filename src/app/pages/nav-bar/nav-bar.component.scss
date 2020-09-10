@@ -113,7 +113,8 @@ $size:990px;
         }
         .remove {
             color:var(--brand-color);
-            text-align: right ;
+            text-align: right;
+           
             
             :hover {
                 cursor: pointer;
@@ -123,6 +124,7 @@ $size:990px;
         .remove:last-of-type {
             padding-right: 20px;
         }
+        
     }
 }  
 
