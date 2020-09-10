@@ -33,7 +33,9 @@ export class InicioComponent implements OnInit {
     }
   }
 
-
+  onSubmit(form) {
+    console.log(form.value);
+}
 
   ngOnInit(): void {
   }

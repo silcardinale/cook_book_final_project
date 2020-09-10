@@ -54,7 +54,7 @@
         
                 <div class="input">
                     <div>
-                        <input type="text" name="contraseña" #password required  placeholder="Cambiar contraseña">
+                        <input type="password" value= {{profileUser.password}} name="contraseña" #password required  placeholder="Cambiar contraseña">
                     </div>
                 </div>
 
@@ -65,7 +65,7 @@
         
                 <div class="input">
                     <div>
-                        <input type="text" name="email" #email required  placeholder="Cambiar email">
+                        <input type="email"  value= {{profileUser.email}} name="email" #email required  placeholder="Cambiar email">
                     </div>
                 </div>
         
@@ -76,7 +76,7 @@
         
                 <div class="input">
                     <div>
-                        <input type="text" name="picture" #picture required  placeholder="Cambiar foto">
+                        <input type="text"  value= {{profileUser.picture}} name="picture" #picture required  placeholder="Cambiar foto">
                     </div>
                 </div>
         
@@ -86,9 +86,11 @@
                         <button type="button" (click)= "editProfile(password.value, email.value, picture.value)"> Guardar</button>
                     </div>
                 </div>
+    
                 <div class="remove">
-                    <p>Eliminar cuenta</p>
+                    <a (click)="deleteProfile()">Eliminar cuenta</a>
                 </div>
+                <br>
                 <div class="remove">
                     <a routerLink="/welcome" (click)="show()">Cerrar sesión</a>
                 </div>

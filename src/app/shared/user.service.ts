@@ -44,11 +44,17 @@ export class UserService {
     return this.http.put(this.url + "/edit_profile" , editUser)
   }
 
-  delete(id:number)
+  deleteUser(user_id:number)
   {
-    const httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),body:{id:id}};
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      body: {
+        user_id: user_id
+      },
+    };
     
-    return this.http.delete(this.url, httpOptions)
+    return this.http.delete(this.url, options)
   }
 }
