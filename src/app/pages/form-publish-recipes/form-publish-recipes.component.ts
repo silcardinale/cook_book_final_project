@@ -1,3 +1,4 @@
+import { UserService } from './../../shared/user.service';
 import { Recipe } from 'src/app/models/recipe';
 import { Ingredients } from './../../models/ingredients';
 import { SearchRecipeService } from './../../shared/search-recipe.service';
@@ -17,7 +18,7 @@ export class FormPublishRecipesComponent implements OnInit {
   public ingredients: Ingredients[];
   public recipe: Recipe;
 
-  constructor(private fb: FormBuilder, public apiSearchRecipe: SearchRecipeService) {
+  constructor(private fb: FormBuilder, public apiSearchRecipe: SearchRecipeService, private userService: UserService) {
 
       this.animation = false;
       this.dificultyLevels = ['Fácil', 'Media', 'Difícil'];
@@ -55,6 +56,15 @@ export class FormPublishRecipesComponent implements OnInit {
     return this.form.get('ingredientes').invalid && this.form.get('ingredientes').touched;
   }
 
+  get formNoValidDificulty() {
+    return this.form.get('comida').invalid && this.form.get('dificultad').touched;
+  }
+
+  get formNoValidTypeOfFood() {
+    return this.form.get('comida').invalid && this.form.get('dificultad').touched;
+  }
+
+
   get formNoValidTime() {
     return this.form.get('duracion').invalid && this.form.get('duracion').touched;
   }
@@ -73,7 +83,7 @@ export class FormPublishRecipesComponent implements OnInit {
     this.form = this.fb.group({
       titulo: ['', [Validators.required, Validators.minLength(5)]],
       ingredientes: ['', [Validators.required, Validators.minLength(1)]],
-      duracion: ['', Validators.required],
+      duracion: ['', Validators.required, [Validators.minLength(1), Validators.maxLength(7)]],
       dificultad: ['', Validators.required],
       comida: ['', Validators.required],
       descripcion: ['', [Validators.required, Validators.minLength(20)]],
@@ -104,13 +114,12 @@ export class FormPublishRecipesComponent implements OnInit {
         document.getElementById('sucess').style.visibility = 'visible';
         this.animation = true;
 
-        this.recipe = new Recipe(0, this.form.value.titulo, this.form.value.comida, this.form.value.dificultad, this.form.value.descripcion, this.form.value.foto, this.form.value.duracion);
+        this.recipe = new Recipe(this.userService.userProfile.user_id, this.form.value.titulo, this.form.value.ingredientes, this.form.value.duracion, this.form.value.dificultad, this.form.value.comida, this.form.value.descripcion, this.form.value.foto);
 
-        console.log(this.recipe);
-        this.apiSearchRecipe.newRecipes(this.recipe).subscribe(data => data)
-      
-        //this.form.reset();
-       
+        this.apiSearchRecipe.newRecipes(this.recipe).subscribe(data => data);
+
+        this.form.reset();
+
       }
   }
 }

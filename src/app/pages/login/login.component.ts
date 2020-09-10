@@ -1,3 +1,4 @@
+import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../shared/user.service';
 import { Router } from '@angular/router';
@@ -47,13 +48,16 @@ export class LoginComponent implements OnInit {
 
         this.router.navigate(['/', 'searchRecipe']);
 
-      
-
       })
     }
     submitted = false;
 
     onSubmit() { this.submitted = true; }
+
+    onSubmit(form) {
+
+      console.log("hola")
+    }
 
   ngOnInit(): void {
     

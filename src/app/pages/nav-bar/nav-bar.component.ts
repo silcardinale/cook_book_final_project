@@ -1,3 +1,5 @@
+import { SearchRecipeService } from './../../shared/search-recipe.service';
+import { Recipe } from 'src/app/models/recipe';
 import { CookbookService } from 'src/app/shared/cookbook.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user';
@@ -15,8 +17,9 @@ export class NavBarComponent implements OnInit {
   public animation: boolean;
   public user;
   public profileUser: User;
+  public recipesUser: Recipe[];
 
-  constructor( private userService: UserService, private router: Router) {
+  constructor( private userService: UserService, public apiSearchRecipe: SearchRecipeService) {
 
     this.animation = false;
     this.profileUser = this.userService.userProfile;
@@ -32,26 +35,19 @@ export class NavBarComponent implements OnInit {
         document.getElementById('edit-profile').style.visibility = 'visible';
         document.getElementById('edit-profile').style.opacity = '1';
         this.showProfile()
-        console.log(this.profileUser)
-        console.log(this.profileUser.picture)
-        console.log(this.profileUser.user_name)
         this.animation = true;
       }
 
     }
 
-    
 
-    editProfile( password:string, email:string, picture: string){
+    editProfile( password: string, email: string, picture: string){
       
-      let user1 = new User(this.profileUser.user_name, password, email, picture,  this.profileUser.user_id)
-      this.userService.editUserProfile(user1).subscribe((data)=>{
-        this.user = data;
-        console.log(this.user)
-      
+      let user1 = new User(this.profileUser.user_name, password, email, picture,  this.profileUser.user_id);
 
-      })
+      this.userService.editUserProfile(user1).subscribe( data => this.user = data);
     }
+
 
     showProfile(){
 

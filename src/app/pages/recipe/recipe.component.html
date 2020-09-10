@@ -90,16 +90,14 @@
     </div>
     <br>
     <div class="col-lg-8">
-      <p><strong>Ingredientes: {{ resultRecipe[0].ingredients }}</strong></p>
-      <li></li>
+      <p><strong>Ingredientes:</strong></p>
+      <li>{{ resultRecipe[0].ingredients}}</li>
       <br>
       <p><strong>Preparación:</strong></p>
       <li>{{ resultRecipe[0].description }}</li>
     </div>
     </div>
-    <div >
-      <p class="dateRecipe">Fecha de publicacion: 24/06/2018</p>
-    </div>
+    
 
 <hr>
   
@@ -107,36 +105,22 @@
         <h4>Comentarios (2)</h4>
         <form>
           <div class="form-group" >
-            <textarea class="form-control" rows="4"></textarea>
+            <textarea class="form-control" rows="4" placeholder="Deja tu comentario" value="" #comentario></textarea>
           </div>
         </form>
-       <button>Enviar comentario</button>
+       <button (click)="postComment(comentario.value)">Enviar comentario</button>
       </div>
 
   <div class="bothComments">
-    <div class="userComment">
+    <div class="userComment" *ngFor = "let comment of comments">
       <div class="userFavRecipe">
         <div class="profileOther">
-            <p>jose_56</p>
+            <p>{{comment.user_name}}</p>
         </div>
         </div>
       <p>
-        Mmmm... <i class="em em-drooling_face" aria-role="presentation" aria-label="DROOLING FACE"></i> ¡Qué buena pinta tiene! Seguro que están riquísimas esas galletas que además parecen muy sanitas. Este finde pruebo a hacerlas y te cuento como me han salido. Gracias por la receta!
+         <i class="em em-drooling_face" aria-role="presentation"></i> {{comment.description}}
       </p>
     </div>
-
-    <div class="userComment">
-      <div class="userFavRecipe">
-        <div class="profileOther">
-            <p>martita</p>
-        </div>
-        </div>
-      <p>
-        Deliciosas. Hice ayer la receta y mis hijos ya se las han comido todas. ¡No han durado ni 12 horas! <i class="em em-cookie" aria-role="presentation" aria-label="COOKIE"></i> <i class="em em-cookie" aria-role="presentation" aria-label="COOKIE"></i> <i class="em em-cookie" aria-role="presentation" aria-label="COOKIE"></i>
-      </p>
-    </div>
-    </div>
-
-
   
 </div>

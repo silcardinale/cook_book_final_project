@@ -57,7 +57,7 @@ $size3: 1200px;
 
                 }
             }
-             button:nth-child(n+2) {
+             button {
                  margin-left: 3px;
                  
             }  
@@ -110,3 +110,36 @@ $size3: 1200px;
     }  
 }
 
+
+.radio-group {
+    padding-top: 40px;
+    p {
+        font-size: 1.2rem;
+    }
+    .food,
+    .dificulty {
+       display: flex;
+       justify-content: space-evenly;
+        width: 100%;   
+    }
+    .food {
+        .outer-circle-left,
+        .outer-circle-right{
+            left: 12px;     
+        }
+        .outer-circle-middle{
+            left: 18px; 
+        }
+    }
+    .dificulty {
+        .outer-circle-left,
+        .outer-circle-right{
+            left: 5px !important;     
+        }
+        .outer-circle-middle{
+            left: 8px; 
+        }
+        
+    }
+
+}
