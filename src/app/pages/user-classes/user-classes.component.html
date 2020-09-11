@@ -30,6 +30,11 @@
         </li>
     </ul>
 
+    <div *ngIf = "lessons.length === 0" >
+        <br>
+        <p style="text-align: center;">¡Todavía no has publicado ninguna clase!</p>
+    </div>
+
      <div class="favRecipe" *ngFor="let lesson of lessons; let i = index">
         <div class="descrp" id="delete-window" [ngClass]= "{'animation': animation == true}">
             <div class="header-title">
