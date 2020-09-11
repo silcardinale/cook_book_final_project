@@ -32,6 +32,11 @@
         </li>
     </ul>
     <div>
+
+        <div *ngIf = "resultRecipe.length === 0" >
+            <br>
+            <p style="text-align: center;">¡Todavía no has publicado ninguna receta!</p>
+        </div>
     
     </div>
      <div class="favRecipe" *ngFor = "let recipe of resultRecipe; let i = index">
