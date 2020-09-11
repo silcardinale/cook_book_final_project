@@ -18,6 +18,7 @@ export class UserRecipesComponent implements OnInit {
   public numberComment: number;
   public animation: boolean;
   public arrow: any;
+  public recipe_id: number;
 
   constructor(private router: Router, public apiSearchRecipe: SearchRecipeService, private userService: UserService) {
 
@@ -39,8 +40,8 @@ export class UserRecipesComponent implements OnInit {
 
   }
 
-  popUp() {
-
+  popUp(recipe_id: number) {
+    this.recipe_id = recipe_id;
     if ( document.getElementById('delete-window').style.visibility === 'visible') {
         document.getElementById('delete-window').style.visibility = 'hidden';
         this.animation = false;
@@ -52,8 +53,8 @@ export class UserRecipesComponent implements OnInit {
 
   }
 
-  deleteRecipe(recipe_id: number){
-      this.apiSearchRecipe.deleteRecipe(recipe_id).subscribe(data => this.ngOnInit());
+  deleteRecipe(){
+      this.apiSearchRecipe.deleteRecipe(this.recipe_id).subscribe(data => this.ngOnInit());
   }
 
 

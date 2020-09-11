@@ -43,14 +43,14 @@
                 <p>Eliminar receta</p>
                 <hr>
                <div class ="container-text">
-                    <p>Estas seguro que quieres eliminar la receta?
+                    <p>¿Estas seguro que quieres eliminar la receta?
                     </p>
                 </div> 
             </div>
             <div class ="container-data">
                 <div >
                     <div>
-                        <a  class= "button" (click)="deleteRecipe(recipe.recipe_id)">Sí</a>
+                        <a  class= "button" (click)="deleteRecipe()">Sí</a>
                     </div>
                 </div>
                 <div >
@@ -129,7 +129,7 @@
                      <p>{{recipe.description}}</p>
                     <div class="button-recipes">
                         <div>
-                            <button (click)="popUp()" class="moreInfo">Delete</button>
+                            <button (click)="popUp(recipe.recipe_id)" class="moreInfo">Delete</button>
                         </div>
                         <div class="more">
                             <button  (click)="goToRecipe(recipe.recipe_id)" class="moreInfo">Ver más...</button>
