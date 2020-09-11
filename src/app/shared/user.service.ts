@@ -12,6 +12,7 @@ export class UserService {
   private url = "http://localhost:3000/user";
   public userProfile: User;
   public userRecipes: Recipe[];
+  public teacher
 
   constructor(private http: HttpClient) { }
 
@@ -25,8 +26,12 @@ export class UserService {
   }
 
   getLessonfromUser(id_lesson){
-    return this.getLessonfromUser(this.url + "/lesson/" + id_lesson)
+    this.teacher = this.http.get(this.url + "/lesson/" + id_lesson)
+    console.log("servicio", this.teacher)
+    return this.teacher
   }
+
+
 
   loginUser(user:User){
     
