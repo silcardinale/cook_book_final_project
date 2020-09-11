@@ -1,7 +1,7 @@
 import { TriggersService } from './../../shared/triggers.service';
 import { SearchRecipeService } from './../../shared/search-recipe.service';
 import { Recipe } from 'src/app/models/recipe';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../../models/user';
 import { UserService } from '../../shared/user.service';
 
@@ -19,11 +19,15 @@ export class NavBarComponent implements OnInit {
   public recipesUser: Recipe[];
   public navigation: boolean;
 
+  
+  public login: boolean;
+
   constructor( private userService: UserService, public apiSearchRecipe: SearchRecipeService, public apiNavigation: TriggersService) {
 
     this.animation = false;
     this.profileUser = this.userService.userProfile;
-    this.navigation = this.apiNavigation.navigationPages;
+    
+
   }
 
     show() {
@@ -41,7 +45,6 @@ export class NavBarComponent implements OnInit {
 
     }
 
-
     editProfile( password: string, email: string, picture: string){
       
       let user1 = new User(this.profileUser.user_name, password, email, picture,  this.profileUser.user_id);
@@ -53,6 +56,8 @@ export class NavBarComponent implements OnInit {
     showProfile(){
 
       this.profileUser = this.userService.userProfile;
+      this.login = this.apiNavigation.login;
+      console.log(this.login)
     
     }
 
@@ -61,7 +66,7 @@ export class NavBarComponent implements OnInit {
     {
       this.userService.deleteUser(this.userService.userProfile.user_id).subscribe((data)=>
       {
-        console.log(data)
+      
         console.log(this.userService.userProfile.user_id)
       }
       )
@@ -71,6 +76,7 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.showProfile();
+    this.login = true;
   }
 
 }

@@ -63,11 +63,8 @@ export class UserClassesComponent implements OnInit {
 
 
   deleteLesson(){
-    
 
-    this.apiService.removeLesson(this.eliminar).subscribe((data)=> {
-      console.log("Eliminado",data)      
-      });
+    this.apiService.removeLesson(this.eliminar).subscribe(data => this.ngOnInit());
      
   }
 

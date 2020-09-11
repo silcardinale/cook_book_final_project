@@ -55,11 +55,11 @@ $size2: 1200px;
 
 // style for links
 a {
-    color: black;
+    color: black !important;
     text-decoration: none !important;
     &:hover {
         cursor: pointer;
-        color:  var(--brand-color);
+        color:  var(--brand-color) !important;
     }
 }
 
@@ -183,18 +183,26 @@ input:checked ~ span:after {
 // dropdown
 .dropdown-ingredients {
     overflow: hidden;
-    width: 100%;
+    width: 80%;
+    margin: 0 auto;
+   
+    p {
+        font-size: 1.3rem;
+    }
+
     select.active {
         cursor: pointer;
         padding: 10px 10px;
         margin-bottom: 10px;
         max-height: 100px;
         overflow-y: scroll;
+        color: var(--brand-color) !important;
     }
 
     select::-webkit-scrollbar {
         background: grey;
         width: 6px;
+        
 
     }
     select::-webkit-scrollbar-thumb {
@@ -203,25 +211,16 @@ input:checked ~ span:after {
     }
     option {
         padding-bottom: 10px;
+        color: var(--brand-color);
+        font-size: 1rem;
         
     }
     option:hover {
-        background: var(--brand-color);
-        width: 115%;
-        padding: 10px 10px;
-        color: white;
-    }
-    option:active {
-        background: var(--brand-color)  !important;
-        width: 115%;
-        
-        
+       color: black;
+       padding-left: 10px;
+        color: black;
     }
 }
-
-
-
-
 
 
 // animations
@@ -237,21 +236,25 @@ input:checked ~ span:after {
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
   }
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  .fadeIn {
+
+.fadeIn {
     animation-name: fadeIn;
-  }
+}
+
 .animation {
     animation-name: run;
     animation-duration: 2s;
 }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 @keyframes run {
     0% {
       transform: translateY(-100px);

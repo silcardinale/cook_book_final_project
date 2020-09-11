@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { SearchRecipeService } from './../../shared/search-recipe.service';
 import { NgForm, NgModel } from '@angular/forms';
 import { Recipe } from './../../models/recipe';
-import { Component, OnInit, Output, EventEmitter, NgModule } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 
 
@@ -29,10 +29,11 @@ export class SearchRecipesComponent implements OnInit {
       this.type  = '';
       this.recipes =[];
       this.ingredientsSelected = [];
+
    }
 
         valueIngredient(element: string) {
-            
+
             this.ingredientsSelected.push(element);
 
 }
@@ -49,6 +50,7 @@ export class SearchRecipesComponent implements OnInit {
 
         searchRecipes(form: NgForm){
 
+          
             if (form.valid && this.ingredientsSelected && this.type) {
                 let string = '';
 
@@ -82,7 +84,7 @@ export class SearchRecipesComponent implements OnInit {
 
   ngOnInit(): void {
         this.showRecipes();
-        
+
   }
 
 }

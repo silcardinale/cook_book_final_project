@@ -109,12 +109,14 @@ $size3: 1200px;
         }
     }  
 }
-
+#prueba {
+    visibility: hidden;
+}
 
 .radio-group {
     padding-top: 40px;
     p {
-        font-size: 1.2rem;
+        font-size: 1.3em;
     }
     .food,
     .dificulty {

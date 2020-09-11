@@ -4,11 +4,12 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class TriggersService {
+  
+  public login: boolean;
 
-  public navigationPages:boolean;
+  constructor() {
 
-  constructor() { 
+    this.login = false;
 
-    this.navigationPages = true;
   }
 }

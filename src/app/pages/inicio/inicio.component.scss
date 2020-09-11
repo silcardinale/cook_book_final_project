@@ -25,14 +25,13 @@ img{
     
 .descrp{
     visibility: hidden;
-    height: 450px;
-    width: 500px;
-    top: 50px;
+    height: 480px;
+    width: 450px;
+    top: 100px;
+    z-index: 1; 
     background-color: #9ddac9;
     transition: opacity .24s ease-out;
     position: absolute;
-    
-
     .header-title{
         font-size: 2rem;
         color: black;
@@ -49,6 +48,7 @@ img{
             color: var(--brand-color);
         }
     }
+    
     .container-text{
         font-size: 1rem;
         color: black;
@@ -58,42 +58,4 @@ img{
         margin-top:5px;
     }
 
-}
- 
-.animation {
-    animation-name: run;
-    animation-duration: 2s;
-    
-}
-
-@keyframes run {
-    0% {
-
-      transform: translateY(-100px);
-    }
-    100% {
-      
-      transform: translateY(0px);
-    }
-}
-
-@media screen and (max-width: 768px){
-    .descrp{
-        width: 80%;
-        height: fit-content;
-    }
-}
-
-@media screen and (max-width: 400px){
-    .descrp{
-        width: 80%;
-        height: fit-content
-    }
-}
-
-@media screen and (max-width: 300px){
-    .descrp{
-        width: 80%;
-        height: fit-content;
-    }
 }

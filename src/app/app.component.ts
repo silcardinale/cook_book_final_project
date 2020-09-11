@@ -1,6 +1,7 @@
+import { Router } from '@angular/router';
 import { TriggersService } from './shared/triggers.service';
 
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 
 @Component({
@@ -10,18 +11,12 @@ import { Component, Input } from '@angular/core';
 })
 export class AppComponent {
 
-    public navigation: boolean;
+    public login: boolean;
 
-  constructor(private apiNavigation: TriggersService) {
-
-    this.navigation = apiNavigation.navigationPages;
-
-  }
-
-
-  hide(e) {
+  constructor(private router: Router, private apiNavigation: TriggersService) {
     
-    return this.navigation = e;
+    
+
   }
 
 }

@@ -1,3 +1,4 @@
+import { NavBarComponent } from './pages/nav-bar/nav-bar.component';
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -18,21 +19,22 @@ import { RecipesComponent } from './pages/recipes/recipes.component';
 import { ClassesComponent } from './pages/classes/classes.component';
 
 const routes: Routes = [
+  {path: 'welcome', component: InicioComponent},
+  {path: 'login', component : LoginComponent},
+  {path: 'register', component : RegisterComponent},
+  {path: 'navbar', component: NavBarComponent},
   {path: 'publishRecipe', component: FormPublishRecipesComponent},
   {path: 'publishClass', component: FormPublishClassComponent},
   {path: 'searchRecipe', component: SearchRecipesComponent},
+  {path: 'userRecipes', component: UserRecipesComponent},
   {path: 'followers', component: FollowPageComponent},
   {path: 'lessons', component: ClassesResultComponent},
-  {path: 'userRecipes', component: UserRecipesComponent},
   {path: 'userClasses', component: UserClassesComponent},
   {path: 'userFavorites', component: UserFavoriteRecipeComponent},
   {path: 'recipes', component : RecipesComponent},
   {path: 'recipe', component : RecipeComponent},
-  {path: 'login', component : LoginComponent},
-  {path: 'register', component : RegisterComponent},
-  {path: 'welcome', component: InicioComponent},
   {path: 'lesson', component: ClassesComponent},
-  //{path: '**', component: SearchRecipesComponent}
+  {path: '**', component: InicioComponent}
 
 
 ];

@@ -1,3 +1,4 @@
+<app-nav-bar></app-nav-bar>
 <div class="main-container-forms">
     <div class="header-title">
         <p>Publicar receta</p>
@@ -11,6 +12,8 @@
             </div>
         </div>
         <div class="form-group dropdown-ingredients">
+            <div><p>Ingredientes</p></div>
+
             <select formControlName="ingredientes" multiple>
                
                 <option  *ngFor="let ingredient of ingredients" (click) ="valueIngredient(ingredient.name)" [class.is-invalid]="formNoValidIngredients">{{ingredient.name}} </option>

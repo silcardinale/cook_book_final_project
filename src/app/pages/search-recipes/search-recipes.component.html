@@ -1,4 +1,5 @@
-<div class="main-container">
+<app-nav-bar></app-nav-bar>
+ <div class="main-container" >
  
     <div class="header-title">
         <p>Buscar receta</p>
@@ -6,15 +7,16 @@
 
    <form #form="ngForm">
           <div class="form-group dropdown-ingredients">
+            <div><p>Ingredientes</p></div>
+
             <select multiple>
                
                 <option  *ngFor="let ingredient of ingredients" (click) ="valueIngredient(ingredient.name)">{{ingredient.name}} </option>
                
             </select>
         </div>
-      
 
-      <div class="radio-group" required name ="ingredients" ngModel>
+      <div class="radio-group" required>
         <div><p>Tipo de comida</p></div>
 
         <div class="food" >

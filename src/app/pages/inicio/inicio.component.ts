@@ -13,21 +13,11 @@ export class InicioComponent implements OnInit {
   
   public animation: boolean;
   public test: boolean;
-
-  @Output() navigation = new EventEmitter()
-
-  
-  constructor(private activatedRoute: ActivatedRoute, public apiNavigation: TriggersService) { 
+ 
+  constructor(public apiNavigation: TriggersService) {
     this.animation = false;
 
   }
-
-  login() {
-   return false
-
-
-  }
-
 
   show() {
     if (document.getElementById('quienes-somos').style.visibility === 'visible') {
