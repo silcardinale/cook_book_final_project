@@ -16,10 +16,29 @@ export class UserClassesComponent implements OnInit {
   public lessons: Lessons[];
   public profile: User;
   public allMyLessons: Lessons []
+  public animation: boolean;
+  public eliminar
 
   constructor(private apiService: LessonServiceService, private userService: UserService,  private router: Router) {
     this.apiService.lesson
+    this.animation = false;
    }
+   
+
+
+  popUp(lesson_id) {
+    this.eliminar = lesson_id
+
+    if ( document.getElementById('delete-window').style.visibility === 'visible') {
+        document.getElementById('delete-window').style.visibility = 'hidden';
+        this.animation = false;
+    } else {
+        document.getElementById('delete-window').style.visibility = 'visible';
+        document.getElementById('edit-profile').style.opacity = '1';
+        this.animation = true;
+    }
+  }
+
 
   showProfile(){
     this.profile = this.userService.userProfile;
@@ -42,11 +61,23 @@ export class UserClassesComponent implements OnInit {
         });
   }
 
+
+  deleteLesson(){
+    
+
+    this.apiService.removeLesson(this.eliminar).subscribe((data)=> {
+      console.log("Eliminado",data)      
+      });
+     
+  }
+
   ngOnInit(): void {
     this.showProfile();
     this.userLessons();
       //this.obtainLessons()
   }
+
+
   
 
 }

@@ -1,7 +1,10 @@
+
 import { Lessons } from './../../models/lessons';
 import { Component, OnInit } from '@angular/core';
 import { LessonServiceService } from "../../shared/lesson-service.service"
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/shared/user.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-classes-result',
@@ -12,8 +15,11 @@ import { Router } from '@angular/router';
 export class ClassesResultComponent implements OnInit {
   public lesson :Lessons [];
   public lessons: Lessons[];
+  public lessonTeacher: Lessons;
+  public teacher: User
+  public indice: number
  
-  constructor(private apiService: LessonServiceService, private router: Router) { }
+  constructor(private apiService: LessonServiceService, private router: Router,  private userService: UserService) { }
 
    obtainLessons(){
     this.apiService.getLessons().subscribe((data:Lessons[])=> {
@@ -24,17 +30,16 @@ export class ClassesResultComponent implements OnInit {
 
 
 showLesson(lesson_id){
-  this.lesson = this.lessons.filter(lesson => lesson.lesson_id === lesson_id);
-  this.apiService.lesson = this.lesson;
-  console.log("showLesson", this.lesson)
+  this.userService.getLessonfromUser(lesson_id).subscribe((data)=> {
+    this.teacher = data[0];
+    this.userService.teacher = data[0]
+    console.log("teacher",this.userService.teacher)
   this.router.navigate(["/", "lesson"])
+  })
 }
-
 
 
   ngOnInit(): void {
    this.obtainLessons()
   }
 }
-
-

@@ -28,7 +28,33 @@
             <a class="activa">Mis Clases</a>
         </li>
     </ul>
+
      <div class="favRecipe" *ngFor="let lesson of lessons; let i = index">
+        <div class="descrp" id="delete-window" [ngClass]= "{'animation': animation == true}">
+            <div class="header-title">
+                <div class="window">
+                    <a (click)="popUp()">X</a>
+                </div>
+                <p>Eliminar clase</p>
+                <hr>
+               <div class ="container-text">
+                    <p>Estas seguro que quieres eliminar la clase?
+                    </p>
+                </div>
+            </div>
+            <div class ="container-data">
+                <div >
+                    <div>
+                        <a  class= "button" (click)=" deleteLesson(lesson.lesson_id)">Sí</a>
+                    </div>
+                </div>
+                <div >
+                    <div>
+                        <a class= "button"  (click)="popUp()">No, me he equivocado</a>
+                    </div>
+                </div>
+            </div>
+        </div>
          <div>
              <img src="{{lesson.image}}" class = "recipePic" alt="Galletas de limon">
         </div>
@@ -40,7 +66,9 @@
                  <div>
                      <p>{{lesson.description}}
                      </p>
-                     <div class="more">
+                     
+                     <div>
+                        <a (click)="popUp(lesson.lesson_id)" class="delete">Eliminar clase</a>
                         <button (click)="showLesson(lesson.lesson_id)"  class="moreInfo">Ver más...</button>
                     </div>
                  </div>
@@ -49,6 +77,7 @@
 
  </div>
 </div>
+
 
 
 

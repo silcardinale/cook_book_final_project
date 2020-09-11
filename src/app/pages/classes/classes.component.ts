@@ -17,43 +17,22 @@ export class ClassesComponent implements OnInit {
   public arrow: void;
   public lesson: Lessons[];
   public lessonTeacher: Lessons;
-  public teacher: User
+  public teacher
 
   constructor(private cookbookService: CookbookService,private apiService: LessonServiceService, private userService: UserService)
    { 
     this.lesson
-    this.teacher 
-  }
-
-/*
-  obtainOneLesson(){
-    this.apiService.getLesson().subscribe((data)=> {
-      this.lesson = data[0];
-      console.log("unaClase",data[0])
-      });
-  }*/
-
-  showLesson(){
-    this.lesson = this.apiService.lesson
+    this.teacher = this.userService.teacher 
   }
 
 
   goBack(){
     this.arrow = this.cookbookService.backClicked()
   }
-/*
-  profileTeacher(lesson_id){
-
-    this.teacher = this.userService.getLessonfromUser(this.lessonTeacher.lesson_id).subscribe((data)=> {
-      this.teacher = data;
-      console.log("teacher",data)
-      });
-  }
-  */
 
  
   ngOnInit(): void {
-    this.showLesson()
+  
     
   }
 

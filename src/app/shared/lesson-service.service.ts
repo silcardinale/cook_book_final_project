@@ -46,10 +46,10 @@ constructor (private http :HttpClient, private userService :UserService) {
     return this.http.put(this.url, lesson)
     }
 
-    removeLesson(lesson_id:number){
+  removeLesson(lesson_id:number){
       const httpOptions = {
-        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),body:{id:lesson_id}};
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' }),body:{lesson_id:lesson_id}};
       return this.http.delete(this.url, httpOptions)
-    }
+  }
 
 }
