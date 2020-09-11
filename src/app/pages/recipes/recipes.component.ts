@@ -20,7 +20,6 @@ export class RecipesComponent implements OnInit {
 
   constructor(public apiSearchRecipe: SearchRecipeService, private cookbookService: CookbookService, private router: Router ) { }
 
-
     goBack(){
 
         this.arrow = this.cookbookService.backClicked();

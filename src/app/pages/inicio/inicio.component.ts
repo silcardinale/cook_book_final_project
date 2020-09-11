@@ -1,5 +1,6 @@
+import { TriggersService } from './../../shared/triggers.service';
 import { CookbookService } from 'src/app/shared/cookbook.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
 
 
@@ -13,10 +14,18 @@ export class InicioComponent implements OnInit {
   public animation: boolean;
   public test: boolean;
 
+  @Output() navigation = new EventEmitter()
+
   
-  constructor(private activatedRoute: ActivatedRoute) { 
+  constructor(private activatedRoute: ActivatedRoute, public apiNavigation: TriggersService) { 
     this.animation = false;
-    this.test = true;
+
+  }
+
+  login() {
+   return false
+
+
   }
 
 

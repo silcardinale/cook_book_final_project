@@ -1,6 +1,6 @@
+import { CommentsService } from './../../shared/comments.service';
 import { SearchRecipeService } from './../../shared/search-recipe.service';
 import { Component, OnInit } from '@angular/core';
-import { CookbookService } from 'src/app/shared/cookbook.service';
 import { Recipe } from 'src/app/models/recipe';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/shared/user.service';
@@ -15,8 +15,15 @@ export class UserRecipesComponent implements OnInit {
 
   public profile: User;
   public resultRecipe: Recipe[];
+  public numberComment: number;
+  public animation: boolean;
+  public arrow: any;
 
-  constructor(private router: Router, public apiSearchRecipe: SearchRecipeService, private userService: UserService) { }
+  constructor(private router: Router, public apiSearchRecipe: SearchRecipeService, private userService: UserService) {
+
+    this.animation = false;
+
+   }
 
   showProfile(){
 
@@ -32,12 +39,24 @@ export class UserRecipesComponent implements OnInit {
 
   }
 
-  deleteRecipe(recipe_id: number) {
-    this.apiSearchRecipe.deleteRecipe(recipe_id).subscribe(data => this.ngOnInit());
-    
+  popUp() {
+
+    if ( document.getElementById('delete-window').style.visibility === 'visible') {
+        document.getElementById('delete-window').style.visibility = 'hidden';
+        this.animation = false;
+    } else {
+        document.getElementById('delete-window').style.visibility = 'visible';
+        document.getElementById('edit-profile').style.opacity = '1';
+        this.animation = true;
+    }
 
   }
-  
+
+  deleteRecipe(recipe_id: number){
+      this.apiSearchRecipe.deleteRecipe(recipe_id).subscribe(data => this.ngOnInit());
+  }
+
+
   ngOnInit(): void {
     
     this.showProfile();

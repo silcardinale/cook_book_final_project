@@ -1,7 +1,7 @@
+import { Ingredients } from './../../models/ingredients';
 import { Router } from '@angular/router';
 import { SearchRecipeService } from './../../shared/search-recipe.service';
 import { NgForm, NgModel } from '@angular/forms';
-import { CookbookService } from 'src/app/shared/cookbook.service';
 import { Recipe } from './../../models/recipe';
 import { Component, OnInit, Output, EventEmitter, NgModule } from '@angular/core';
 
@@ -12,6 +12,7 @@ import { Component, OnInit, Output, EventEmitter, NgModule } from '@angular/core
   templateUrl: './search-recipes.component.html',
   styleUrls: ['./search-recipes.component.scss']
 })
+
 export class SearchRecipesComponent implements OnInit {
 
   public recipes: Recipe[];
@@ -19,6 +20,7 @@ export class SearchRecipesComponent implements OnInit {
   public count: number;
   public type: string;
   public resultRecipe: Recipe[] ;
+  public ingredientsSelected;
 
   constructor( private router: Router, public apiSearchRecipe: SearchRecipeService) {
 
@@ -26,71 +28,61 @@ export class SearchRecipesComponent implements OnInit {
       this.count = 0;
       this.type  = '';
       this.recipes =[];
+      this.ingredientsSelected = [];
    }
 
-      showInput(value: string) {
-          if (value && this.count === 0 ) {
-              this.ingredients.push(value);
-              this.count++;
-              document.getElementById('btn-ingredients1 ').style.visibility = 'hidden';
-          }
+        valueIngredient(element: string) {
+            
+            this.ingredientsSelected.push(element);
 
-          return this.ingredients;
+}
+
+        valueFood(element) {
+            this.type = element;
       }
 
-      showInput2(value: string) {
-          if (value && this.count < 4 ) {
-            this.ingredients.push(value);
-            this.count++;
-            document.getElementById('btn-ingredients').style.visibility = 'hidden';
-
-        } else {
-            return;
-      }
-
-          return this.ingredients;
+        showRecipes() {
+            this.apiSearchRecipe.showRecipes().subscribe((data: Recipe[]) => this.recipes = data);
+            this.apiSearchRecipe.showIngredients().subscribe((data: Ingredients[]) => this.ingredients = data);
 
       }
 
-      valueFood(element) {
-          this.type = element;
-      }
+        searchRecipes(form: NgForm){
 
-      showRecipes() {
-          this.apiSearchRecipe.showRecipes().subscribe((data: Recipe[]) => this.recipes = data);
+            if (form.valid && this.ingredientsSelected && this.type) {
+                let string = '';
 
-      }
+                for (let i = 0; i < this.ingredientsSelected.length; i++) {
+                    string += `&ingredient${i + 1}=${this.ingredientsSelected[i]}`;
+                }
 
-      searchRecipes(form: NgForm){
+                string = '/recipes/search?&type=' + this.type + string + '&interrogacion=' + this.ingredientsSelected.length;
 
-          if (form.valid) {
-            let string = '';
+                this.apiSearchRecipe.searchRecipes(string).subscribe((data: Recipe[]) => {
+                this.apiSearchRecipe.resultRecipes  = data;
+                this.router.navigate(['/', 'recipes']);
 
-            for (let i = 0; i < this.ingredients.length; i++) {
-                string += `&ingredient${i + 1}=${this.ingredients[i]}`;
+                });
+            } else {
+
+                this.apiSearchRecipe.showRecipes().subscribe((data: Recipe[]) => {
+
+                    this.apiSearchRecipe.resultRecipes  = data;
+                    this.router.navigate(['/', 'recipes']);
+                });
             }
-
-            string = '/recipes/search?&type=' + this.type + string + '&interrogacion=' + this.ingredients.length;
-
-            this.apiSearchRecipe.searchRecipes(string).subscribe((data: Recipe[]) => {
-              this.apiSearchRecipe.resultRecipes  = data;
-              this.router.navigate(['/', 'recipes']);
-
-            });
         }
 
-      }
+        showRecipeCarrousel(i)  {
 
-      showRecipeCarrousel(i)  {
-
-          this.resultRecipe = this.recipes.filter(recipe => recipe.recipe_id === i);
-          this.apiSearchRecipe.resultRecipe = this.resultRecipe;
-          this.router.navigate(['/', 'recipe']);
-      }
+            this.resultRecipe = this.recipes.filter(recipe => recipe.recipe_id === i);
+            this.apiSearchRecipe.resultRecipe = this.resultRecipe;
+            this.router.navigate(['/', 'recipe']);
+        }
 
   ngOnInit(): void {
         this.showRecipes();
-
+        
   }
 
 }

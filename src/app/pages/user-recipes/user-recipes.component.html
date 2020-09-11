@@ -1,4 +1,6 @@
+
 <div class="mainContainer">
+    
     <div class="profileUser" >       
         <div class=img-profile>
             <img [src]="profile.picture" [alt]="profile.user_name"/>
@@ -29,11 +31,36 @@
             <a  routerLink="/userClasses">Mis Clases</a>
         </li>
     </ul>
+    <div>
+    
+    </div>
      <div class="favRecipe" *ngFor = "let recipe of resultRecipe; let i = index">
-         <div>
-             <img [src]="recipe.picture" class = "recipePic" alt="recipe.name">
-             <p class="comment">Comentarios (24)</p>
-         </div>
+        <div class="descrp" id="delete-window" [ngClass]= "{'animation': animation == true}">    
+            <div class="header-title">
+                <div class="window">
+                    <a (click)="popUp()">X</a>
+                </div>
+                <p>Eliminar receta</p>
+                <hr>
+               <div class ="container-text">
+                    <p>Estas seguro que quieres eliminar la receta?
+                    </p>
+                </div> 
+            </div>
+            <div class ="container-data">
+                <div >
+                    <div>
+                        <a  class= "button" (click)="deleteRecipe(recipe.recipe_id)">Sí</a>
+                    </div>
+                </div>
+                <div >
+                    <div>
+                        <a class= "button"  (click)="popUp()">No, me he equivocado</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img [src]="recipe.picture" class = "recipePic" alt="recipe.name">
          <div class="receta">
              <div>
                  <h6>{{recipe.title}}</h6 >
@@ -102,17 +129,21 @@
                      <p>{{recipe.description}}</p>
                     <div class="button-recipes">
                         <div>
-                            <button (click)="deleteRecipe(recipe.recipe_id)" class="moreInfo">Delete</button>
+                            <button (click)="popUp()" class="moreInfo">Delete</button>
                         </div>
                         <div class="more">
                             <button  (click)="goToRecipe(recipe.recipe_id)" class="moreInfo">Ver más...</button>
-                        </div>
                     </div>
-                 </div>
+                </div>
+             </div>
          </div>
      </div> 
  </div>
+   
 </div>
+
+ 
+
 
 
 

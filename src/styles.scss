@@ -174,9 +174,55 @@ span {
 }
 }
 
+
 input:checked ~ span:after {
     transform: translate(-50%, -50%) scale(1);
 }
+
+
+// dropdown
+.dropdown-ingredients {
+    overflow: hidden;
+    width: 100%;
+    select.active {
+        cursor: pointer;
+        padding: 10px 10px;
+        margin-bottom: 10px;
+        max-height: 100px;
+        overflow-y: scroll;
+    }
+
+    select::-webkit-scrollbar {
+        background: grey;
+        width: 6px;
+
+    }
+    select::-webkit-scrollbar-thumb {
+        background-color: var(--brand-color);
+        border-radius: 0 8px 8px 0;
+    }
+    option {
+        padding-bottom: 10px;
+        
+    }
+    option:hover {
+        background: var(--brand-color);
+        width: 115%;
+        padding: 10px 10px;
+        color: white;
+    }
+    option:active {
+        background: var(--brand-color)  !important;
+        width: 115%;
+        
+        
+    }
+}
+
+
+
+
+
 
 // animations
 .animated {

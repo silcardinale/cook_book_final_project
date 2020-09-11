@@ -1,3 +1,4 @@
+import { User } from './../../models/user';
 import { Comments } from './../../models/comments';
 import { UserService } from 'src/app/shared/user.service';
 import { CommentsService } from './../../shared/comments.service';
@@ -16,7 +17,9 @@ export class RecipeComponent implements OnInit {
     public count: number;
     public animation: boolean;
     public arrow: void;
-    public comments: Comment[]
+    public comments: Comment[];
+    public numberComment: number;
+    public user: User;
 
     constructor( private userService: UserService, public apiSearchRecipe: SearchRecipeService, private cookbookService: CookbookService, public apiComments: CommentsService) {
 
@@ -25,28 +28,36 @@ export class RecipeComponent implements OnInit {
     showRecipeResult() {
 
         this.resultRecipe = this.apiSearchRecipe.resultRecipe;
-        console.log(this.apiSearchRecipe.resultRecipe)
+        this.userService.getUser(this.resultRecipe[0].user_id).subscribe((data: User) => this.user = data);
+
         this.apiComments.showComments(this.resultRecipe[0].recipe_id).subscribe((data: Comment[]) => this.comments = data);
 
-        this.apiComments.showComments(this.resultRecipe[0].recipe_id).subscribe((data: number) =>  this.apiComments.numberComment = data)
+        this.apiComments.numberComments(this.resultRecipe[0].recipe_id).subscribe((data: number) =>  {
+          this.numberComment = data;
+          this.apiComments.numberComment = this.numberComment;
+      });
+     
+        
 
     }
 
-    postComment(description: string) {
-      let comment = new Comments(this.userService.userProfile.user_name, description, this.resultRecipe[0].recipe_id, this.userService.userProfile.user_id)
+    postComment(description: string, recipe_id: number){
+        let comment = new Comments(this.userService.userProfile.user_name, description, this.resultRecipe[0].recipe_id, this.userService.userProfile.user_id);
 
-      this.apiComments.createComment(comment).subscribe((data) => {
-        this.showRecipeResult();
-        this.ngOnInit;
-
-      })
+        this.apiComments.createComment(comment).subscribe((data) => {
+            this.showRecipeResult();
+            this.ngOnInit;
+      });
+        this.apiComments.numberComments(recipe_id).subscribe((data: number) => {
+          this.numberComment = data; 
+          this.apiComments.numberComment = this.numberComment;
+      });
 
     }
-
 
 
     goBack(){
-      this.arrow = this.cookbookService.backClicked()
+        this.arrow = this.cookbookService.backClicked()
   }
 
 

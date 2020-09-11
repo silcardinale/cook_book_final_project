@@ -1,6 +1,6 @@
 
-<app-nav-bar></app-nav-bar>
-<app-inicio></app-inicio>
+<app-nav-bar (navigation)="hide($event)" ></app-nav-bar>
+<app-inicio [ngClass] = "{'display-pages': navigation == false}"></app-inicio>
 
 
 

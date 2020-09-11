@@ -1,11 +1,10 @@
+import { TriggersService } from './../../shared/triggers.service';
 import { SearchRecipeService } from './../../shared/search-recipe.service';
 import { Recipe } from 'src/app/models/recipe';
-import { CookbookService } from 'src/app/shared/cookbook.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/user';
-import { UserService } from '../../shared/user.service'
-import { Router } from '@angular/router';
-import { NgModel } from '@angular/forms';
+import { UserService } from '../../shared/user.service';
+
 
 
 @Component({
@@ -18,11 +17,13 @@ export class NavBarComponent implements OnInit {
   public user;
   public profileUser: User;
   public recipesUser: Recipe[];
+  public navigation: boolean;
 
-  constructor( private userService: UserService, public apiSearchRecipe: SearchRecipeService) {
+  constructor( private userService: UserService, public apiSearchRecipe: SearchRecipeService, public apiNavigation: TriggersService) {
 
     this.animation = false;
     this.profileUser = this.userService.userProfile;
+    this.navigation = this.apiNavigation.navigationPages;
   }
 
     show() {
@@ -65,6 +66,8 @@ export class NavBarComponent implements OnInit {
       }
       )
     }
+
+
 
   ngOnInit(): void {
     this.showProfile();

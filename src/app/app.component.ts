@@ -1,3 +1,4 @@
+import { TriggersService } from './shared/triggers.service';
 
 import { Component, Input } from '@angular/core';
 
@@ -8,10 +9,20 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  public test = false;
 
-  title = 'cookBook';
+    public navigation: boolean;
 
+  constructor(private apiNavigation: TriggersService) {
+
+    this.navigation = apiNavigation.navigationPages;
+
+  }
+
+
+  hide(e) {
+    
+    return this.navigation = e;
+  }
 
 }
 

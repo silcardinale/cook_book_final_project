@@ -13,7 +13,7 @@
         <div class="form-group dropdown-ingredients">
             <select formControlName="ingredientes" multiple>
                
-                <option *ngFor="let ingredient of ingredients" (click) ="valueIngredient(ingredient.name)" [class.is-invalid]="formNoValidIngredients">{{ingredient.name}} </option>
+                <option  *ngFor="let ingredient of ingredients" (click) ="valueIngredient(ingredient.name)" [class.is-invalid]="formNoValidIngredients">{{ingredient.name}} </option>
                 <small *ngIf="formNoValidIngredients" class="text-danger">Añade los ingredientes</small>
             </select>
         </div>

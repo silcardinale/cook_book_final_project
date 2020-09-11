@@ -1,3 +1,20 @@
+<div class="mainContainer">
+  <div class="profileUser">       
+      <div class=img-profile>
+          <img [src]="user[0].picture" alt="user.user_name" >
+      </div>
+      <div class="user-name">
+        <p>{{user[0].user_name}}</p>
+      </div>
+      <div class="followers-number">
+          <div class="followers">
+              <a >Seguir</a>
+          </div>
+    
+      </div>
+  </div>
+<hr>
+
 <div class="arrow">
   <a (click)="goBack()"><svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
     viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><g>	<g>
@@ -102,13 +119,13 @@
 <hr>
   
       <div class="comment-container">
-        <h4>Comentarios (2)</h4>
+        <h4>Comentarios ({{numberComment[0].count}})</h4>
         <form>
           <div class="form-group" >
             <textarea class="form-control" rows="4" placeholder="Deja tu comentario" value="" #comentario></textarea>
           </div>
         </form>
-       <button (click)="postComment(comentario.value)">Enviar comentario</button>
+       <button (click)="postComment(comentario.value, resultRecipe[0].recipe_id)">Enviar comentario</button>
       </div>
 
   <div class="bothComments">
