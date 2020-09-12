@@ -18,27 +18,13 @@ export class UserClassesComponent implements OnInit {
   public allMyLessons: Lessons []
   public animation: boolean;
   public eliminar
+  public teacher: User
 
   constructor(private apiService: LessonServiceService, private userService: UserService,  private router: Router) {
     this.apiService.lesson
     this.animation = false;
-   }
-   
-
-
-  popUp(lesson_id) {
-    this.eliminar = lesson_id
-
-    if ( document.getElementById('delete-window').style.visibility === 'visible') {
-        document.getElementById('delete-window').style.visibility = 'hidden';
-        this.animation = false;
-    } else {
-        document.getElementById('delete-window').style.visibility = 'visible';
-        document.getElementById('edit-profile').style.opacity = '1';
-        this.animation = true;
-    }
   }
-
+   
 
   showProfile(){
     this.profile = this.userService.userProfile;
@@ -46,32 +32,40 @@ export class UserClassesComponent implements OnInit {
   }
 
   showLesson(lesson_id){
-    this.lesson = this.lessons.filter(lesson => lesson.lesson_id === lesson_id);
-    
-    this.apiService.lesson = this.lesson;
-    console.log("showLesson", this.lesson)
+    this.userService.getLessonfromUser(lesson_id).subscribe((data)=> {
+      this.teacher = data[0];
+      this.userService.teacher = data[0]
+      console.log("teacher",this.userService.teacher)
     this.router.navigate(["/", "lesson"])
+    })
   }
 
   userLessons(){
       this.apiService.getUserLessons(this.userService.userProfile.user_id).subscribe((data:Lessons[])=> {
         console.log("allMyLessons",data)
         return this.lessons = data;
-        
         });
   }
 
+  popUp(lesson_id) {
+    this.eliminar = lesson_id
+      if ( document.getElementById('delete-window').style.visibility === 'visible') {
+          document.getElementById('delete-window').style.visibility = 'hidden';
+          this.animation = false;
+      } else {
+          document.getElementById('delete-window').style.visibility = 'visible';
+          document.getElementById('edit-profile').style.opacity = '1';
+          this.animation = true;
+      }
+  }
 
   deleteLesson(){
-
     this.apiService.removeLesson(this.eliminar).subscribe(data => this.ngOnInit());
-     
   }
 
   ngOnInit(): void {
     this.showProfile();
     this.userLessons();
-      //this.obtainLessons()
   }
 
 

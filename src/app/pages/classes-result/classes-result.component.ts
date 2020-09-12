@@ -23,6 +23,7 @@ export class ClassesResultComponent implements OnInit {
 
    obtainLessons(){
     this.apiService.getLessons().subscribe((data:Lessons[])=> {
+      console.log("todasLasClases",data)
       return this.lessons = data;
       });      
   }

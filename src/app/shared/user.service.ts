@@ -11,6 +11,7 @@ export class UserService {
 
   private url = "http://localhost:3000/user";
   public userProfile: User;
+  public allUsers
   public userRecipes: Recipe[];
   public teacher
 
@@ -18,7 +19,9 @@ export class UserService {
 
   getUsers()
   {
-    return this.http.get(this.url);
+    this.allUsers = this.http.get(this.url);
+    console.log(this.allUsers)
+    return this.allUsers
     
   }
   getUser(id: number)
@@ -31,8 +34,6 @@ export class UserService {
     console.log("servicio", this.teacher)
     return this.teacher
   }
-
-
 
   loginUser(user:User){
     
@@ -62,4 +63,6 @@ export class UserService {
     
     return this.http.delete(this.url, options)
   }
+
+
 }

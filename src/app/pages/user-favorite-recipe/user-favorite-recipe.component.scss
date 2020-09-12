@@ -15,7 +15,8 @@
     }
     img {
         border-radius: 100%;
-        width: 130px;                
+        width: 130px;    
+        height: 130px;             
     }
     .followers-number {
         justify-content: center;
@@ -120,6 +121,16 @@ hr{
                 -webkit-box-orient: vertical;
             }
         }
+
+        .delete{
+            text-align: right !important;
+            font-size: small;
+            color: gray;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+
         .more {
             text-align: right;
             
@@ -143,6 +154,63 @@ hr{
             padding-right: 40px;
         }
     }
+}
+
+
+
+// popup delete
+.descrp{
+    visibility: hidden;
+    height: 300px;
+    width: 400px;
+    bottom: 0;
+    top:0;
+    background-color: #9DDAC9;
+    transition: opacity .24s ease-out;
+    position: absolute;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    .header-title{
+        font-size: 2rem;
+        color: black;
+        margin-top: 5px;
+        padding-bottom: 30px;
+        hr{
+            border: 1px solid var(--brand-color);
+            width: 90%;
+        }
+        .window a{
+            margin-left: 80%;
+            margin-top: 5px;
+            font-size: 1.3rem;
+            color: var(--brand-color);
+        }
+    }
+    .container-text{
+        font-size: 1rem;
+        color: black;
+        text-align: center;
+        padding-left: 20px;
+        padding-right:20px;
+        margin-top:5px;
+    }
+    .container-data {
+        display: flex;
+        justify-content:  space-around;
+        a {
+            padding: 10px 20px;
+            transition: opacity .9s ease-out;
+        }
+        :hover {
+            color: black;
+            opacity: 0.9;
+        }
+    }
+}
+.animation {
+    animation-name: run;
+    animation-duration: 2s;
 }
 
 

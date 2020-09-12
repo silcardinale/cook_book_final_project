@@ -6,6 +6,7 @@ import { Recipe } from 'src/app/models/recipe';
 import { SearchRecipeService } from './../../shared/search-recipe.service';
 import { Component, OnInit } from '@angular/core';
 import { CookbookService } from 'src/app/shared/cookbook.service';
+import { FavoriteService } from 'src/app/shared/favorite.service';
 @Component({
   selector: 'app-recipe',
   templateUrl: './recipe.component.html',
@@ -20,8 +21,9 @@ export class RecipeComponent implements OnInit {
     public comments: Comment[];
     public numberComment: number;
     public user: User;
+    public nuevoFavorito
 
-    constructor( private userService: UserService, public apiSearchRecipe: SearchRecipeService, private cookbookService: CookbookService, public apiComments: CommentsService) {
+    constructor(private favService: FavoriteService, private userService: UserService, public apiSearchRecipe: SearchRecipeService, private cookbookService: CookbookService, public apiComments: CommentsService) {
 
     }
 
@@ -52,9 +54,10 @@ export class RecipeComponent implements OnInit {
           this.numberComment = data; 
           this.apiComments.numberComment = this.numberComment;
       });
-
     }
 
+
+  
 
     goBack(){
         this.arrow = this.cookbookService.backClicked()
@@ -65,7 +68,7 @@ export class RecipeComponent implements OnInit {
        this.showRecipeResult();
   }
 
-  
+ 
 
   changeColor() {
 
