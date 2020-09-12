@@ -20,13 +20,18 @@
     "@angular/platform-browser-dynamic": "~10.0.9",
     "@angular/router": "~10.0.9",
     "@types/jquery": "^3.5.1",
+    "angularfire2": "^5.4.2",
     "bootstrap": "^4.5.2",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "firebase": "^7.20.0",
     "jquery": "^3.5.1",
+    "localStorage": "^1.0.4",
     "mysql": "^2.18.1",
+    "ngx-webstorage-service": "^4.1.0",
     "nodemon": "^2.0.4",
     "rxjs": "~6.5.5",
+    "service": "^0.1.4",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
   },
@@ -49,6 +54,6 @@
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "~3.9.5"
+    "typescript": "^3.9.7"
   }
 }

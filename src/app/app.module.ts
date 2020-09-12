@@ -21,6 +21,11 @@ import { UserFavoriteRecipeComponent } from './pages/user-favorite-recipe/user-f
 import { ClassesResultComponent } from './pages/classes-result/classes-result.component';
 import { LessonServiceService } from './shared/lesson-service.service';
 import { UserClassesComponent } from './pages/user-classes/user-classes.component';
+import { StorageServiceModule } from 'ngx-webstorage-service';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import {AngularFireAuthModule} from 'angularfire2/auth';
 
 // Services
 import { CookbookService } from './shared/cookbook.service';
@@ -51,7 +56,11 @@ import { UserService } from './shared/user.service';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    StorageServiceModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireAuthModule
   ],
   providers: [
     CookbookService,

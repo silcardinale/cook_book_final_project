@@ -1,3 +1,5 @@
+import { Followed } from './../../models/followed';
+import { FollowersService } from './../../shared/followers.service';
 import { User } from './../../models/user';
 import { Comments } from './../../models/comments';
 import { UserService } from 'src/app/shared/user.service';
@@ -21,26 +23,25 @@ export class RecipeComponent implements OnInit {
     public comments: Comment[];
     public numberComment: number;
     public user: User;
-    public nuevoFavorito
+    public nuevoFavorito;
+    public follow: Followed;
 
-    constructor(private favService: FavoriteService, private userService: UserService, public apiSearchRecipe: SearchRecipeService, private cookbookService: CookbookService, public apiComments: CommentsService) {
+
+    constructor( private favService: FavoriteService, private userService: UserService, public apiSearchRecipe: SearchRecipeService, private cookbookService: CookbookService, public apiComments: CommentsService, public followers: FollowersService) {
+
 
     }
 
     showRecipeResult() {
-
         this.resultRecipe = this.apiSearchRecipe.resultRecipe;
         this.userService.getUser(this.resultRecipe[0].user_id).subscribe((data: User) => this.user = data);
 
         this.apiComments.showComments(this.resultRecipe[0].recipe_id).subscribe((data: Comment[]) => this.comments = data);
 
         this.apiComments.numberComments(this.resultRecipe[0].recipe_id).subscribe((data: number) =>  {
-          this.numberComment = data;
-          this.apiComments.numberComment = this.numberComment;
-      });
-     
-        
-
+            this.numberComment = data;
+            this.apiComments.numberComment = this.numberComment;
+         });
     }
 
     postComment(description: string, recipe_id: number){
@@ -50,16 +51,25 @@ export class RecipeComponent implements OnInit {
             this.showRecipeResult();
             this.ngOnInit;
       });
+
         this.apiComments.numberComments(recipe_id).subscribe((data: number) => {
-          this.numberComment = data; 
-          this.apiComments.numberComment = this.numberComment;
+            this.numberComment = data;
+            this.apiComments.numberComment = this.numberComment;
       });
     }
 
+    following(value){
 
-  
+      this.follow = new Followed(value, this.userService.userProfile.user_id);
+      this.followers.follow(this.follow).subscribe((data) => {
+        console.log(data)
+      });
+    }
+
+ 
 
     goBack(){
+
         this.arrow = this.cookbookService.backClicked()
   }
 
@@ -67,8 +77,6 @@ export class RecipeComponent implements OnInit {
   ngOnInit(): void {
        this.showRecipeResult();
   }
-
- 
 
   changeColor() {
 

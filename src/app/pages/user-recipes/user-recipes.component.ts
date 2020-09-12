@@ -1,3 +1,4 @@
+import { FollowersService } from './../../shared/followers.service';
 import { CommentsService } from './../../shared/comments.service';
 import { SearchRecipeService } from './../../shared/search-recipe.service';
 import { Component, OnInit } from '@angular/core';
@@ -20,7 +21,7 @@ export class UserRecipesComponent implements OnInit {
   public arrow: any;
   public recipe_id: number;
 
-  constructor(private router: Router, public apiSearchRecipe: SearchRecipeService, private userService: UserService) {
+  constructor(private router: Router, public apiSearchRecipe: SearchRecipeService, private userService: UserService, public follow: FollowersService) {
 
     this.animation = false;
 
@@ -37,8 +38,15 @@ export class UserRecipesComponent implements OnInit {
   goToRecipe(recipe_id: number) {
     this.apiSearchRecipe.resultRecipe = this.resultRecipe.filter(recipe => recipe.recipe_id === recipe_id);
     this.router.navigate(['/', 'recipe']);
-
   }
+
+  goToFollowers(recipe_id: number) {
+    this.userService.getUser(this.follow.followrelation.follower_id).subscribe((data: User) => {
+        this.follow.following = data;
+        this.router.navigate(['/', 'followers']);
+    });
+  }
+
 
   popUp(recipe_id: number) {
     this.recipe_id = recipe_id;

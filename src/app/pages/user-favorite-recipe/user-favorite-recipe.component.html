@@ -1,18 +1,19 @@
 <app-nav-bar></app-nav-bar>
 <div class="mainContainer">
-    <div class="profileUser">       
+    
+    <div class="profileUser" >       
         <div class=img-profile>
-            <img [src]="profile.picture" alt="profile.user_name">
+            <img [src]="profile.picture" [alt]="profile.user_name"/>
         </div>
         <div class="user-name">
           <p>{{profile.user_name}}</p>
         </div>
         <div class="followers-number">
             <div class="followers">
-                <a routerLink="/followers">Seguidores (3)</a>
+                <a >Seguidores (3)</a>
             </div>
             <div class="followed">
-                <a routerLink="/followers">Seguidos (19)</a>
+                <a >Seguidos (19)</a>
             </div>
         </div>
     </div>
