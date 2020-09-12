@@ -13,11 +13,11 @@
   
         <div class="profileUser">       
             <div class=img-profile>
-                <img src="../../../assets/img/trufas.jpg" alt="profile-img" class ="userPic" >
+                <img [src]="profile.picture" alt="profile.user_name" class ="userPic" >
             </div>
 
             <div class="header-title">
-            <p >user_name</p>
+            <p >{{profile[0].user_name}}</p>
             </div>
 
             <div class="followers-number">

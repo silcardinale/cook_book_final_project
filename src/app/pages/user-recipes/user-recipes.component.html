@@ -10,10 +10,10 @@
         </div>
         <div class="followers-number">
             <div class="followers">
-                <a routerLink="/followers">Seguidores (3)</a>
+                <a (click)="goToFollowers(profile.user_id)">Seguidores (3)</a>
             </div>
             <div class="followed">
-                <a routerLink="/followers">Seguidos (19)</a>
+                <a (click)="goToFollowers(profile.user_id)">Seguidos (19)</a>
             </div>
         </div>
     </div>
