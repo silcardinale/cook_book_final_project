@@ -9,25 +9,27 @@ import { SearchRecipeService } from './../../shared/search-recipe.service';
 import { Component, OnInit } from '@angular/core';
 import { CookbookService } from 'src/app/shared/cookbook.service';
 import { FavoriteService } from 'src/app/shared/favorite.service';
-import { BooleanStorageTranscoder } from 'ngx-webstorage-service';
+import { Favorite } from 'src/app/models/favorite';
+
 @Component({
   selector: 'app-recipe',
   templateUrl: './recipe.component.html',
   styleUrls: ['./recipe.component.scss']
 })
+
 export class RecipeComponent implements OnInit {
-    public resultRecipe: Recipe;
-    public colorHat: boolean;
-    public count: number;
-    public animation: boolean;
-    public arrow: void;
-    public comments: Comment[];
-    public numberComment: number;
-    public user: User;
-    public nuevoFavorito;
-    public follow: Followed;
-    public triggerFollow: boolean;
-    public hideDiv: boolean;
+  public resultRecipe: Recipe;
+  public colorHat: boolean;
+  public count: number;
+  public animation: boolean;
+  public arrow: void;
+  public comments: Comment[];
+  public numberComment: number;
+  public user: User;
+  public nuevoFavorito;
+  public follow: Followed;
+  public triggerFollow: boolean;
+  public hideDiv: boolean;
 
     constructor( private favService: FavoriteService, private userService: UserService, public apiSearchRecipe: SearchRecipeService, private cookbookService: CookbookService, public apiComments: CommentsService, public followers: FollowersService) {
       this.hideDiv = false;
@@ -88,6 +90,13 @@ export class RecipeComponent implements OnInit {
         });
 
     }
+    addFav(){
+      let myFav = new Favorite(0, this.resultRecipe[0].recipe_id, this.userService.userProfile.user_id)
+      this.favService.addFavorite(myFav).subscribe((data) => {
+        console.log("favorito", data)
+        })
+    }
+    
 
     goBack(){
 

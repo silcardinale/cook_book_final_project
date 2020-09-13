@@ -28,10 +28,10 @@
             <a class=" activa" routerLink="/userFavorites">Favoritos</a>
             </li>
             <li class="nav-item">
-                <a  routerLink="/userClasses">Mis Clases</a>
+                <a routerLink="/userClasses">Mis Clases</a>
             </li>
         </ul>
-        <div *ngIf = " favoriteRecipes.length === 0" >
+        <div *ngIf = "favoriteRecipes.length === 0" >
             <br>
             <p style="text-align: center;">¡Todavía no tienes ninguna receta favorita!</p>
         </div>
@@ -42,17 +42,17 @@
                     <div class="window">
                         <a (click)="popUp()">X</a>
                     </div>
-                    <p>Eliminar clase</p>
+                    <p>Eliminar favorito</p>
                     <hr>
                    <div class ="container-text">
-                        <p>Estas seguro que quieres eliminar la clase?
+                        <p>Estas seguro que quieres eliminar la receta de tus favoritos
                         </p>
                     </div>
                 </div>
                 <div class ="container-data">
                     <div >
                         <div>
-                            <a  class= "button" (click)=" deleteFav(favs.user_fav_id)">Sí</a>
+                            <a  class= "button" (click)="deleteFav(favs.user_fav_id)">Sí</a>
                         </div>
                     </div>
                     <div >
@@ -132,9 +132,9 @@
                 </div>
 
                 <div class="userFavRecipe">
-                    <img src="https://scontent.fmad7-1.fna.fbcdn.net/v/t1.0-9/12141567_1053647777991238_4687023364676146473_n.jpg?_nc_cat=107&_nc_sid=19026a&_nc_ohc=OVlgPUUgevwAX98cqnm&_nc_ht=scontent.fmad7-1.fna&oh=c15c0267758d33cf80d0d7f1deca0dfd&oe=5F71D105" alt="user picture"  >
+                    <img src="{{favs.user_pic}}"  >
                     <div class="profileOther">
-                        <p>{{favs.owner_id}}</p>
+                        <p>{{favs.user_name}}</p>
                     </div>
                 </div>
                 <div>

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CookbookService } from 'src/app/shared/cookbook.service';
 import { Lessons } from './../../models/lessons';
 import { LessonServiceService } from "../../shared/lesson-service.service"
-import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/shared/user.service';
 
 
