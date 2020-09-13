@@ -9,6 +9,7 @@ import { SearchRecipeService } from './../../shared/search-recipe.service';
 import { Component, OnInit } from '@angular/core';
 import { CookbookService } from 'src/app/shared/cookbook.service';
 import { FavoriteService } from 'src/app/shared/favorite.service';
+import { Favorite } from 'src/app/models/favorite';
 @Component({
   selector: 'app-recipe',
   templateUrl: './recipe.component.html',
@@ -66,7 +67,13 @@ export class RecipeComponent implements OnInit {
       });
     }
 
- 
+    addFav(){
+      let myFav = new Favorite(0, this.resultRecipe[0].recipe_id, this.userService.userProfile.user_id)
+      this.favService.addFavorite(myFav).subscribe((data) => {
+        console.log("favorito", data)
+        })
+    }
+    
 
     goBack(){
 

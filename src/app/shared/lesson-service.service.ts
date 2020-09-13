@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from"@angular/common/http";
 import { Lessons } from "../models/lessons"
-import { UserService } from './user.service';
 
 
 
@@ -15,7 +14,7 @@ public lesson :Lessons[];
 public lessons :Lessons[];
 
 
-constructor (private http :HttpClient, private userService :UserService) {
+constructor (private http :HttpClient) {
  
   this.lessons = []
  }

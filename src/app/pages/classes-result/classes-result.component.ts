@@ -13,7 +13,6 @@ import { User } from 'src/app/models/user';
 })
 
 export class ClassesResultComponent implements OnInit {
-  public lesson :Lessons [];
   public lessons: Lessons[];
   public lessonTeacher: Lessons;
   public teacher: User
