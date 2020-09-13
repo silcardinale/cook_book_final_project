@@ -9,27 +9,24 @@
               c11.046,0,20-8.954,20-20C512,244.954,503.046,236,492,236z"/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg></a>
     </div>
         
-    <div class="main-container">
-  
-        <div class="profileUser">       
+    <div class="mainContainer">
+    
+        <div class="profileUser" >       
             <div class=img-profile>
-                <img [src]="profile.picture" alt="profile.user_name" class ="userPic" >
+                <img [src]="profile.picture" [alt]="profile.user_name"/>
             </div>
-
-            <div class="header-title">
-            <p >{{profile[0].user_name}}</p>
+            <div class="user-name">
+              <p>{{profile.user_name}}</p>
             </div>
-
             <div class="followers-number">
                 <div class="followers">
-                    <p>Followers</p>
-
+                    <a>Seguidores (3)</a>
                 </div>
                 <div class="followed">
-                    <p>Follow</p>
+                    <a >Seguidos ({{followingAmount[0].count}})</a>
                 </div>
             </div>
-
+       
             <div class="icon">      
 
             <div>
@@ -101,25 +98,25 @@
 
     </div>
             
-
+    <hr>
         <div class="container-columns">
-            <div class="column"> <!--Añadir ngFor para que se carguen de manera automatica--> 
+            <div class="column"> 
                 <div class="tittle">
                     <p>Seguidores</p> 
                 </div>   
 
-                <div class="users">
+                <div class="users" *ngFor = "let followers of followers.followers">
                     <div class="pic-profile">
-                        <img src="../../../assets/img/trufas.jpg" alt="profile-img followers">
+                        <img [src]="followers.picture" alt="followers.user_name">
                     </div>
 
                     <div class="name">
-                    <p>Nombre usuario</p>
-                </div>
+                        <p>{{followers.user_name}}</p>
+                    </div>   
 
-                <div class="follow">
-                    <p>Seguir</p>
-                </div>
+                    <div class="follow">
+                        <p>Seguir</p>
+                    </div>
                 </div> 
             </div>
             
@@ -128,13 +125,13 @@
                     <p>Seguidos</p>
                 </div>   
 
-                <div class="users">
+                <div class="users" *ngFor = "let follow of userFollowing">
                     <div class="pic-profile">
-                        <img src="../../../assets/img/trufas.jpg" alt="profile-img followed">
+                        <img [src]="follow.picture" alt="follow.user_name">
                     </div>
 
                     <div class="name">
-                        <p>Nombre usuario</p>
+                        <p>{{follow.user_name}}</p>
                     </div>   
     
                     <div class="follow">

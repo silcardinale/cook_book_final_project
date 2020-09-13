@@ -2,14 +2,15 @@
 <div class="mainContainer">
   <div class="profileUser">       
       <div class=img-profile>
-          <img [src]="user[0].picture" alt="user.user_name" >
+          <img [src]="user.picture" alt="user.user_name" >
       </div>
       <div class="user-name">
-        <p>{{user[0].user_name}}</p>
+        <p>{{user.user_name}}</p>
       </div>
       <div class="followers-number">
-          <div class="followers">
-              <a (click)="following(user.user_id)">Seguir</a>
+          <div *ngIf="hideDiv == false" class="followers">
+              <a  *ngIf="this.followers.followStatus == false" (click)="following( )">Seguir</a>
+              <a *ngIf="this.followers.followStatus" (click)="unfollow( )">Dejar de seguir</a>
           </div>
     
       </div>
@@ -27,7 +28,7 @@
 <div class="container">
   <div class=" title-recipe">
     <p class="animated fadeIn Fast header-title">
-      {{ resultRecipe[0].title }}
+      {{ resultRecipe.title }}
     </p>
     <div class="icon">
         <div class="likes">
@@ -96,24 +97,24 @@
 </div>
     <br>
     <p>
-      <i class="fas fa-question"></i> {{ resultRecipe[0].dificulty }} - <i class="fas fa-utensils"></i
+      <i class="fas fa-question"></i> {{ resultRecipe.dificulty }} - <i class="fas fa-utensils"></i
       > (porciones) - <i class="far fa-clock"></i>
-      {{ resultRecipe[0].duration }}.
+      {{ resultRecipe.duration }}.
     </p>
   </div>
 
   <div class="row animated fadeIn Fast">
     <div class="col-md-12 col-lg-4 img-recipe" >
-      <img [src]="resultRecipe[0].picture" class="img-fluid" [alt]="resultRecipe[0].title" />
+      <img [src]="resultRecipe.picture" [alt]="resultRecipe.title" />
 
     </div>
     <br>
     <div class="col-lg-8">
       <p><strong>Ingredientes:</strong></p>
-      <li>{{ resultRecipe[0].ingredients}}</li>
+      <li>{{ resultRecipe.ingredients}}</li>
       <br>
       <p><strong>Preparación:</strong></p>
-      <li>{{ resultRecipe[0].description }}</li>
+      <li>{{ resultRecipe.description }}</li>
     </div>
     </div>
     
@@ -121,13 +122,13 @@
 <hr>
   
       <div class="comment-container">
-        <h4>Comentarios ({{numberComment[0].count}})</h4>
+        <h4>Comentarios ({{numberComment}})</h4>
         <form>
           <div class="form-group" >
             <textarea class="form-control" rows="4" placeholder="Deja tu comentario" value="" #comentario></textarea>
           </div>
         </form>
-       <button (click)="postComment(comentario.value, resultRecipe[0].recipe_id)">Enviar comentario</button>
+       <button (click)="postComment(comentario.value, resultRecipe.recipe_id)">Enviar comentario</button>
       </div>
 
   <div class="bothComments">

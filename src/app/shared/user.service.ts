@@ -21,49 +21,47 @@ export class UserService {
   public teacher
 
   constructor(private http: HttpClient, private router: Router, public afAuth: AngularFireAuth, private afs: AngularFirestore, private localStorage: LocalStorageService) {
-
      
   }
 
-  getUsers()
-  {
-    this.allUsers = this.http.get(this.url);
-    console.log(this.allUsers)
-    return this.allUsers
-    
-  }
-  getUser(id: number)
-  {
+    getUsers() {
+      this.allUsers = this.http.get(this.url);
+      console.log(this.allUsers)
+      return this.allUsers
+      
+    }
+    getUser(id: any) {
+
     return this.http.get(this.url + "/" + id);
   }
 
-  getLessonfromUser(id_lesson){
-    this.teacher = this.http.get(this.url + "/lesson/" + id_lesson)
-    console.log("servicio", this.teacher)
-    return this.teacher
-  }
+    getLessonfromUser(id_lesson){
+      this.teacher = this.http.get(this.url + "/lesson/" + id_lesson)
+      console.log("servicio", this.teacher)
+      return this.teacher
+    }
 
-  loginUser(user:User){
+    loginUser(user:User){
 
-   return this.http.post(this.url + '/login', user);
-  }
+    return this.http.post(this.url + '/login', user);
+    }
 
-  registerUser (newUser: User) {
-    return this.http.post(this.url+ "/register", newUser)
-  }
+    registerUser (newUser: User) {
+      return this.http.post(this.url+ "/register", newUser)
+    }
 
-  registerUserSocial (newUser: User) {
-    return this.http.post(this.url+ "/register/social", newUser)
-  }
+    registerUserSocial (newUser: User) {
+      return this.http.post(this.url+ "/register/social", newUser)
+    }
 
 
-  editUserProfile (editUser: User) {
-    return this.http.put(this.url + "/edit_profile" , editUser)
-  }
+    editUserProfile (editUser: User) {
+      return this.http.put(this.url + "/edit_profile" , editUser)
+    }
 
-  loginSocial(provider) {
- 
-    if (provider === 'google') {
+    loginSocial(provider) {
+  
+      if (provider === 'google') {
 
       this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
 

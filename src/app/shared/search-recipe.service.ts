@@ -10,7 +10,7 @@ export class SearchRecipeService {
   private url = 'http://localhost:3000';
 
   public resultRecipes: Recipe[];
-  public resultRecipe: Recipe[];
+  public resultRecipe: Recipe;
 
 
   constructor(private http: HttpClient) {

@@ -1,42 +1,5 @@
 @import '../../../styles.scss';
 
-.mainContainer{
-    padding: 25px;
-}
-
-.profileUser{
-    padding: 0px 0px;
-    text-align: center;
-    .user-name {
-        font-size: 1.5rem;
-    }
-    .img-profile {
-        padding-bottom: 8px;
-    }
-    img {
-        border-radius: 100%;
-        width: 130px;  
-        height: 130px;              
-    }
-    .followers-number {
-        justify-content: center;
-        padding-bottom: 30px;
-        display: grid;
-        grid-template-rows: 0fr 0fr;
-        grid-template-areas: 
-        "followers followed";
-        .followers {
-            grid-area: followers;
-            text-align: center;
-            
-        }
-        .followed {
-            grid-area: followed;
-            padding-left: 50px;
-        }
-    }
-   
-}
 
 .userFavRecipe{
    

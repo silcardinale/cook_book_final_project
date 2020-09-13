@@ -20,6 +20,7 @@ export class AppComponent {
 
   }
 
+
     logInKeep() {
       if (this.localStorage.get('log') !== null) {
         this.userService.loginUser(this.localStorage.get('log')).subscribe((data: User) => {

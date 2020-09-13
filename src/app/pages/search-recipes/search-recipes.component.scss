@@ -109,9 +109,6 @@ $size3: 1200px;
         }
     }  
 }
-#prueba {
-    visibility: hidden;
-}
 
 .radio-group {
     padding-top: 40px;
@@ -143,5 +140,8 @@ $size3: 1200px;
         }
         
     }
+}
 
+.dropdown {
+    background-color: red !important;
 }

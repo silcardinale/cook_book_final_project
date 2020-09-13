@@ -1,3 +1,4 @@
+import { FollowersService } from './../../shared/followers.service';
 import { Component, OnInit } from '@angular/core';
 import { LessonServiceService } from 'src/app/shared/lesson-service.service';
 import { UserService } from 'src/app/shared/user.service';
@@ -18,9 +19,10 @@ export class UserClassesComponent implements OnInit {
   public allMyLessons: Lessons []
   public animation: boolean;
   public eliminar
-  public teacher: User
+  public teacher: User;
+  public followingAmount: number;
 
-  constructor(private apiService: LessonServiceService, private userService: UserService,  private router: Router) {
+  constructor(private apiService: LessonServiceService,public followers: FollowersService, private userService: UserService,  private router: Router) {
     this.apiService.lesson
     this.animation = false;
   }
@@ -28,7 +30,7 @@ export class UserClassesComponent implements OnInit {
 
   showProfile(){
     this.profile = this.userService.userProfile;
-    console.log(this.profile)
+    this.followers.followAmount(this.profile.user_id).subscribe((data: number) => console.log(this.followingAmount = data));
   }
 
   showLesson(lesson_id){
@@ -46,6 +48,10 @@ export class UserClassesComponent implements OnInit {
         return this.lessons = data;
         });
   }
+
+  goToFollowers() {
+    this.router.navigate(['/', 'followers']);
+}
 
   popUp(lesson_id) {
     this.eliminar = lesson_id

@@ -12,47 +12,6 @@ $size3: 1200px;
 .header-title {
     font-size: 1.4rem;
 }
-    
-.main-container {
-    @include display-flex(flex, column , space-around, center);
-    .profileUser{
-        padding: 50px 0px;
-        text-align: center;
-        .img-profile {
-            padding-bottom: 20px;
-        }
-        img {
-            border-radius: 100%;
-            width: 160px;
-                
-        }
-        .followers-number {
-            align-items: center;
-            display: grid;
-            grid-template-rows: 1fr 1fr;
-            grid-template-areas: 
-            "followers followed";
-            .followers {
-                grid-area: followers;
-                text-align: center;
-            }
-            .followed {
-                grid-area: followed
-            }
-        }
-        .icon {
-            @include display-flex(flex, row , center, center);
-            margin-top: -45px;
-            align-items: center;
-    
-            svg {
-                height: 20px;
-                padding-left: 15px;
-                margin-top: -23px;
-            }      
-        }
-    }
-}
 
 .container-columns {
     @include display-flex(flex, row , space-around, center);
@@ -79,6 +38,7 @@ $size3: 1200px;
             height: 80x;
             img {
                 height: 45px;
+                width: 45px;;
                 border-radius: 100%;
                 @include size($size) {
                     height: 50px

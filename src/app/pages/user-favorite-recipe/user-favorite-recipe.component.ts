@@ -23,7 +23,8 @@ export class UserFavoriteRecipeComponent implements OnInit {
   public owner:User
   public eliminar
   public animation: boolean;
-  public following: User;
+  public followingAmount: number;
+
 
 
 
@@ -31,12 +32,12 @@ export class UserFavoriteRecipeComponent implements OnInit {
     constructor( private servicio: CookbookService, public followers: FollowersService, private router: Router,  private userService: UserService, private apiSearchRecipe: SearchRecipeService, private favService:  FavoriteService) {
       this.animation = false;
       this.favs  =  this.favService.favoriteRecipe
-      this.following = this.followers.following;
+     
     }
   
     showProfile(){
         this.profile = this.userService.userProfile;
-        console.log(this.profile)
+        this.followers.followAmount(this.profile.user_id).subscribe((data: number) => console.log(this.followingAmount = data));
     }
 
     userFav(){
@@ -45,6 +46,10 @@ export class UserFavoriteRecipeComponent implements OnInit {
       return this.favoriteRecipes = data;
       });
     }
+
+    goToFollowers() {
+      this.router.navigate(['/', 'followers']);
+}
 
 
 

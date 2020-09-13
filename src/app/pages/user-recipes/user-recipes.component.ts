@@ -20,8 +20,9 @@ export class UserRecipesComponent implements OnInit {
   public animation: boolean;
   public arrow: any;
   public recipe_id: number;
+  public followingAmount: number;
 
-  constructor(private router: Router, public apiSearchRecipe: SearchRecipeService, private userService: UserService, public follow: FollowersService) {
+  constructor(private router: Router, public apiSearchRecipe: SearchRecipeService, private userService: UserService, public followers: FollowersService) {
 
     this.animation = false;
 
@@ -32,19 +33,17 @@ export class UserRecipesComponent implements OnInit {
     this.profile = this.userService.userProfile;
 
     this.apiSearchRecipe.showRecipesUser(this.profile.user_id).subscribe((data: Recipe[]) => this.resultRecipe = data);
+    this.followers.followAmount(this.profile.user_id).subscribe((data: number) => console.log(this.followingAmount = data));
 
   }
 
   goToRecipe(recipe_id: number) {
-    this.apiSearchRecipe.resultRecipe = this.resultRecipe.filter(recipe => recipe.recipe_id === recipe_id);
+  [this.apiSearchRecipe.resultRecipe] = this.resultRecipe.filter(recipe => recipe.recipe_id === recipe_id);
     this.router.navigate(['/', 'recipe']);
   }
 
-  goToFollowers(recipe_id: number) {
-    this.userService.getUser(this.follow.followrelation.follower_id).subscribe((data: User) => {
-        this.follow.following = data;
+  goToFollowers() {
         this.router.navigate(['/', 'followers']);
-    });
   }
 
 

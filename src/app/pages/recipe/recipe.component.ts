@@ -9,13 +9,14 @@ import { SearchRecipeService } from './../../shared/search-recipe.service';
 import { Component, OnInit } from '@angular/core';
 import { CookbookService } from 'src/app/shared/cookbook.service';
 import { FavoriteService } from 'src/app/shared/favorite.service';
+import { BooleanStorageTranscoder } from 'ngx-webstorage-service';
 @Component({
   selector: 'app-recipe',
   templateUrl: './recipe.component.html',
   styleUrls: ['./recipe.component.scss']
 })
 export class RecipeComponent implements OnInit {
-    public resultRecipe: Recipe[];
+    public resultRecipe: Recipe;
     public colorHat: boolean;
     public count: number;
     public animation: boolean;
@@ -25,27 +26,42 @@ export class RecipeComponent implements OnInit {
     public user: User;
     public nuevoFavorito;
     public follow: Followed;
-
+    public triggerFollow: boolean;
+    public hideDiv: boolean;
 
     constructor( private favService: FavoriteService, private userService: UserService, public apiSearchRecipe: SearchRecipeService, private cookbookService: CookbookService, public apiComments: CommentsService, public followers: FollowersService) {
+      this.hideDiv = false;
 
 
     }
 
     showRecipeResult() {
         this.resultRecipe = this.apiSearchRecipe.resultRecipe;
-        this.userService.getUser(this.resultRecipe[0].user_id).subscribe((data: User) => this.user = data);
+        this.userService.getUser(this.resultRecipe.user_id).subscribe((data: User) => this.user = data[0]);
+        this.followers.getFollowingStatus(this.userService.userProfile.user_id, this.resultRecipe.user_id).subscribe((data) => {
+            if (this.userService.userProfile.user_id ===  this.apiSearchRecipe.resultRecipe.user_id) {
+                return this.hideDiv = true;
+            } else if (data[0].followers_id === this.apiSearchRecipe.resultRecipe.user_id) {
+                return this.followers.followStatus = data[0].status;
+            }
+        });
 
-        this.apiComments.showComments(this.resultRecipe[0].recipe_id).subscribe((data: Comment[]) => this.comments = data);
+        this.userService.getUser(this.resultRecipe.user_id).subscribe((data: User) => this.user = data[0]);
 
-        this.apiComments.numberComments(this.resultRecipe[0].recipe_id).subscribe((data: number) =>  {
-            this.numberComment = data;
+        this.apiComments.showComments(this.resultRecipe.recipe_id).subscribe((data: Comment[]) => this.comments = data);
+
+        this.apiComments.numberComments(this.resultRecipe.recipe_id).subscribe((data) =>  {
+
+            this.numberComment = data[0].count;
             this.apiComments.numberComment = this.numberComment;
+
          });
     }
 
+
     postComment(description: string, recipe_id: number){
-        let comment = new Comments(this.userService.userProfile.user_name, description, this.resultRecipe[0].recipe_id, this.userService.userProfile.user_id);
+
+        let comment = new Comments(this.userService.userProfile.user_name, description, this.resultRecipe.recipe_id, this.userService.userProfile.user_id);
 
         this.apiComments.createComment(comment).subscribe((data) => {
             this.showRecipeResult();
@@ -54,23 +70,28 @@ export class RecipeComponent implements OnInit {
 
         this.apiComments.numberComments(recipe_id).subscribe((data: number) => {
             this.numberComment = data;
+            console.log(this.numberComment)
             this.apiComments.numberComment = this.numberComment;
       });
     }
 
-    following(value){
-
-      this.follow = new Followed(value, this.userService.userProfile.user_id);
-      this.followers.follow(this.follow).subscribe((data) => {
-        console.log(data)
-      });
+    following(){
+        let status = true;
+        this.follow = new Followed(this.resultRecipe.user_id, this.userService.userProfile.user_id, status);
+        this.followers.follow(this.follow).subscribe((data: Followed) => { this.followers.followStatus = true; });
+        this.followers.getFollowing(this.userService.userProfile.user_id).subscribe((data: User[]) => console.log(this.followers.following = data));
     }
 
- 
+    unfollow() {
+        this.followers.unfollow(this.resultRecipe.user_id).subscribe((data)=> {
+            this.followers.followStatus = false;
+        });
+
+    }
 
     goBack(){
 
-        this.arrow = this.cookbookService.backClicked()
+        this.arrow = this.cookbookService.backClicked();
   }
 
 

@@ -16,9 +16,11 @@ export class InicioComponent implements OnInit {
   
   public animation: boolean;
   public test: boolean;
+  public count: number;
  
   constructor(public apiNavigation: TriggersService, public localStorage: LocalStorageService, public userService: UserService, private router: Router) {
     this.animation = false;
+    this.count = 0;
 
   }
 
@@ -33,6 +35,20 @@ export class InicioComponent implements OnInit {
       document.getElementById('quienes-somos').style.opacity = '1';
       this.animation = true;
     }
+  }
+
+  hide() {
+    this.count++;
+
+    if (document.getElementById('quienes-somos').style.visibility === 'visible' && this.count > 1) {
+      this.animation = false;
+      document.getElementById('quienes-somos').style.visibility = 'hidden';
+      this.count = 0;
+    }
+    else {
+      return;
+    }
+
   }
 
   onSubmit(form) {

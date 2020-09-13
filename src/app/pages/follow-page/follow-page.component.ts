@@ -18,22 +18,28 @@ export class FollowPageComponent implements OnInit {
   public count: number;
   public arrow: void;
   public profile: User;
-  public following: Followed;
-  public UserFollowing: User[];
+  public following: Followed[];
+  public userFollowing: User[];
+  public followingUser: User[];
+  public followingAmount: number;
+  public allFollowers;
 
   constructor(private cookbookService: CookbookService, public followers: FollowersService, public apiSearchRecipe: SearchRecipeService, private userService: UserService) {
     this.count = 0;
     this.colorHat = false;
-    this.following = this.followers.followrelation;
-    
+
   }
 
   showProfile(){
 
     this.profile = this.userService.userProfile;
-    this.userService.getUser(this.following.follower_id).subscribe((data: User[]) => {
-      this.UserFollowing = data;
+    this.userFollowing = this.followers.following;
+    this.followers.followAmount(this.profile.user_id).subscribe((data: number) => console.log(this.followingAmount = data));
+
+    this.allFollowers = this.followers.getFollowers(this.userService.userProfile.user_id).subscribe((data) =>{
+        this.followers.followers = data;
     })
+
   }
 
   changeColor() {
@@ -56,7 +62,7 @@ export class FollowPageComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.showProfile;
+    this.showProfile();
   }
 
 }
