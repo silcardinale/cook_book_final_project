@@ -35,12 +35,8 @@ export class FollowPageComponent implements OnInit {
 
     this.profile = this.userService.userProfile;
     this.userFollowing = this.followers.following;
-<<<<<<< HEAD
     this.followers.followAmount(this.profile.user_id).subscribe((data: number) => console.log(this.followingAmount = data));
     this.followers.followersAmount(this.profile.user_id).subscribe((data: number) => console.log(this.followersAmount = data));
-=======
-    this.followers.followAmount(this.profile.user_id).subscribe((data: number) => this.followingAmount = data);
->>>>>>> ramaSergio
 
     this.allFollowers = this.followers.getFollowers(this.userService.userProfile.user_id).subscribe((data) =>{
         this.followers.followers = data;

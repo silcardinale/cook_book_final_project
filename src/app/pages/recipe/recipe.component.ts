@@ -35,11 +35,8 @@ export class RecipeComponent implements OnInit {
   public follow: Followed;
   public triggerFollow: boolean;
   public hideDiv: boolean;
-<<<<<<< HEAD
   public likes:number;
-=======
   public ingredientsRecipe;
->>>>>>> ramaSergio
 
     constructor( private likeService: LikesService, private favService: FavoriteService, private userService: UserService, public apiSearchRecipe: SearchRecipeService, private cookbookService: CookbookService, public apiComments: CommentsService, public followers: FollowersService) {
       this.hideDiv = false;
@@ -53,27 +50,23 @@ export class RecipeComponent implements OnInit {
         this.resultRecipe = this.apiSearchRecipe.resultRecipe;
         this.ingredientsRecipe = this.resultRecipe.ingredients.replace(/,/g, ' ').trim().split(' ');
         this.userService.getUser(this.resultRecipe.user_id).subscribe((data: User) => this.user = data[0]);
-      this.followers.getFollowingStatus(this.userService.userProfile.user_id, this.resultRecipe.user_id).subscribe((data) => {
-            if (this.userService.userProfile.user_id ===  this.apiSearchRecipe.resultRecipe.user_id) {
-                return this.hideDiv = true;
-            } else if (data[0].status === 'true') {
-                return this.followers.followStatus = data[0].status;
-            }
-        });
+        this.followers.getFollowingStatus(this.userService.userProfile.user_id, this.resultRecipe.user_id).subscribe((data) => {
+              if (this.userService.userProfile.user_id ===  this.apiSearchRecipe.resultRecipe.user_id) {
+                  return this.hideDiv = true;
+              } else if (data[0].status === 'true') {
+                  return this.followers.followStatus = data[0].status;
+              }
+          });
 
         this.userService.getUser(this.resultRecipe.user_id).subscribe((data: User) => this.user = data[0]);
         this.apiComments.showComments(this.resultRecipe.recipe_id).subscribe((data: Comment[]) => this.comments = data);
         this.apiComments.numberComments(this.resultRecipe.recipe_id).subscribe((data) =>  {
             this.numberComment = data[0].count;
             this.apiComments.numberComment = this.numberComment;
-<<<<<<< HEAD
 
          }); 
 
-         this.likesNumber()
-=======
-         });
->>>>>>> ramaSergio
+        this.likesNumber()
     }
 
     postComment(description: string, recipe_id: number){
@@ -105,18 +98,13 @@ export class RecipeComponent implements OnInit {
     }
 
     unfollow() {
-<<<<<<< HEAD
         this.followers.unfollow(this.resultRecipe.user_id,this.resultRecipe.user_id).subscribe((data)=> {
-=======
-        this.followers.unfollow(this.resultRecipe.user_id).subscribe((data) => {
->>>>>>> ramaSergio
             this.followers.followStatus = false;
         });
 
     }
 
     addFav(){
-<<<<<<< HEAD
       let myFav = new Favorite(0, this.resultRecipe.recipe_id, this.userService.userProfile.user_id)
       this.favService.addFavorite(myFav).subscribe((data) => {
         console.log("favorito", data)
@@ -139,12 +127,6 @@ export class RecipeComponent implements OnInit {
         })
     }
 
-=======
-      let myFav = new Favorite(0, this.resultRecipe[0].recipe_id, this.userService.userProfile.user_id)
-      this.favService.addFavorite(myFav).subscribe(data => data)
-    }
-  
->>>>>>> ramaSergio
     goBack(){
 
         this.arrow = this.cookbookService.backClicked();
