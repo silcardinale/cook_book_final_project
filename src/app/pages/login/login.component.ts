@@ -65,7 +65,38 @@ export class LoginComponent implements OnInit {
     submitted = false;
 
 
-    onSubmit() { this.submitted = true; }
+    onSubmit(userForm: NgForm) { 
+      console.log(userForm)
+      this.user = new User(userForm.value.user_name, userForm.value.password);
+  
+      if(userForm.valid){
+        this.userService.userProfile = this.user
+
+        this.userService.loginUser(this.user).subscribe((data: User) => {
+          this.userService.userProfile = data[0];
+ 
+          if(data != undefined){
+
+            this.localStorage.set('log', this.user);
+            this.router.navigate(['/', 'searchRecipe']);
+  
+          }
+
+        });
+        
+        
+      }
+          
+      if(userForm.invalid){
+        Object.values( userForm.controls ).forEach ( control =>{
+
+          control.markAsTouched();
+
+        })
+      }
+      console.log(userForm.value);
+    
+    }
 
 
   ngOnInit(): void {  

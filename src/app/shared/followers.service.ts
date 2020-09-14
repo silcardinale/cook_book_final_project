@@ -47,17 +47,22 @@ export class FollowersService {
     return this.http.get(this.url + '/followed/count/' + id);
   }
 
+  followersAmount(id: number){
+    return this.http.get(this.url + '/followers/count/' + id);
+  }
+
   insertFollower(followers_id, user_id){
-     return this.http.post(this.url + '/followers/', followers_id, user_id)
+     return this.http.post(this.url + '/followed/', followers_id, user_id)
     }
 
 
-  unfollow(id: number) {
+  unfollow(id: number, profile_id:number) {
     const httpOptions = {
       headers: new HttpHeaders({ 
         'Content-Type': 'application/json' }),
         body: {
-          id: id
+          id: id,
+          profile_id: profile_id
         }};
     return this.http.delete(this.url + '/followed',  httpOptions);
   }

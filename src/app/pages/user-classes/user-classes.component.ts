@@ -21,6 +21,7 @@ export class UserClassesComponent implements OnInit {
   public eliminar
   public teacher: User;
   public followingAmount: number;
+  public followersAmount: number;
 
   constructor(private apiService: LessonServiceService,public followers: FollowersService, private userService: UserService,  private router: Router) {
     this.apiService.lesson
@@ -31,6 +32,7 @@ export class UserClassesComponent implements OnInit {
   showProfile(){
     this.profile = this.userService.userProfile;
     this.followers.followAmount(this.profile.user_id).subscribe((data: number) => console.log(this.followingAmount = data));
+    this.followers.followersAmount(this.profile.user_id).subscribe((data: number) => console.log(this.followersAmount = data));
   }
 
   showLesson(lesson_id){

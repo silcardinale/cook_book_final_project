@@ -3,21 +3,25 @@
     <div>
        <a class= "logo" routerLink="/welcome"> <img src="assets/img/logo.png" ></a>
     </div>
-     <form novalidate>
-        <div class="form-group">
-            <div>
-                <input type="text" class="form-control" name="user_name"  placeholder="Nombre de usuario" #user_name required >
-            </div>
-        </div>
-        <div class="form-group">
-            <div>
-                
-                <input type="password"class="form-control" name="password"  placeholder="Contraseña" #password required>
 
+    <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+        <div class ="form-group">
+            <input type="text" name="user_name" class="form-control"  placeholder="Nombre de usuario" [(ngModel)]="user.user_name" #user_name="ngModel" [ngClass]="{'is-invalid':userForm.submitted && user_name.invalid}" required>
+            <div class="invalid-feedback" *ngIf="userForm.submitted && user_name.invalid && user_name.touched">
+                <p *ngIf="user_name.errors.required"> El nombre de usuario es obligatorio</p>
             </div>
         </div>
-      
-        <button type="submit" (click)="login(user_name.value,password.value)">Iniciar sesión</button>
+        <div class ="form-group"> 
+            <input type="password" name="password" class="form-control"  placeholder="Ingresa tu contraseña" [(ngModel)]="user.password" #password="ngModel" [ngClass]="{'is-invalid':userForm.submitted && password.invalid}" minlength="8" required>
+            <div *ngIf="userForm.submitted && password.invalid && password.touched" class="invalid-feedback">
+                <div *ngIf="password.errors.required">La contraseña es obligatoria</div>
+                <div *ngIf="password.errors.minlength">La contraseña debe tener al menos 8 caracteres</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button type="submit">Iniciar sesión</button>
+        </div>
         <br>
         <br>
         <br>
@@ -33,7 +37,9 @@
         <br>
         <br>
         <hr>
+
     </form>
+     
     <div class = "container-register">
         <a (click)="show()">¿Has olvidado la contraseña?</a>
     </div>
