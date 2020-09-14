@@ -111,7 +111,7 @@
     <br>
     <div class="col-lg-8">
       <p><strong>Ingredientes:</strong></p>
-      <li>{{ resultRecipe.ingredients}}</li>
+      <li *ngFor = "let ingredient of ingredientsRecipe">{{ingredient}}</li>
       <br>
       <p><strong>Preparación:</strong></p>
       <li>{{ resultRecipe.description }}</li>
@@ -125,7 +125,7 @@
         <h4>Comentarios ({{numberComment}})</h4>
         <form>
           <div class="form-group" >
-            <textarea class="form-control" rows="4" placeholder="Deja tu comentario" value="" #comentario></textarea>
+            <textarea class="form-control" id="textarea" rows="4" value="Reset" placeholder="Deja tu comentario" #comentario></textarea>
           </div>
         </form>
        <button (click)="postComment(comentario.value, resultRecipe.recipe_id)">Enviar comentario</button>

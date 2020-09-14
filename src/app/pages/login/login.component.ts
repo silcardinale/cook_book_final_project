@@ -58,9 +58,18 @@ export class LoginComponent implements OnInit {
 
     }
 
-    loginSocial(provider){
+    loginSocial(provedor){
+        return
+      }
+   /* loginSocial(provider){
       this.userService.loginSocial(provider);
-    }
+      this.userService.loginUser(this.user).subscribe((data: User) => {
+        this.userService.userProfile = data[0];
+        this.localStorage.set('log', this.user);
+        this.router.navigate(['/', 'searchRecipe']);
+
+      });
+    }*/
 
     submitted = false;
 

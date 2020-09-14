@@ -50,4 +50,15 @@
         </div>
         <button type= "button" (click)="register(user_name.value, password.value, email.value)" routerLink="/searchRecipe">Registrarse</button>
     </form>
+    <br>
+    <div class="container-links">
+        <div class ="icon-facebook">
+            <i class="fab fa-facebook"></i><a (click)="registerSocial('facebook')" href="#">  Inicia sesión con Facebook</a>
+        </div>
+        <br>
+        <div class ="icon-google">
+            <i class="fab fa-google"></i><a (click)="registerSocial('google')">  Inicia sesión con Google</a>
+        </div>
+    </div>
 </div>
+

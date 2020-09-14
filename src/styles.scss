@@ -1,3 +1,5 @@
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
 :root {
     --main-color: black;
     --brand-color: #40B3A2;
@@ -162,105 +164,59 @@ select {
 
 // radio-buttons
 form {
-.radio-group {
-    display: flex;
-    justify-content: space-around;   
-    align-items: center;
-    text-align: left;
-    font-size: 0.8rem;
-    div:nth-child(1) {
-        padding-bottom: 10px;   
-    }
-    label {
-        display: inline-block;
-        position:relative;
-        padding-bottom: 10px;       
-        input {
-            display: block;
-            margin-bottom: 10px;   
-            visibility: hidden;            
+    .radio-group {
+        display: flex;
+        justify-content: space-around;   
+        align-items: center;
+        text-align: left;
+        font-size: 0.8rem;
+        div:nth-child(1) {
+            padding-bottom: 10px;   
         }
-        :hover {
-            cursor: pointer;
-        }   
+        label {
+            display: inline-block;
+            position:relative;
+            padding-bottom: 10px;       
+            input {
+                display: block;
+                margin-bottom: 10px;   
+                visibility: hidden;            
+            }
+            :hover {
+                cursor: pointer;
+            }   
+        }
+        span {
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            border: 3px solid var(--brand-color);
+            display: block;
+            position: absolute;
+            top: -4px;
+            right:0;
+            bottom: 0;
+            margin-right: 30px;
+            &:after {
+                content: "";
+                height: 11px;
+                width: 11px;
+                background: var(--brand-color);
+                background-color: var(--brand-color);
+                top: 52%;
+                left: 50%;
+                position: absolute;    
+                transform: translate(-50%, -50%) scale(0);
+                border-radius: 50%;
+                transition: 250ms ease 0s;
+            }   
+    
+        }
+        input:checked ~ span:after {
+            transform: translate(-50%, -50%) scale(1);
+        }
     }
 }
-
-span {
-    height: 20px;
-    width: 20px;
-    border-radius: 50%;
-    border: 3px solid var(--brand-color);
-    display: block;
-    position: absolute;
-    top: -4px;
-    right:0;
-    bottom: 0;
-    margin-right: 30px;
-    &:after {
-        content: "";
-        height: 11px;
-        width: 11px;
-        background: var(--brand-color);
-        background-color: var(--brand-color);
-        top: 52%;
-        left: 50%;
-        position: absolute;    
-        transform: translate(-50%, -50%) scale(0);
-        border-radius: 50%;
-        transition: 250ms ease 0s;
-    }   
-}
-}
-
-
-input:checked ~ span:after {
-    transform: translate(-50%, -50%) scale(1);
-}
-
-
-// dropdown
-.dropdown-ingredients {
-    overflow: hidden;
-    width: 80%;
-    margin: 0 auto;
-   
-    p {
-        font-size: 1.3rem;
-    }
-
-    select.active {
-        cursor: pointer;
-        padding: 10px 10px;
-        margin-bottom: 10px;
-        max-height: 100px;
-        overflow-y: scroll;
-        color: var(--brand-color) !important;
-    }
-
-    select::-webkit-scrollbar {
-        background: grey;
-        width: 6px;
-        
-
-    }
-    select::-webkit-scrollbar-thumb {
-        background-color: var(--brand-color);
-        border-radius: 0 8px 8px 0;
-    }
-    option {
-        padding-bottom: 10px;
-        color: var(--brand-color);
-        font-size: 1rem;
-        
-    }
-    option:hover {
-       color: black;
-       padding-left: 10px;
-        color: black;
-    }
-}
-
 
 // animations
 .animated {
@@ -301,3 +257,4 @@ input:checked ~ span:after {
       transform: translateY(0px);
     }
 }
+

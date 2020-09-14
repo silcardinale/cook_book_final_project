@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { LocalStorageService } from './../../shared/local-storage.service';
 import { TriggersService } from './../../shared/triggers.service';
 import { SearchRecipeService } from './../../shared/search-recipe.service';
@@ -23,7 +24,7 @@ export class NavBarComponent implements OnInit {
   
   public login: boolean;
 
-  constructor( private userService: UserService, public apiSearchRecipe: SearchRecipeService, public apiNavigation: TriggersService, public localStorage: LocalStorageService) {
+  constructor( private router: Router, private userService: UserService, public apiSearchRecipe: SearchRecipeService, public apiNavigation: TriggersService, public localStorage: LocalStorageService) {
 
     this.animation = false;
     this.profileUser = this.userService.userProfile;
@@ -57,7 +58,7 @@ export class NavBarComponent implements OnInit {
     showProfile(){
 
       this.profileUser = this.userService.userProfile;
-      this.login = this.apiNavigation.login;    
+      this.login = this.apiNavigation.login;
     }
 
     deleteProfile() {
@@ -70,8 +71,10 @@ export class NavBarComponent implements OnInit {
 
     logOut(){
       this.localStorage.remove('log');
+      this.localStorage.clear();
       this.userService.logOutSocial();
       this.profileUser = {user_name: ''};
+      this.router.navigate(['/', 'welcome']);
     }
 
 

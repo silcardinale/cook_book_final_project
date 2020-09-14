@@ -1,3 +1,4 @@
+import { Ingredients } from './../models/ingredients';
 import { Recipe } from 'src/app/models/recipe';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -11,6 +12,7 @@ export class SearchRecipeService {
 
   public resultRecipes: Recipe[];
   public resultRecipe: Recipe;
+  public ingredients: Ingredients[];
 
 
   constructor(private http: HttpClient) {
