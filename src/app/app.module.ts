@@ -27,6 +27,7 @@ import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
+import {NgSelectModule} from '@ng-select/ng-select';
 
 // Services
 import { CookbookService } from './shared/cookbook.service';
@@ -63,6 +64,7 @@ import { UserService } from './shared/user.service';
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularMultiSelectModule,
+    NgSelectModule
   ],
   providers: [
     CookbookService,

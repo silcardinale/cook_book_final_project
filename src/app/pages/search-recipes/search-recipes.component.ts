@@ -7,6 +7,7 @@ import { NgForm, NgModel } from '@angular/forms';
 import { Recipe } from './../../models/recipe';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/shared/user.service';
+import { NgOption } from '@ng-select/ng-select';
 
 
 
@@ -24,25 +25,29 @@ export class SearchRecipesComponent implements OnInit {
   public type: string;
   public resultRecipe: Recipe[] ;
   public ingredientsSelected;
+  public dropdownList: NgOption[];
 
 
   constructor( private router: Router, public apiSearchRecipe: SearchRecipeService, public followers: FollowersService, public userService: UserService) {
 
-      this.ingredients = [{id: 0, itemName : ''}];
+      this.ingredients;
       this.count = 0;
       this.type  = '';
       this.recipes =[];
       this.ingredientsSelected = [];
    }
 
-   dropdownList = [];
-   selectedItems = [];
-   dropdownSettings = {};
+    onAdd(event: any) {
+        this.ingredientsSelected.push(event.$ngOptionLabel);
+        console.log(this.ingredientsSelected)
+    }
 
-    valueIngredient(element: string) {
-
-        this.ingredientsSelected.push(element);
-
+    onRemove(event: any) {
+        let ingredientRemove;
+        let value = event.label;
+        ingredientRemove = this.ingredientsSelected.filter(ingredient => ingredient !== value);
+        this.ingredientsSelected = ingredientRemove;
+        console.log(this.ingredientsSelected);
     }
 
     valueFood(element) {
@@ -53,22 +58,12 @@ export class SearchRecipesComponent implements OnInit {
         this.apiSearchRecipe.showRecipes().subscribe((data: Recipe[]) => this.recipes = data);
         this.apiSearchRecipe.showIngredients().subscribe((data: Ingredients[]) => {
             this.ingredients = data;
+            for (let i = 0; i < this.ingredients.length; i++) {
+                this.dropdownList[i].ingredients = this.ingredients[i].name;
+        }
 
-            for (let i = 0; i<this.ingredients.length; i++) {
-                let item = `{"id": ${this.ingredients[i].ingredient_id}, "itemName": "${this.ingredients[i].name}"  }`
-                    console.log(item)
-                    this.dropdownList.push(item);
-          }
-           console.log(this.dropdownList)
-
-           
         });
 
-       
-
-          
-        
-         
         this.followers.getFollowing(this.userService.userProfile.user_id).subscribe((data: User[]) => this.followers.following = data);
 
     }
@@ -97,7 +92,6 @@ export class SearchRecipesComponent implements OnInit {
             });
         }
     }
-   
 
     showRecipeCarrousel(i)  {
 
@@ -108,43 +102,8 @@ export class SearchRecipesComponent implements OnInit {
 
   ngOnInit(): void {
         this.showRecipes();
+       
 
-        this.dropdownList = [
-            {"id":1,"itemName":"India"},
-            {"id":2,"itemName":"Singapore"},
-            {"id":3,"itemName":"Australia"},
-            {"id":4,"itemName":"Canada"},
-            {"id":5,"itemName":"South Korea"},
-            {"id":6,"itemName":"Germany"},
-            {"id":7,"itemName":"France"},
-            {"id":8,"itemName":"Russia"},
-            {"id":9,"itemName":"Italy"},
-            {"id":10,"itemName":"Sweden"}
-          ];
-          console.log(this.dropdownList)
-
-        this.dropdownSettings = { 
-            singleSelection: false, 
-            text: 'Introduce ingredientes',
-            selectAllText: 'Selecionar todos',
-            unSelectAllText: 'Eliminar todos',
-            itemsShowLimit: 5,
-            enableSearchFilter: true,
-            classes: 'dropdown'
-        };
      }
-
-    onItemSelect(item: string){
-        this.ingredientsSelected.push(item);
-    }
-
-    OnItemDeSelect(item:any){
-        console.log(item);
-        console.log(this.selectedItems);
-    }
-
-    onDeSelectAll(items: any){
-        console.log(items);
-    }
 
 }

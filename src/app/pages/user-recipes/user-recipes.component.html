@@ -134,7 +134,7 @@
                      <p>{{recipe.description}}</p>
                     <div class="button-recipes">
                         <div>
-                            <button (click)="popUp(recipe.recipe_id)" class="moreInfo">Delete</button>
+                            <a (click)="popUp(recipe.recipe_id)"class="delete">Delete</a>
                         </div>
                         <div class="more">
                             <button  (click)="goToRecipe(recipe.recipe_id)" class="moreInfo">Ver más...</button>

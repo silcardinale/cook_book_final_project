@@ -1,5 +1,6 @@
 @import '../../../styles.scss';
 
+
 $size: 1100px;
 $size2: 800px;
 $size3: 1200px;
@@ -20,23 +21,17 @@ $size3: 1200px;
         @include size($size3) {
             width: 55%;
         }
-        .ingredients{
-            margin-left: -40px;
-        }
         .form-group .fields{
             display: inline-block;
-        }
-        .btn-ingredients {
-            display: inline-block;
-            height: 40px;
-            width: 40px;
-            border-radius: 50%;
         }
         input {
             width: 80%;
         }
         .header-title {
             padding: 10px 0px;
+        }
+        p {
+            font-size: 1.1rem;
         }
         .btn-group {
             width: 100%;
@@ -143,5 +138,9 @@ $size3: 1200px;
 }
 
 .dropdown {
-    background-color: red !important;
+   text-align: left !important;
+   color: grey !important;
+   font-size: 0.9rem !important;
+   border: none !important;
+   outline: none !important;
 }

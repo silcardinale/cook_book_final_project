@@ -1,3 +1,4 @@
+import { NgOption } from '@ng-select/ng-select';
 import { UserService } from './../../shared/user.service';
 import { Recipe } from 'src/app/models/recipe';
 import { Ingredients } from './../../models/ingredients';
@@ -17,6 +18,8 @@ export class FormPublishRecipesComponent implements OnInit {
   public dificultyLevels: {};
   public ingredients: Ingredients[];
   public recipe: Recipe;
+  public ingredientsSelected;
+  public dropdownList: NgOption[];
 
   constructor(private fb: FormBuilder, public apiSearchRecipe: SearchRecipeService, private userService: UserService) {
 
@@ -24,6 +27,7 @@ export class FormPublishRecipesComponent implements OnInit {
       this.dificultyLevels = ['Fácil', 'Media', 'Difícil'];
       this.foodOptions = ['Vegana', 'Saludable', 'Picoteo', 'Postres'];
       this.createForm();
+      this.ingredientsSelected = [];
   }
 
   show() {
@@ -34,8 +38,28 @@ export class FormPublishRecipesComponent implements OnInit {
   }
 
   showIngredients() {
-    this.apiSearchRecipe.showIngredients().subscribe((data: Ingredients[]) => console.log(this.ingredients = data));
+      this.apiSearchRecipe.showIngredients().subscribe((data: Ingredients[]) => {
+          this.ingredients = data;
+          for (let i = 0; i < this.ingredients.length; i++) {
+              this.dropdownList[i].ingredients = this.ingredients[i].name;
+           }
+      });
   }
+
+
+
+  onAdd(event: any) {
+    this.ingredientsSelected.push(event.$ngOptionLabel);
+    console.log(this.ingredientsSelected)
+}
+
+onRemove(event: any) {
+    let ingredientRemove;
+    let value = event.label;
+    ingredientRemove = this.ingredientsSelected.filter(ingredient => ingredient !== value);
+    this.ingredientsSelected = ingredientRemove;
+    console.log(this.ingredientsSelected);
+}
 
   resetForm() {
      this.form.getRawValue();
@@ -107,14 +131,16 @@ export class FormPublishRecipesComponent implements OnInit {
      if (this.form.invalid) {
         Object.values (this.form.controls).forEach(control => {
             control.markAsTouched();
+            console.log(this.ingredientsSelected)
 
         });
 
     } else {
         document.getElementById('sucess').style.visibility = 'visible';
         this.animation = true;
+        console.log(this.ingredientsSelected)
 
-        this.recipe = new Recipe(this.userService.userProfile.user_id, this.form.value.titulo, this.form.value.ingredientes, this.form.value.duracion, this.form.value.dificultad, this.form.value.comida, this.form.value.descripcion, this.form.value.foto);
+        this.recipe = new Recipe(this.userService.userProfile.user_id, this.form.value.titulo, this.ingredientsSelected, this.form.value.duracion, this.form.value.dificultad, this.form.value.comida, this.form.value.descripcion, this.form.value.foto);
 
         this.apiSearchRecipe.newRecipes(this.recipe).subscribe(data => data);
 

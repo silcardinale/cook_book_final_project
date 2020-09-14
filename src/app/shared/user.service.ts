@@ -46,91 +46,71 @@ export class UserService {
     return this.http.post(this.url + '/login', user);
     }
 
+    loginUserSocial(user:User){
+
+      return this.http.post(this.url + '/login/social', user);
+      }
+
     registerUser (newUser: User) {
-      return this.http.post(this.url+ "/register", newUser)
+      return this.http.post(this.url + "/register", newUser)
     }
-
-    registerUserSocial (newUser: User) {
-      return this.http.post(this.url+ "/register/social", newUser)
-    }
-
 
     editUserProfile (editUser: User) {
       return this.http.put(this.url + "/edit_profile" , editUser)
     }
 
-    loginSocial(provider) {
-  
-      if (provider === 'google') {
+    registerSocial(provider) {
 
       this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
 
       this.afAuth.authState.subscribe( user => {
-
         if (!user){
             return;
-
         }
 
         this.userProfile = {
             email: user.email,
             user_name: user.displayName,
             picture: user.photoURL,
+            password:"123"
         };
 
+        /*this.loginSocial(this.userProfile).subscribe((data: User) => {
+          data;
+          console.log(data)
+        });*/
 
-        this.registerUserSocial(this.userProfile).subscribe((data: User) =>  {
-        });
+        this.getUsers().subscribe((data) => {
+          const dataFiltered = data.filter(item => item.email === this.userProfile.email);
+          if (dataFiltered.length === 0) {
+              this.http.post(this.url + '/register/social' , this.userProfile).subscribe((dataUser: User) =>{
+                this.router.navigate(['/', 'searchRecipe'])
+              });
+          } else {
+            this.http.post(this.url + '/login/social', this.userProfile).subscribe((dataUser: User) =>  {
+                this.userProfile = dataUser[0];
+                this.router.navigate(['/', 'searchRecipe'])
+          });
+          }
+      });
 
-        this.loginUser(this.userProfile).subscribe((data: User) => {
-          this.userProfile = data[0];
-          this.localStorage.set('log', this.userProfile);
-        
-        });
+       /* this.loginUserSocial(this.userProfile).subscribe((data: User) => {
 
+            this.userProfile = data[0];
+            this.localStorage.set('log', this.userProfile);
+            this.router.navigate(['/', 'searchRecipe']);
+        });*/
 
       });
+
 
       this.afAuth.auth.onAuthStateChanged(user => {
         if(user) {
-          this.router.navigate(['/', 'searchRecipe']);
+
+
         }
       });
 
-    } else if (provider === 'facebook') {
-        this.afAuth.auth.signInWithPopup(new auth.TwitterAuthProvider());
-
-        this.afAuth.authState.subscribe( user => {
-            console.log(user)
-
-            if (!user){
-                return;
-
-            }
-
-            this.userProfile = {
-                user_id: user.uid,
-                email: user.email,
-                user_name: user.displayName,
-                picture: user.photoURL,
-            };
-
-            this.localStorage.set('log', this.userProfile);
-            this.registerUserSocial(this.userProfile).subscribe((data) => data);
-
-          });
-
-        this.afAuth.auth.onAuthStateChanged(user => {
-          if(user) {
-            this.router.navigate(['/', 'searchRecipe']);
-          }
-
-      });
-
-    } else {
-          return;
-    }
-    
  
   }
 

@@ -1,3 +1,4 @@
+import { Ingredients } from './../../models/ingredients';
 import { Followed } from './../../models/followed';
 import { FollowersService } from './../../shared/followers.service';
 import { User } from './../../models/user';
@@ -30,36 +31,35 @@ export class RecipeComponent implements OnInit {
   public follow: Followed;
   public triggerFollow: boolean;
   public hideDiv: boolean;
+  public ingredientsRecipe;
 
     constructor( private favService: FavoriteService, private userService: UserService, public apiSearchRecipe: SearchRecipeService, private cookbookService: CookbookService, public apiComments: CommentsService, public followers: FollowersService) {
       this.hideDiv = false;
 
 
+
     }
 
     showRecipeResult() {
+        this.followers.followStatus = false;
         this.resultRecipe = this.apiSearchRecipe.resultRecipe;
+        this.ingredientsRecipe = this.resultRecipe.ingredients.replace(/,/g, ' ').trim().split(' ');
         this.userService.getUser(this.resultRecipe.user_id).subscribe((data: User) => this.user = data[0]);
         this.followers.getFollowingStatus(this.userService.userProfile.user_id, this.resultRecipe.user_id).subscribe((data) => {
             if (this.userService.userProfile.user_id ===  this.apiSearchRecipe.resultRecipe.user_id) {
                 return this.hideDiv = true;
-            } else if (data[0].followers_id === this.apiSearchRecipe.resultRecipe.user_id) {
+            } else if (data[0].status === 'true') {
                 return this.followers.followStatus = data[0].status;
             }
         });
 
         this.userService.getUser(this.resultRecipe.user_id).subscribe((data: User) => this.user = data[0]);
-
         this.apiComments.showComments(this.resultRecipe.recipe_id).subscribe((data: Comment[]) => this.comments = data);
-
         this.apiComments.numberComments(this.resultRecipe.recipe_id).subscribe((data) =>  {
-
             this.numberComment = data[0].count;
             this.apiComments.numberComment = this.numberComment;
-
          });
     }
-
 
     postComment(description: string, recipe_id: number){
 
@@ -72,32 +72,34 @@ export class RecipeComponent implements OnInit {
 
         this.apiComments.numberComments(recipe_id).subscribe((data: number) => {
             this.numberComment = data;
-            console.log(this.numberComment)
             this.apiComments.numberComment = this.numberComment;
-      });
+      })
+        let textarea = <HTMLInputElement>document.getElementById('textarea');
+        if(textarea.value !== textarea.defaultValue) {
+          textarea.value = textarea.defaultValue;
+        }
+
+
     }
 
     following(){
         let status = true;
         this.follow = new Followed(this.resultRecipe.user_id, this.userService.userProfile.user_id, status);
         this.followers.follow(this.follow).subscribe((data: Followed) => { this.followers.followStatus = true; });
-        this.followers.getFollowing(this.userService.userProfile.user_id).subscribe((data: User[]) => console.log(this.followers.following = data));
+        this.followers.getFollowing(this.userService.userProfile.user_id).subscribe((data: User[]) => this.followers.following = data);
     }
 
     unfollow() {
-        this.followers.unfollow(this.resultRecipe.user_id).subscribe((data)=> {
+        this.followers.unfollow(this.resultRecipe.user_id).subscribe((data) => {
             this.followers.followStatus = false;
         });
 
     }
     addFav(){
       let myFav = new Favorite(0, this.resultRecipe[0].recipe_id, this.userService.userProfile.user_id)
-      this.favService.addFavorite(myFav).subscribe((data) => {
-        console.log("favorito", data)
-        })
+      this.favService.addFavorite(myFav).subscribe(data => data)
     }
-    
-
+  
     goBack(){
 
         this.arrow = this.cookbookService.backClicked();

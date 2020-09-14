@@ -22,6 +22,10 @@ export class RegisterComponent implements OnInit {
       console.log(data)
       })
   }
+
+  registerSocial(provider){
+    this.userService.registerSocial(provider);
+  }
   
 
   ngOnInit(): void {
