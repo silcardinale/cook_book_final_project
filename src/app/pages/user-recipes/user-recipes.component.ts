@@ -21,6 +21,7 @@ export class UserRecipesComponent implements OnInit {
   public arrow: any;
   public recipe_id: number;
   public followingAmount: number;
+  public followersAmount: number;
 
   constructor(private router: Router, public apiSearchRecipe: SearchRecipeService, private userService: UserService, public followers: FollowersService) {
 
@@ -34,6 +35,7 @@ export class UserRecipesComponent implements OnInit {
 
     this.apiSearchRecipe.showRecipesUser(this.profile.user_id).subscribe((data: Recipe[]) => this.resultRecipe = data);
     this.followers.followAmount(this.profile.user_id).subscribe((data: number) => console.log(this.followingAmount = data));
+    this.followers.followersAmount(this.profile.user_id).subscribe((data: number) => console.log(this.followersAmount = data));
 
   }
 

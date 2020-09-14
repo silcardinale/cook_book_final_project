@@ -9,7 +9,11 @@ import { SearchRecipeService } from './../../shared/search-recipe.service';
 import { Component, OnInit } from '@angular/core';
 import { CookbookService } from 'src/app/shared/cookbook.service';
 import { FavoriteService } from 'src/app/shared/favorite.service';
+import { LikesService } from 'src/app/shared/likes.service'
 import { Favorite } from 'src/app/models/favorite';
+import { Likes} from 'src/app/models/likes'
+
+  
 
 @Component({
   selector: 'app-recipe',
@@ -30,8 +34,9 @@ export class RecipeComponent implements OnInit {
   public follow: Followed;
   public triggerFollow: boolean;
   public hideDiv: boolean;
+  public likes:number;
 
-    constructor( private favService: FavoriteService, private userService: UserService, public apiSearchRecipe: SearchRecipeService, private cookbookService: CookbookService, public apiComments: CommentsService, public followers: FollowersService) {
+    constructor( private likeService: LikesService, private favService: FavoriteService, private userService: UserService, public apiSearchRecipe: SearchRecipeService, private cookbookService: CookbookService, public apiComments: CommentsService, public followers: FollowersService) {
       this.hideDiv = false;
 
 
@@ -40,7 +45,7 @@ export class RecipeComponent implements OnInit {
     showRecipeResult() {
         this.resultRecipe = this.apiSearchRecipe.resultRecipe;
         this.userService.getUser(this.resultRecipe.user_id).subscribe((data: User) => this.user = data[0]);
-        this.followers.getFollowingStatus(this.userService.userProfile.user_id, this.resultRecipe.user_id).subscribe((data) => {
+      this.followers.getFollowingStatus(this.userService.userProfile.user_id, this.resultRecipe.user_id).subscribe((data) => {
             if (this.userService.userProfile.user_id ===  this.apiSearchRecipe.resultRecipe.user_id) {
                 return this.hideDiv = true;
             } else if (data[0].followers_id === this.apiSearchRecipe.resultRecipe.user_id) {
@@ -57,7 +62,9 @@ export class RecipeComponent implements OnInit {
             this.numberComment = data[0].count;
             this.apiComments.numberComment = this.numberComment;
 
-         });
+         }); 
+
+         this.likesNumber()
     }
 
 
@@ -85,18 +92,34 @@ export class RecipeComponent implements OnInit {
     }
 
     unfollow() {
-        this.followers.unfollow(this.resultRecipe.user_id).subscribe((data)=> {
+        this.followers.unfollow(this.resultRecipe.user_id,this.resultRecipe.user_id).subscribe((data)=> {
             this.followers.followStatus = false;
         });
 
     }
+
     addFav(){
-      let myFav = new Favorite(0, this.resultRecipe[0].recipe_id, this.userService.userProfile.user_id)
+      let myFav = new Favorite(0, this.resultRecipe.recipe_id, this.userService.userProfile.user_id)
       this.favService.addFavorite(myFav).subscribe((data) => {
         console.log("favorito", data)
         })
     }
-    
+
+    addLike(){
+      let like = new Likes (0,this.userService.userProfile.user_id,this.resultRecipe.recipe_id,0)
+      this.likeService.addLike(like).subscribe((data)=> {
+        console.log("likes", data)
+      })
+
+    }
+
+    likesNumber(){
+      this.likeService.getRecipeLikes(this.resultRecipe.recipe_id).subscribe((data:number)=> {
+        this.likes = data[0]
+        console.log("likesNumber",this.likes)
+        this.likeService.likes = this.likes
+        })
+    }
 
     goBack(){
 

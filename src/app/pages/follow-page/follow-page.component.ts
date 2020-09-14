@@ -22,6 +22,7 @@ export class FollowPageComponent implements OnInit {
   public userFollowing: User[];
   public followingUser: User[];
   public followingAmount: number;
+  public followersAmount: number;
   public allFollowers;
 
   constructor(private cookbookService: CookbookService, public followers: FollowersService, public apiSearchRecipe: SearchRecipeService, private userService: UserService) {
@@ -35,6 +36,7 @@ export class FollowPageComponent implements OnInit {
     this.profile = this.userService.userProfile;
     this.userFollowing = this.followers.following;
     this.followers.followAmount(this.profile.user_id).subscribe((data: number) => console.log(this.followingAmount = data));
+    this.followers.followersAmount(this.profile.user_id).subscribe((data: number) => console.log(this.followersAmount = data));
 
     this.allFollowers = this.followers.getFollowers(this.userService.userProfile.user_id).subscribe((data) =>{
         this.followers.followers = data;
