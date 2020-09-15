@@ -57,14 +57,14 @@ export class LoginComponent implements OnInit {
       if(userForm.valid){
         this.userService.getUsers().subscribe((data: User [])=>{
         const dataFiltered = data.filter(item => item.password === this.userService.userProfile.password);
-
+       
         if(dataFiltered.length === 0){
           this.logIn = true;
          
 
         }else{
 
-          this.userService.userProfile = data[0];
+         this.userService.userProfile = dataFiltered[0];
           this.localStorage.set('log', this.userService.userProfile);
           this.router.navigate(['/', 'searchRecipe']);
 
