@@ -37,18 +37,23 @@ export class RecipeComponent implements OnInit {
   public hideDiv: boolean;
   public likes:number;
   public ingredientsRecipe;
+  public favorites: boolean;
 
     constructor( private likeService: LikesService, private favService: FavoriteService, private userService: UserService, public apiSearchRecipe: SearchRecipeService, private cookbookService: CookbookService, public apiComments: CommentsService, public followers: FollowersService) {
       this.hideDiv = false;
+      
 
 
 
     }
 
     showRecipeResult() {
+      this.favorites = false;
         this.followers.followStatus = false;
         this.resultRecipe = this.apiSearchRecipe.resultRecipe;
+      
         this.ingredientsRecipe = this.resultRecipe.ingredients.replace(/,/g, ' ').trim().split(' ');
+       
         this.userService.getUser(this.resultRecipe.user_id).subscribe((data: User) => this.user = data[0]);
         this.followers.getFollowingStatus(this.userService.userProfile.user_id, this.resultRecipe.user_id).subscribe((data) => {
               if (this.userService.userProfile.user_id ===  this.apiSearchRecipe.resultRecipe.user_id) {
@@ -108,22 +113,36 @@ export class RecipeComponent implements OnInit {
       let myFav = new Favorite(0, this.resultRecipe.recipe_id, this.userService.userProfile.user_id)
       this.favService.addFavorite(myFav).subscribe((data) => {
         console.log("favorito", data)
+        //this.favorites = true
         })
+
+        
     }
 
     addLike(){
-      let like = new Likes (0,this.userService.userProfile.user_id,this.resultRecipe.recipe_id,0)
-      this.likeService.addLike(like).subscribe((data)=> {
-        console.log("likes", data)
+      let like = new Likes (this.userService.userProfile.user_id,this.resultRecipe.recipe_id,0)
+      this.likeService.comprobarLikes(like).subscribe((data:[])=>{
+        
+        if(data.length>0){ //Da este error pero dejarlo asi
+          console.log("comp", like=data[0])
+         this.likeService.removeLike(like.likes_id).subscribe((data)=>{
+          this.likesNumber()
+          })
+
+        }else {
+          this.likeService.addLike(like).subscribe((data)=> {
+            this.likesNumber();
+            this.changeColor();
+          })
+        }
       })
+     
 
     }
 
     likesNumber(){
-      this.likeService.getRecipeLikes(this.resultRecipe.recipe_id).subscribe((data:number)=> {
-        this.likes = data[0]
-        console.log("likesNumber",this.likes)
-        this.likeService.likes = this.likes
+      this.likeService.getRecipeLikes(this.resultRecipe.recipe_id).subscribe((data)=> {
+        this.likes = data[0].likes_n
         })
     }
 

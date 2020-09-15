@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { FavoriteService } from 'src/app/shared/favorite.service';
 import { UserService } from 'src/app/shared/user.service';
 import { CommentsService } from 'src/app/shared/comments.service';
+import { Recipe } from 'src/app/models/recipe';
 
 @Component({
   selector: 'app-user-favorite-recipe',
@@ -24,7 +25,8 @@ export class UserFavoriteRecipeComponent implements OnInit {
   public favs
   public following 
   public count: number;
-  public numberComment
+  public numberComment 
+  public resultRecipe : Recipe[]
 
 
 
@@ -39,36 +41,20 @@ export class UserFavoriteRecipeComponent implements OnInit {
     showProfile(){
       
         this.profile = this.userService.userProfile;
-        this.followers.followAmount(this.profile.user_id).subscribe((data: number) => console.log(this.followingAmount = data));
-        this.followers.followersAmount(this.profile.user_id).subscribe((data: number) => console.log(this.followersAmount = data));
+        this.followers.followAmount(this.profile.user_id).subscribe((data: number) => 
+        this.followingAmount = data);
+        this.followers.followersAmount(this.profile.user_id).subscribe((data: number) =>
+        this.followersAmount = data);
+        this.favService.getFavoritefromUser(this.userService.userProfile.user_id).subscribe((data)=> {
+      
+  
+        return this.resultRecipe = data;
+        })
     }
 
-    userFav(){
-      this.favoriteRecipes = this.favService.favoriteRecipe
-      this.favService.getFavoritefromUser(this.userService.userProfile.user_id).subscribe((data)=> {
-      console.log("allfavs",data)
- 
-      return this.favoriteRecipes = data;
-      });
-
-      this.apiComments.numberComments(this.favoriteRecipes.recipe_id).subscribe((data: number) => {
-        
-        this.numberComment = data[0].count;
-        this.apiComments.numberComment = this.numberComment;
-  });
-    }
-
-    goToFollowers() {
-      this.router.navigate(['/', 'followers']);
-    }
-
-
-    showRecipe(index: number) {
-      this.router.navigate(['/recipe', index]);
-    }
-
+   
     goToRecipe(recipe_id: number) {
-      [this.apiSearchRecipe.resultRecipe] = this.favoriteRecipes.filter(recipe => recipe.recipe_id === recipe_id);
+      [this.apiSearchRecipe.resultRecipe] = this.resultRecipe.filter(recipe => recipe.recipe_id === recipe_id);
 
       this.router.navigate(['/', 'recipe']);
     }
@@ -85,6 +71,9 @@ export class UserFavoriteRecipeComponent implements OnInit {
         }
     }
 
+    goToFollowers() {
+      this.router.navigate(['/', 'followers']);
+    }
 
     deleteFav(){
        this.favService.removeFavorite(this.eliminar).subscribe(data => this.ngOnInit());
@@ -93,7 +82,8 @@ export class UserFavoriteRecipeComponent implements OnInit {
 
   ngOnInit(): void {
       this.showProfile();
-      this.userFav();
+     
+     
    
   }
 

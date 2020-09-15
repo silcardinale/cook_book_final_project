@@ -31,12 +31,12 @@
                 <a routerLink="/userClasses">Mis Clases</a>
             </li>
         </ul>
-        <div *ngIf = "favoriteRecipes.length === 0" >
+        <div >
             <br>
             <p style="text-align: center;">¡Todavía no tienes ninguna receta favorita!</p>
         </div>
 
-        <div class="favRecipe"  *ngFor="let favs of favoriteRecipes; let i = index">
+        <div class="favRecipe"  *ngFor="let favs of resultRecipe; let i = index">
             <div class="descrp" id="delete-window" [ngClass]= "{'animation': animation == true}">
                 <div class="header-title">
                     <div class="window">
