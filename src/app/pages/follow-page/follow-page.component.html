@@ -99,46 +99,46 @@
     </div>
             
     <hr>
-        <div class="container-columns">
-            <div class="column"> 
-                <div class="tittle">
-                    <p>Seguidores</p> 
+    <div class="container-columns">
+        <div class="column"> 
+            <div class="tittle">
+                <p>Seguidores</p> 
+            </div>   
+
+            <div class="users" *ngFor = "let followers of followers.following">
+                <div class="pic-profile">
+                    <img [src]="followers.picture" alt="followers.user_name">
+                </div>
+
+                <div class="name">
+                    <p>{{followers.user_name}}</p>
                 </div>   
 
-                <div class="users" *ngFor = "let followers of followers.followers">
-                    <div class="pic-profile">
-                        <img [src]="followers.picture" alt="followers.user_name">
-                    </div>
-
-                    <div class="name">
-                        <p>{{followers.user_name}}</p>
-                    </div>   
-
-                    <div class="follow">
-                        <p>Seguir</p>
-                    </div>
-                </div> 
-            </div>
-            
-            <div class="column">
-                <div class="tittle">
-                    <p>Seguidos</p>
-                </div>   
-
-                <div class="users" *ngFor = "let follow of userFollowing">
-                    <div class="pic-profile">
-                        <img [src]="follow.picture" alt="follow.user_name">
-                    </div>
-
-                    <div class="name">
-                        <p>{{follow.user_name}}</p>
-                    </div>   
-    
-                    <div class="follow">
-                        <p>Dejar de seguir</p>
-                    </div>
-                </div> 
-            </div>    
+                <div class="follow">
+                    <p>Seguir</p>
+                </div>
+            </div> 
         </div>
+        
+        <div class="column">
+            <div class="tittle">
+                <p>Seguidos</p>
+            </div>   
+
+            <div class="users" *ngFor = "let follow of followers.following">
+                <div class="pic-profile">
+                    <img [src]="follow.picture" alt="follow.user_name">
+                </div>
+
+                <div class="name">
+                    <p>{{follow.user_name}}</p>
+                </div>   
+
+                <div class="follow">
+                    <p>Dejar de seguir</p>
+                </div>
+            </div> 
+        </div>    
     </div>
+</div>
 </div>

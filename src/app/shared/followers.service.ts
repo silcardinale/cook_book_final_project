@@ -46,6 +46,9 @@ export class FollowersService {
   followAmount(id: number){
     return this.http.get(this.url + '/followed/count/' + id);
   }
+  followingAmount(id: number){
+    return this.http.get(this.url + '/followed/count/' + id);
+  }
 
   followersAmount(id: number){
     return this.http.get(this.url + '/followers/count/' + id);
@@ -55,6 +58,10 @@ export class FollowersService {
      return this.http.post(this.url + '/followed/', followers_id, user_id)
     }
 
+  insertFollowing(user: Followed) {
+
+    return this.http.post(this.url + '/followed/', user)
+  }
 
   unfollow(id: number, profile_id:number) {
     const httpOptions = {

@@ -47,16 +47,13 @@ export class RegisterComponent implements OnInit {
 
       user_name : ['',[Validators.required]],
       email     : ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]],
-      password  : ['', [Validators.required, Validators.minLength(8)]], 
+      password  : ['', [Validators.required, Validators.minLength(8)]],
 
     });
 
   }
 
-  save(forma){
-    console.log(this.forma);
-
-      
+  save(forma){     
       if(this.forma.valid){
        
         this.userService.getUsers().subscribe((data: User[])=>{

@@ -9,8 +9,6 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/shared/user.service';
 import { NgOption } from '@ng-select/ng-select';
 
-
-
 @Component({
   selector: 'app-search-recipes',
   templateUrl: './search-recipes.component.html',
@@ -27,7 +25,6 @@ export class SearchRecipesComponent implements OnInit {
   public ingredientsSelected;
   public dropdownList: NgOption[];
 
-
   constructor( private router: Router, public apiSearchRecipe: SearchRecipeService, public followers: FollowersService, public userService: UserService) {
 
       this.ingredients;
@@ -37,35 +34,15 @@ export class SearchRecipesComponent implements OnInit {
       this.ingredientsSelected = [];
    }
 
-    onAdd(event: any) {
-        this.ingredientsSelected.push(event.$ngOptionLabel);
-        console.log(this.ingredientsSelected)
-    }
-
-    onRemove(event: any) {
-        let ingredientRemove;
-        let value = event.label;
-        ingredientRemove = this.ingredientsSelected.filter(ingredient => ingredient !== value);
-        this.ingredientsSelected = ingredientRemove;
-        console.log(this.ingredientsSelected);
-    }
-
-    valueFood(element) {
-        this.type = element;
-    }
-
-    showRecipes() {
+    showRecipes() {  
         this.apiSearchRecipe.showRecipes().subscribe((data: Recipe[]) => this.recipes = data);
         this.apiSearchRecipe.showIngredients().subscribe((data: Ingredients[]) => {
             this.ingredients = data;
             for (let i = 0; i < this.ingredients.length; i++) {
                 this.dropdownList[i].ingredients = this.ingredients[i].name;
-        }
-
+            }
+            this.followers.getFollowing(this.userService.userProfile.user_id).subscribe((data: User[]) => this.followers.following = data);
         });
-
-        this.followers.getFollowing(this.userService.userProfile.user_id).subscribe((data: User[]) => this.followers.following = data);
-
     }
 
     searchRecipes(form: NgForm){
@@ -84,7 +61,6 @@ export class SearchRecipesComponent implements OnInit {
 
             });
         } else {
-
             this.apiSearchRecipe.showRecipes().subscribe((data: Recipe[]) => {
 
                 this.apiSearchRecipe.resultRecipes  = data;
@@ -94,16 +70,28 @@ export class SearchRecipesComponent implements OnInit {
     }
 
     showRecipeCarrousel(i)  {
-
         this.resultRecipe = this.recipes.filter(recipe => recipe.recipe_id === i);
         [this.apiSearchRecipe.resultRecipe]= this.resultRecipe;
         this.router.navigate(['/', 'recipe']);
     }
 
-  ngOnInit(): void {
+    // Add an remove ingredients in the search
+    onAdd(event: any) {
+        this.ingredientsSelected.push(event.$ngOptionLabel);
+    }
+
+    onRemove(event: any) {
+        let ingredientRemove;
+        let value = event.label;
+        ingredientRemove = this.ingredientsSelected.filter(ingredient => ingredient !== value);
+        this.ingredientsSelected = ingredientRemove;
+    }
+
+    valueFood(element) {
+        this.type = element;
+    }
+
+    ngOnInit(): void {
         this.showRecipes();
-       
-
-     }
-
+    }
 }

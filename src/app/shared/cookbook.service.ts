@@ -14,20 +14,6 @@ export class CookbookService {
    
   }
 
-
- /* getRecipes(){
-    return this.recipes;
-  }*/
-  
-  /*getRecipe(indice:number){
-    return this.Recipe.recipes[indice];
-  }
-  
-
-  /*showNav() {
-    return this.test = true;
-  }*/
-
   backClicked() {
     this.location.back();
   }
