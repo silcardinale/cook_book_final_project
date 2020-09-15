@@ -20,13 +20,15 @@ export class LoginComponent implements OnInit {
 
   public animation: boolean;
   public user: User;
-
+  public logIn: boolean;
 
   constructor(private userService: UserService, private router: Router, public apiNavigation: TriggersService, private localStorage: LocalStorageService, public afAuth: AngularFireAuth, private afs: AngularFirestore) {
 
     this.animation = false;
     this.user = <User>{};
     this.apiNavigation.login = false;
+    this.logIn = false;
+
 
   }
 
@@ -45,53 +47,29 @@ export class LoginComponent implements OnInit {
 
     }
 
-    login(user_name: string, password: string){
-
-      this.user = new User(user_name, password);
-      this.apiNavigation.login = true;
-      this.userService.loginUser(this.user).subscribe((data: User) => {
-        this.userService.userProfile = data[0];
-        this.localStorage.set('log', this.user);
-        this.router.navigate(['/', 'searchRecipe']);
-
-      });
-
-    }
-
-    loginSocial(provedor){
-        return
-      }
-   /* loginSocial(provider){
-      this.userService.loginSocial(provider);
-      this.userService.loginUser(this.user).subscribe((data: User) => {
-        this.userService.userProfile = data[0];
-        this.localStorage.set('log', this.user);
-        this.router.navigate(['/', 'searchRecipe']);
-
-      });
-    }*/
-
-    submitted = false;
-
 
     onSubmit(userForm: NgForm) { 
       console.log(userForm)
       this.user = new User(userForm.value.user_name, userForm.value.password);
-  
+      
+      this.userService.userProfile = this.user;
+      
       if(userForm.valid){
-        this.userService.userProfile = this.user
+        this.userService.getUsers().subscribe((data: User [])=>{
+        const dataFiltered = data.filter(item => item.password === this.userService.userProfile.password);
 
-        this.userService.loginUser(this.user).subscribe((data: User) => {
+        if(dataFiltered.length === 0){
+          this.logIn = true;
+         
+
+        }else{
+
           this.userService.userProfile = data[0];
- 
-          if(data != undefined){
+          this.localStorage.set('log', this.userService.userProfile);
+          this.router.navigate(['/', 'searchRecipe']);
 
-            this.localStorage.set('log', this.user);
-            this.router.navigate(['/', 'searchRecipe']);
-  
-          }
-
-        });
+        }
+      })
         
         
       }

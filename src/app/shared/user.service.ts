@@ -54,6 +54,7 @@ export class UserService {
     registerUser (newUser: User) {
       return this.http.post(this.url + "/register", newUser)
     }
+    
 
     editUserProfile (editUser: User) {
       return this.http.put(this.url + "/edit_profile" , editUser)
