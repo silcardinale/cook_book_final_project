@@ -41,7 +41,11 @@ export class SearchRecipeService {
 
   newRecipes(recipe: Recipe) {
 
-    return this.http.post(this.url + '/recipes', recipe);
+    return this.http.post(this.url + '/recipes', recipe); 
+  }
+
+  updateRecipe(recipe: Recipe) {
+    return this.http.put(this.url + '/recipes/update', recipe);
   }
 
   deleteRecipe(id: number) {

@@ -58,24 +58,23 @@ export class LoginComponent implements OnInit {
 
     }
 
-    loginSocial(provedor){
-        return
-      }
-   /* loginSocial(provider){
-      this.userService.loginSocial(provider);
+   
+    loginSocial(){
+      /*this.userService.loginUserSocial();
       this.userService.loginUser(this.user).subscribe((data: User) => {
         this.userService.userProfile = data[0];
         this.localStorage.set('log', this.user);
-        this.router.navigate(['/', 'searchRecipe']);
+       
 
-      });
-    }*/
+      });*/
+      this.userService.loginUserSocial()
+
+    }
 
     submitted = false;
 
 
     onSubmit(userForm: NgForm) { 
-      console.log(userForm)
       this.user = new User(userForm.value.user_name, userForm.value.password);
   
       if(userForm.valid){

@@ -4,7 +4,7 @@ import { Recipe } from 'src/app/models/recipe';
 import { Ingredients } from './../../models/ingredients';
 import { SearchRecipeService } from './../../shared/search-recipe.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 @Component({
   selector: 'app-form-publish-recipes',
   templateUrl: './form-publish-recipes.component.html',
@@ -46,28 +46,21 @@ export class FormPublishRecipesComponent implements OnInit {
       });
   }
 
-
-
   onAdd(event: any) {
     this.ingredientsSelected.push(event.$ngOptionLabel);
-    console.log(this.ingredientsSelected)
-}
+  }
 
-onRemove(event: any) {
+  onRemove(event: any) {
     let ingredientRemove;
     let value = event.label;
     ingredientRemove = this.ingredientsSelected.filter(ingredient => ingredient !== value);
-    this.ingredientsSelected = ingredientRemove;
     console.log(this.ingredientsSelected);
 }
 
-  resetForm() {
-     this.form.getRawValue();
-  }
 
   ngOnInit(): void {
 
-    this.showIngredients()
+    this.showIngredients();
 
   }
 
@@ -123,22 +116,17 @@ onRemove(event: any) {
   valueFood(element){
     this.fb.control(element);
   }
-  valueIngredient(element) {
-    this.fb.control(element);
-   }
+
 
   onSubmit() {
      if (this.form.invalid) {
         Object.values (this.form.controls).forEach(control => {
             control.markAsTouched();
-            console.log(this.ingredientsSelected)
-
         });
 
     } else {
         document.getElementById('sucess').style.visibility = 'visible';
         this.animation = true;
-        console.log(this.ingredientsSelected)
 
         this.recipe = new Recipe(this.userService.userProfile.user_id, this.form.value.titulo, this.ingredientsSelected, this.form.value.duracion, this.form.value.dificultad, this.form.value.comida, this.form.value.descripcion, this.form.value.foto);
 

@@ -8,6 +8,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 
 import {User} from '../models/user';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Injectable({
   providedIn: 'root'
@@ -46,10 +47,10 @@ export class UserService {
     return this.http.post(this.url + '/login', user);
     }
 
-    loginUserSocial(user:User){
+   /* loginUserSocial2(user:User){
 
       return this.http.post(this.url + '/login/social', user);
-      }
+      }*/
 
     registerUser (newUser: User) {
       return this.http.post(this.url + "/register", newUser)
@@ -75,43 +76,49 @@ export class UserService {
             password:"123"
         };
 
-        /*this.loginSocial(this.userProfile).subscribe((data: User) => {
-          data;
-          console.log(data)
-        });*/
-
         this.getUsers().subscribe((data) => {
           const dataFiltered = data.filter(item => item.email === this.userProfile.email);
           if (dataFiltered.length === 0) {
               this.http.post(this.url + '/register/social' , this.userProfile).subscribe((dataUser: User) =>{
-                this.router.navigate(['/', 'searchRecipe'])
+                this.router.navigate(['/', 'searchRecipe']);
               });
           } else {
             this.http.post(this.url + '/login/social', this.userProfile).subscribe((dataUser: User) =>  {
                 this.userProfile = dataUser[0];
-                this.router.navigate(['/', 'searchRecipe'])
           });
           }
       });
 
-       /* this.loginUserSocial(this.userProfile).subscribe((data: User) => {
 
-            this.userProfile = data[0];
-            this.localStorage.set('log', this.userProfile);
-            this.router.navigate(['/', 'searchRecipe']);
-        });*/
+      }); 
+  }
 
-      });
-
-
-      this.afAuth.auth.onAuthStateChanged(user => {
-        if(user) {
-
-
+  loginUserSocial() {
+      this.afAuth.authState.subscribe( user => {
+        if (!user){
+            return;
         }
+        this.userProfile = {
+            email: user.email,
+            user_name: user.displayName,
+            picture: user.photoURL,
+            password:"123"
+        };
       });
 
- 
+      this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
+      this.http.post(this.url + '/login/social', this.userProfile)
+      
+      this.afAuth.auth.onAuthStateChanged(user => {
+        if (user) {
+          console.log(this.userProfile)
+          
+          this.localStorage.set('log', this.userProfile);
+          this.router.navigate(['/', 'searchRecipe']);
+        }
+      })
+
+      
   }
 
   logOutSocial() {

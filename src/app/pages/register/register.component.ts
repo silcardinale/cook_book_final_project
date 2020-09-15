@@ -20,17 +20,23 @@ export class RegisterComponent implements OnInit {
 
   register( email: string, user_name: string, password: string ){
 
-    this.userService.registerUser(new User(email, user_name, password)).subscribe((data) => {
-      console.log(data);
+    this.userService.registerUser(new User(email, user_name, password)).subscribe((data:any) => {
+      
+      this.userService.getUser(data.insertId).subscribe((data:User) => {
+        this.userService.userProfile = data;
+        this.localStorage.set('log', this.userService.userProfile);
+        this.router.navigate(['/', 'searchRecipe']);
+      });
 
-      if(data != undefined){
+      /*if(data != undefined){
+        console.log(data)
           this.userService.userProfile = this.user;
           this.localStorage.set('log', this.user);
           this.router.navigate(['/', 'searchRecipe']);
 
       }else{
        return;
-      }
+      }*/
 
     });
   }

@@ -118,6 +118,7 @@
     </div>
     </div>
     
+    <button *ngIf="updateOwner" (click)="updateRecipeBtn()"> Actualizar receta</button>
 
 <hr>
   
@@ -143,4 +144,101 @@
       </p>
     </div>
   
+</div>
+
+<div class="descrp" id="udpateRecipe" [ngClass]= "{'animation': animation == true}">
+  <div class="header-title">
+    <p>Actualiza tu receta</p>
+  </div>
+  <hr>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <div>
+          <p>Titulo</p>
+        </div>
+          <input type="text" #title name="titulo" value="" placeholder="Titulo" formControlName="titulo" placeholder="{{ resultRecipe.title }}">
+      </div>
+      <div class="form-group">
+          <div><p>Ingredientes</p></div>
+          <ng-select class ="dropdown"  bindLabel ="ingredients" bindValue="id" [multiple]="true" (add)="onAdd($event)" (remove)="onRemove($event)">
+              <div>  
+                <ng-option *ngFor ="let ingredients of this.ingredients" bindLabel="ingredients.name" (add)=" (ingredients.name)" (remove)="onRemove(ingredients.name)">{{ingredients.name}}</ng-option>
+              </div>
+          </ng-select>
+      </div>
+      <div class="radio-group">
+          <div>
+            <p>Tipo de comida</p>
+          </div>
+          <div class="food">
+              <label>
+                  <input type="radio" formControlName="comida"   value="vegana" (click) ="valueFood(vegana)" #vegana>Vegana
+                  <span class="outer-circle-left"></span>
+              </label>   
+              <label> 
+                  <input type="radio" formControlName="comida"   value="saludable" (click) ="valueFood(saludable)" #saludable>Saludable 
+                  <span class="outer-circle-middle"></span>
+              </label>
+              
+              <label>
+                  <input type="radio" formControlName="comida"  value="picoteo" (click) ="valueFood(picoteo)" #picoteo>Picoteo
+                  <span class="outer-circle-right"></span>
+              </label>
+              <label>
+                  <input type="radio" formControlName="comida"  value="postres" (click) ="valueFood(postres.value)" #postres>Postres
+                  <span class="outer-circle-right"></span>
+              </label>
+          </div>
+      </div>  
+      <div class="form-group">
+        <div>
+            <input type="text" value="{{ resultRecipe.duration }}"  name="duracion" placeholder="Duración" formControlName="duracion">
+        </div>
+    </div>
+    <div class="radio-group">      
+        <div>
+          <p>Dificultad</p> 
+
+        </div> 
+        <div class="dificulty">
+            <label>
+                <input type="radio"  value="facil"   (click) ="valueDificulty(facil)" #facil>Fácil
+                <span class="outer-circle-left"></span>
+            </label>   
+            <label> 
+                <input type="radio" value="media" (click) ="valueDificulty(media)" #media>Media
+                <span class="outer-circle-middle"></span>
+            </label>
+            <label>
+                <input type="radio"  value="dificil"  (click) ="valueDificulty(dificil)" #dificil>Difícil
+                <span class="outer-circle-right"></span>
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+      <div>
+        <p>Descripción</p>
+      </div>
+      <div class="textarea">
+          <textarea type="textarea" value="{{ resultRecipe.description}}"  name="descripcion" formControlName="descripcion"  placeholder="{{resultRecipe.description}}"></textarea>
+      </div>  
+    </div>
+    <div class="form-group">
+      <div>
+        <p>Foto</p>
+      </div>
+      <div>
+          <input type="text" value="{{ resultRecipe.picture }}"  name="foto" placeholder="{{resultRecipe.picture}}">
+          
+      </div>
+  </div>
+  <div class="btn">
+      <button class="button"  (click)=" updateRecipeBtn()">Actualizar</button>  
+        <a class="button"  (click)=" updateRecipeBtn()">Cancelar</a>
+</div>
+    </form>
+
+      
+
+
 </div>

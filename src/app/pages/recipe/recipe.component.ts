@@ -1,3 +1,6 @@
+import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgOption } from '@ng-select/ng-select';
 import { Ingredients } from './../../models/ingredients';
 import { Followed } from './../../models/followed';
 import { FollowersService } from './../../shared/followers.service';
@@ -35,19 +38,30 @@ export class RecipeComponent implements OnInit {
   public follow: Followed;
   public triggerFollow: boolean;
   public hideDiv: boolean;
-  public likes:number;
+  public likes: number;
   public ingredientsRecipe;
+  public ingredientsSelected;
+  public ingredients: Ingredients[];
+  public dropdownList: NgOption[];
+  public form: FormGroup;
+  public update: boolean;
+  public updateOwner: boolean;
 
-    constructor( private likeService: LikesService, private favService: FavoriteService, private userService: UserService, public apiSearchRecipe: SearchRecipeService, private cookbookService: CookbookService, public apiComments: CommentsService, public followers: FollowersService) {
+
+    constructor( public router: Router, private fb: FormBuilder, private likeService: LikesService, private favService: FavoriteService, private userService: UserService, public apiSearchRecipe: SearchRecipeService, private cookbookService: CookbookService, public apiComments: CommentsService, public followers: FollowersService) {
+     
       this.hideDiv = false;
-
-
-
-    }
+      this.ingredientsSelected = [];
+      this.update = false;
+      this.animation = false;
+      this.updateOwner = false;
+   
+    } 
 
     showRecipeResult() {
         this.followers.followStatus = false;
         this.resultRecipe = this.apiSearchRecipe.resultRecipe;
+        console.log(this.resultRecipe)
         this.ingredientsRecipe = this.resultRecipe.ingredients.replace(/,/g, ' ').trim().split(' ');
         this.userService.getUser(this.resultRecipe.user_id).subscribe((data: User) => this.user = data[0]);
         this.followers.getFollowingStatus(this.userService.userProfile.user_id, this.resultRecipe.user_id).subscribe((data) => {
@@ -64,9 +78,27 @@ export class RecipeComponent implements OnInit {
             this.numberComment = data[0].count;
             this.apiComments.numberComment = this.numberComment;
 
-         }); 
+         });
 
-        this.likesNumber()
+
+        if (this.resultRecipe.user_id === this.userService.userProfile.user_id) {
+          this.updateOwner = true;
+        }
+
+        this.form = this.fb.group({
+          titulo: [ this.resultRecipe.title, Validators.minLength(5)],
+          ingredientes: [this.resultRecipe.ingredients, Validators.minLength(1)],
+          duracion: [this.resultRecipe.duration, [Validators.minLength(1), Validators.maxLength(7)]],
+          dificultad: [this.resultRecipe.dificulty],
+          comida: [this.resultRecipe.type],
+          descripcion: [this.resultRecipe.description, Validators.minLength(20)],
+          foto: [this.resultRecipe.picture]
+        });
+
+       
+        
+
+       // this.likesNumber()
     }
 
     postComment(description: string, recipe_id: number){
@@ -93,9 +125,10 @@ export class RecipeComponent implements OnInit {
     following(){
         let status = true;
         this.follow = new Followed(this.resultRecipe.user_id, this.userService.userProfile.user_id, status);
-        this.followers.follow(this.follow).subscribe((data: Followed) => { this.followers.followStatus = true; });
-        this.followers.getFollowing(this.userService.userProfile.user_id).subscribe((data: User[]) => this.followers.following = data);
-    }
+        this.followers.insertFollowing(this.follow).subscribe((data: Followed) => this.followers.followStatus = true)
+        this.followers.getFollowing(this.userService.userProfile.user_id).subscribe((data: User[]) => this.followers.following = data)
+      
+      }
 
     unfollow() {
         this.followers.unfollow(this.resultRecipe.user_id,this.resultRecipe.user_id).subscribe((data)=> {
@@ -132,9 +165,87 @@ export class RecipeComponent implements OnInit {
         this.arrow = this.cookbookService.backClicked();
   }
 
+    // Getter method to access formcontrols
+    get formNoValidTitle() {
+      return this.form.get('titulo').invalid && this.form.get('titulo').touched;
+    }
+
+    get formNoValidTime() {
+      return this.form.get('duracion').invalid && this.form.get('duracion').touched;
+    }
+
+    get formNoValidDescription() {
+      return this.form.get('descripcion').invalid && this.form.get('descripcion').touched;
+    }
+
+    get formNoValidPhoto() {
+      return this.form.get('foto').invalid && this.form.get('foto').touched;
+    }
+
+    
+
+    showIngredients() {
+      this.apiSearchRecipe.showIngredients().subscribe((data: Ingredients[]) => {
+          this.ingredients = data;
+          for (let i = 0; i < this.ingredients.length; i++) {
+              this.dropdownList[i].ingredients = this.ingredients[i].name;
+          }
+      });
+    }
+
+    onAdd(event: any) {
+      this.ingredientsSelected.push(event.$ngOptionLabel);
+      console.log(this.ingredientsSelected)
+    }
+
+    onRemove(event: any) {
+      let ingredientRemove;
+      let value = event.label;
+      ingredientRemove = this.ingredientsSelected.filter(ingredient => ingredient !== value);
+      this.ingredientsSelected = ingredientRemove;
+    }
+    valueDificulty(element) {
+      this.fb.control(element);
+    }
+  
+    valueFood(element){
+      this.fb.control(element);
+    }
+
+    onSubmit(){
+        if (this.form.invalid) {
+          Object.values (this.form.controls).forEach(control =>  control.markAsTouched());
+      } else {
+        let updatedRecipe = new Recipe(this.userService.userProfile.user_id, this.form.value.titulo, this.ingredientsSelected, this.form.value.duracion, this.form.value.dificultad, this.form.value.comida, this.form.value.descripcion, this.form.value.foto, this.resultRecipe.recipe_id);
+
+        this.apiSearchRecipe.updateRecipe(updatedRecipe).subscribe(data=>data)
+        this.ngOnInit;
+      }
+    }
+
+    updateRecipeBtn() {
+
+      if (document.getElementById('udpateRecipe').style.visibility === 'visible') {
+        this.animation = false;
+        this.update = false;
+        document.getElementById('udpateRecipe').style.visibility = 'hidden';
+        this.ngOnInit;
+
+      } else {
+        document.getElementById('udpateRecipe').style.visibility = 'visible';
+        document.getElementById('udpateRecipe').style.opacity = '1';
+
+        this.animation = true;
+        this.update = true;
+      }
+    }
+
+
+
 
   ngOnInit(): void {
        this.showRecipeResult();
+       this.showIngredients()
   }
 
   changeColor() {
