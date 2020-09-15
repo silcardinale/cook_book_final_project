@@ -6,16 +6,20 @@ import { Likes } from '../models/likes';
   providedIn: 'root'
 })
 export class LikesService {
-  private url = "http://localhost:3000/likes/"
+  private url = "http://localhost:3000/likes"
+  private url2  = "http://localhost:3000/likes2"
  public likes:number
 
   constructor(private http: HttpClient) { }
 
+  
+  comprobarLikes(like:Likes){
+    return this.http.post(this.url2 , like)
+  }
+
 
  getRecipeLikes(recipe_id:number){
-    return this.http.get(this.url + "" + recipe_id)
-    
-   
+    return this.http.get(this.url + "/" + recipe_id)
   }
 
   addLike(like:Likes){
@@ -25,6 +29,7 @@ export class LikesService {
   removeLike(likes_id:number){
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),body:{likes_id:likes_id}};
+      console.log(likes_id)
     return this.http.delete(this.url, httpOptions)
 }
 

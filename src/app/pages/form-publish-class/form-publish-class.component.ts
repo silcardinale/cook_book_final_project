@@ -89,11 +89,15 @@ export class FormPublishClassComponent implements OnInit {
     } else {
       document.getElementById('sucess').style.visibility = 'visible';
       this.animation = true;
+    
+     
+      
       let myLesson = new Lessons(this.form.value.titulo, this.form.value.fecha, this.form.value.horario, this.form.value.dificultad, this.form.value.precio, this.form.value.ingredientes, this.form.value.descripcion, this.form.value.foto, this.userService.userProfile.user_id)
       console.log(myLesson)
-
-      this.apiService.addLesson(myLesson).subscribe((data) => {  })
-      this.resetForm();
+      
+      this.apiService.addLesson(myLesson).subscribe((data) => {
+        this.resetForm();
+      })
       
       
     }
