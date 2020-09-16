@@ -1,5 +1,5 @@
 export class Followed {
-
+    public following_id?:number
     public followers_id: number;
     public user_id: number;
     public status: boolean;

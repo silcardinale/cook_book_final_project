@@ -55,8 +55,7 @@ export class RecipeComponent implements OnInit {
       this.update = false;
       this.animation = false;
       this.updateOwner = false;
-      this.favorites = false;
-   
+  
     } 
 
     showRecipeResult() {
@@ -95,8 +94,8 @@ export class RecipeComponent implements OnInit {
             descripcion: [this.resultRecipe.description, Validators.minLength(20)],
             foto: [this.resultRecipe.picture]
         });
-
-        this.likesNumber()
+    
+       this.likesNumber() 
     }
 
     postComment(description: string, recipe_id: number){
@@ -119,6 +118,7 @@ export class RecipeComponent implements OnInit {
         }
 
     }
+    
 
     following(){
         let status = true;
@@ -134,6 +134,7 @@ export class RecipeComponent implements OnInit {
             this.followers.followStatus = false;
         });
     }
+
 
     addFav(){
         this.favorites = false;

@@ -7,6 +7,7 @@ import { Favorite } from "../models/favorite"
 })
 export class FavoriteService {
   private url = "http://localhost:3000/favorite"
+  private url2 = "http://localhost:3000/fav"
   public favoriteRecipe
   public owner
 
@@ -17,6 +18,10 @@ export class FavoriteService {
     this.owner= this.http.get(this.url + "/user/" + id_user)
     console.log("favorita", this.owner)
     return this.owner
+  }
+
+  comprobarFav(fav:Favorite){
+    return this.http.post(this.url2 , fav)
   }
 
   addFavorite(favorite:Favorite){

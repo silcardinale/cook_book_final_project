@@ -23,6 +23,10 @@ export class FollowersService {
 
   }
 
+  nuevoSeguidor(seguidor: Followed){
+    return this.http.post(this.url + '/seguir',seguidor )
+  }
+
   getFollowing(id: number) {
     return this.http.get(this.url + '/followed/' + id);
   }
@@ -46,6 +50,7 @@ export class FollowersService {
   followAmount(id: number){
     return this.http.get(this.url + '/followed/count/' + id);
   }
+  
   followingAmount(id: number){
     return this.http.get(this.url + '/followed/count/' + id);
   }
