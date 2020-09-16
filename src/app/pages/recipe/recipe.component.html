@@ -9,7 +9,7 @@
       </div>
       <div class="followers-number">
           <div *ngIf="hideDiv == false" class="followers">
-              <a  *ngIf="this.followers.followStatus == false" (click)="following( )">Seguir</a>
+              <a  *ngIf="this.followers.followStatus == false" (click)=" followUser()">Seguir</a>
               <a *ngIf="this.followers.followStatus" (click)="unfollow( )">Dejar de seguir</a>
           </div>
     
@@ -32,7 +32,7 @@
     </p>
     <div class="icon">
         <div class="likes">
-          <a *ngIf = "favorites==true" (click)= "addFav()">Guardar en favoritos</a>
+          <a (click)= "addFav()">Guardar en favoritos</a>
             <p >Likes: {{likes}} </p>
            
         </div>

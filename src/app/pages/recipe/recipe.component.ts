@@ -46,7 +46,7 @@ export class RecipeComponent implements OnInit {
   public form: FormGroup;
   public update: boolean;
   public updateOwner: boolean;
-  public favorites: boolean;
+  //public favorites: boolean;
 
     constructor( public router: Router, private fb: FormBuilder, private likeService: LikesService, private favService: FavoriteService, private userService: UserService, public apiSearchRecipe: SearchRecipeService, private cookbookService: CookbookService, public apiComments: CommentsService, public followers: FollowersService) {
      
@@ -59,7 +59,7 @@ export class RecipeComponent implements OnInit {
     } 
 
     showRecipeResult() {
-      this.favorites = false;
+      //this.favorites = false;
         this.followers.followStatus = false;
         this.resultRecipe = this.apiSearchRecipe.resultRecipe;
     
@@ -97,12 +97,8 @@ export class RecipeComponent implements OnInit {
           descripcion: [this.resultRecipe.description, Validators.minLength(20)],
           foto: [this.resultRecipe.picture]
         });
-      
-
-       
-        
-
-       // this.likesNumber()
+    
+       this.likesNumber() 
     }
 
     postComment(description: string, recipe_id: number){
@@ -125,6 +121,7 @@ export class RecipeComponent implements OnInit {
 
 
     }
+    /*
 
     following(){
         let status = true;
@@ -139,24 +136,37 @@ export class RecipeComponent implements OnInit {
             this.followers.followStatus = false;
         });
 
+    }*/
+
+    followUser(){
+      let seguidor = new Followed(this.resultRecipe.user_id, this.userService.userProfile.user_id, true)
+      this.followers.nuevoSeguidor(seguidor).subscribe((data)=> {
+        console.log("data",data)
+    });
     }
+
 
     addFav(){
       let myFav = new Favorite(0, this.resultRecipe.recipe_id, this.userService.userProfile.user_id)
-      this.favService.addFavorite(myFav).subscribe((data) => {
-        console.log("favorito", data)
-        //this.favorites = true
+      this.favService.comprobarFav(myFav).subscribe((data: any) => {
+        if(data.length>0){ 
+          myFav=data[0]
+         this.favService.removeFavorite(myFav.user_fav_id).subscribe((data)=>{
+          })
+        }else {
+          this.favService.addFavorite(myFav).subscribe((data)=> {
+            console.log(data)
         })
-
-        
+      }
+    })
     }
 
     addLike(){
       let like = new Likes (this.userService.userProfile.user_id,this.resultRecipe.recipe_id,0)
-      this.likeService.comprobarLikes(like).subscribe((data:[])=>{
+      this.likeService.comprobarLikes(like).subscribe((data: any)=>{
         
-        if(data.length>0){ //Da este error pero dejarlo asi
-          console.log("comp", like=data[0])
+        if(data.length>0){ 
+          like=data[0]
          this.likeService.removeLike(like.likes_id).subscribe((data)=>{
           this.likesNumber()
           })
@@ -164,7 +174,7 @@ export class RecipeComponent implements OnInit {
         }else {
           this.likeService.addLike(like).subscribe((data)=> {
             this.likesNumber();
-            this.changeColor();
+          
           })
         }
       })

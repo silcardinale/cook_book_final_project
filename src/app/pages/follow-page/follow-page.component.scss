@@ -16,6 +16,7 @@ $size3: 1200px;
 .container-columns {
     @include display-flex(flex, row , space-around, center);
     padding-top: 50px;
+    align-items: flex-start;
     width: 100%;
     .column 
         .tittle p {

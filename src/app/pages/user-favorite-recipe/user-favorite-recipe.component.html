@@ -31,7 +31,7 @@
                 <a routerLink="/userClasses">Mis Clases</a>
             </li>
         </ul>
-        <div >
+        <div  *ngIf = "resultRecipe.length === 0" >
             <br>
             <p style="text-align: center;">¡Todavía no tienes ninguna receta favorita!</p>
         </div>
@@ -65,9 +65,6 @@
             <div>
                 <div>
                     <img [src]="favs.picture" alt="{{favs.title}}" class = "recipePic">
-                </div>
-                <div class="comment">
-                    <p>Comentarios ({{numberComment}})</p>
                 </div>
             </div>
             <div class="receta">
