@@ -120,7 +120,7 @@ export class RecipeComponent implements OnInit {
     }
     
 
-    following(){
+    /*following(){
         let status = true;
         this.follow = new Followed(this.resultRecipe.user_id, this.userService.userProfile.user_id, status);
         this.followers.insertFollowing(this.follow).subscribe((data: Followed) => this.followers.followStatus = true)
@@ -135,7 +135,13 @@ export class RecipeComponent implements OnInit {
         });
     }
 
-
+*/
+    followUser(){
+      let seguidor = new Followed(this.resultRecipe.user_id, this.userService.userProfile.user_id, true)
+      this.followers.nuevoSeguidor(seguidor).subscribe((data)=> {
+        console.log("data",data)
+    });
+    }
     addFav(){
         this.favorites = false;
         let myFav = new Favorite(0, this.resultRecipe.recipe_id, this.userService.userProfile.user_id)
