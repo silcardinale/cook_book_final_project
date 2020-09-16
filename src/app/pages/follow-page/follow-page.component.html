@@ -105,13 +105,13 @@
                 <p>Seguidores</p> 
             </div>   
 
-            <div class="users" *ngFor = "let followers of followers.following">
+            <div class="users">
                 <div class="pic-profile">
-                    <img [src]="followers.picture" alt="followers.user_name">
+                    <img    >
                 </div>
 
                 <div class="name">
-                    <p>{{followers.user_name}}</p>
+                    <p></p>
                 </div>   
 
                 <div class="follow">
@@ -125,13 +125,13 @@
                 <p>Seguidos</p>
             </div>   
 
-            <div class="users" *ngFor = "let follow of followers.following">
+            <div class="users" *ngFor ="let follow of userFollowing; let i = index" >
                 <div class="pic-profile">
-                    <img [src]="follow.picture" alt="follow.user_name">
+                    <img  alt="">
                 </div>
 
                 <div class="name">
-                    <p>{{follow.user_name}}</p>
+                    <p>Seguidos {{follow.user_name}}</p>
                 </div>   
 
                 <div class="follow">

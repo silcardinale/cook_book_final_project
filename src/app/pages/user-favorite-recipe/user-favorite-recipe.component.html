@@ -140,8 +140,12 @@
                 <div>
                     <p>{{favs.description}}</p>
                     <div class="more">
-                        <a (click)="popUp(favs.user_fav_id)" class="delete">Eliminar favorito</a>
-                        <button (click)="goToRecipe(favs.recipe_id)" class="moreInfo">Ver más...</button>
+                        <div>
+                            <a (click)="popUp(favs.user_fav_id)" class="delete">Eliminar favorito</a>
+                        </div>
+                        <div>
+                            <button (click)="goToRecipe(favs.recipe_id)" class="moreInfo">Ver más...</button>
+                        </div>
                 </div>
                 </div>
             </div>

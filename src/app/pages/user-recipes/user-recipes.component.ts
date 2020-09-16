@@ -1,3 +1,4 @@
+import { LikesService } from 'src/app/shared/likes.service';
 import { FollowersService } from './../../shared/followers.service';
 import { CommentsService } from './../../shared/comments.service';
 import { SearchRecipeService } from './../../shared/search-recipe.service';
@@ -22,8 +23,9 @@ export class UserRecipesComponent implements OnInit {
   public recipe_id: number;
   public followingAmount: number;
   public followersAmount: number;
+  public likes: number;
 
-  constructor(private router: Router, public apiSearchRecipe: SearchRecipeService, private userService: UserService, public followers: FollowersService) {
+  constructor( public likeService:LikesService, private router: Router, public apiSearchRecipe: SearchRecipeService, private userService: UserService, public followers: FollowersService) {
 
     this.animation = false;
 
@@ -32,6 +34,7 @@ export class UserRecipesComponent implements OnInit {
   showProfile(){
 
     this.profile = this.userService.userProfile;
+    
 
     this.apiSearchRecipe.showRecipesUser(this.profile.user_id).subscribe((data: Recipe[]) => this.resultRecipe = data);
     this.followers.followAmount(this.profile.user_id).subscribe((data: number) => console.log(this.followingAmount = data));

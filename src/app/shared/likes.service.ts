@@ -8,7 +8,7 @@ import { Likes } from '../models/likes';
 export class LikesService {
   private url = "http://localhost:3000/likes"
   private url2  = "http://localhost:3000/likes2"
- public likes:number
+  public likes:number
 
   constructor(private http: HttpClient) { }
 

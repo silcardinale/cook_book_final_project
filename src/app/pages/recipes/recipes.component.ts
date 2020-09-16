@@ -32,7 +32,6 @@ export class RecipesComponent implements OnInit {
 
     showRecipe(i)  {
       this.resultRecipe = this.resultRecipes.filter(recipe => recipe.recipe_id === i);
-      console.log(this.resultRecipe)
       this.apiSearchRecipe.resultRecipe = this.resultRecipe[0];
       this.router.navigate(['/', 'recipe']);
     }

@@ -33,7 +33,7 @@ export class FollowPageComponent implements OnInit {
     this.profile = this.userService.userProfile;
     this.followers.followingAmount(this.userService.userProfile.user_id).subscribe((data: number) => this.followingAmount = data)
     this.followers.getFollowing(this.userService.userProfile.user_id).subscribe((data: User[]) => {
-        this.followers.following = data;
+        console.log(this.userFollowing = data);
     })
   
 

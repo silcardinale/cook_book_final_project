@@ -55,17 +55,15 @@ export class RecipeComponent implements OnInit {
       this.update = false;
       this.animation = false;
       this.updateOwner = false;
+      this.favorites = false;
    
     } 
 
     showRecipeResult() {
-      this.favorites = false;
         this.followers.followStatus = false;
+        this.favorites = false;
         this.resultRecipe = this.apiSearchRecipe.resultRecipe;
-    
-      
-        this.ingredientsRecipe = this.resultRecipe.ingredients.replace(/,/g, ' ').trim().split(' ');
-       
+        this.ingredientsRecipe = this.resultRecipe.ingredients.replace(/,/g, ', ').split(', ');
         this.userService.getUser(this.resultRecipe.user_id).subscribe((data: User) => this.user = data[0]);
         this.followers.getFollowingStatus(this.userService.userProfile.user_id, this.resultRecipe.user_id).subscribe((data) => {
               if (this.userService.userProfile.user_id ===  this.apiSearchRecipe.resultRecipe.user_id) {
@@ -85,24 +83,20 @@ export class RecipeComponent implements OnInit {
 
 
         if (this.resultRecipe.user_id === this.userService.userProfile.user_id) {
-          this.updateOwner = true;
+            this.updateOwner = true;
         }
 
         this.form = this.fb.group({
-          titulo: [ this.resultRecipe.title, Validators.minLength(5)],
-          ingredientes: [this.resultRecipe.ingredients, Validators.minLength(1)],
-          duracion: [this.resultRecipe.duration, [Validators.minLength(1), Validators.maxLength(7)]],
-          dificultad: [this.resultRecipe.dificulty],
-          comida: [this.resultRecipe.type],
-          descripcion: [this.resultRecipe.description, Validators.minLength(20)],
-          foto: [this.resultRecipe.picture]
+            titulo: [ this.resultRecipe.title, Validators.minLength(5)],
+            ingredientes: [this.resultRecipe.ingredients, Validators.minLength(1)],
+            duracion: [this.resultRecipe.duration, [Validators.minLength(1), Validators.maxLength(7)]],
+            dificultad: [this.resultRecipe.dificulty],
+            comida: [this.resultRecipe.type],
+            descripcion: [this.resultRecipe.description, Validators.minLength(20)],
+            foto: [this.resultRecipe.picture]
         });
-      
 
-       
-        
-
-       // this.likesNumber()
+        this.likesNumber()
     }
 
     postComment(description: string, recipe_id: number){
@@ -117,12 +111,12 @@ export class RecipeComponent implements OnInit {
         this.apiComments.numberComments(recipe_id).subscribe((data: number) => {
             this.numberComment = data;
             this.apiComments.numberComment = this.numberComment;
-      })
+      });
+
         let textarea = <HTMLInputElement>document.getElementById('textarea');
         if(textarea.value !== textarea.defaultValue) {
-          textarea.value = textarea.defaultValue;
+            textarea.value = textarea.defaultValue;
         }
-
 
     }
 
@@ -130,153 +124,139 @@ export class RecipeComponent implements OnInit {
         let status = true;
         this.follow = new Followed(this.resultRecipe.user_id, this.userService.userProfile.user_id, status);
         this.followers.insertFollowing(this.follow).subscribe((data: Followed) => this.followers.followStatus = true)
+        //this.followers.insertFollower(this.resultRecipe.user_id, this.userService.userProfile).subscribe((data:any) => this.followers.followStatus = true)
         this.followers.getFollowing(this.userService.userProfile.user_id).subscribe((data: User[]) => this.followers.following = data)
       
       }
 
     unfollow() {
-        this.followers.unfollow(this.resultRecipe.user_id,this.resultRecipe.user_id).subscribe((data)=> {
+        this.followers.unfollow(this.resultRecipe.user_id,this.resultRecipe.user_id).subscribe((data) => {
             this.followers.followStatus = false;
         });
-
     }
 
     addFav(){
-      let myFav = new Favorite(0, this.resultRecipe.recipe_id, this.userService.userProfile.user_id)
-      this.favService.addFavorite(myFav).subscribe((data) => {
-        console.log("favorito", data)
-        //this.favorites = true
+        this.favorites = false;
+        let myFav = new Favorite(0, this.resultRecipe.recipe_id, this.userService.userProfile.user_id)
+        this.favService.addFavorite(myFav).subscribe((data) => {
+            this.favorites = true;
         })
-
-        
     }
 
     addLike(){
-      let like = new Likes (this.userService.userProfile.user_id,this.resultRecipe.recipe_id,0)
-      this.likeService.comprobarLikes(like).subscribe((data:[])=>{
+        let like = new Likes (this.userService.userProfile.user_id,this.resultRecipe.recipe_id,0)
+        this.likeService.comprobarLikes(like).subscribe((data:any)=>{
         
-        if(data.length>0){ //Da este error pero dejarlo asi
-          console.log("comp", like=data[0])
-         this.likeService.removeLike(like.likes_id).subscribe((data)=>{
-          this.likesNumber()
-          })
+            if(data.length>0){
+                like = data[0]
+                this.likeService.likes = data[0]
+                this.colorHat = false;
 
-        }else {
-          this.likeService.addLike(like).subscribe((data)=> {
-            this.likesNumber();
-            this.changeColor();
-          })
-        }
-      })
-     
 
+                this.likeService.removeLike(like.likes_id).subscribe((data)=>{
+                this.likesNumber()
+            })
+            }else {
+                this.colorHat = true;
+                this.likeService.addLike(like).subscribe((data)=> {
+                  this.likesNumber();
+                });
+            }
+        });
     }
 
     likesNumber(){
-      this.likeService.getRecipeLikes(this.resultRecipe.recipe_id).subscribe((data)=> {
-        this.likes = data[0].likes_n
-        })
+        this.likeService.getRecipeLikes(this.resultRecipe.recipe_id).subscribe((data)=> {
+          this.likes = data[0].likes_n
+          })
     }
 
     goBack(){
-
         this.arrow = this.cookbookService.backClicked();
-  }
+    }
+
 
     // Getter method to access formcontrols
     get formNoValidTitle() {
-      return this.form.get('titulo').invalid && this.form.get('titulo').touched;
+        return this.form.get('titulo').invalid && this.form.get('titulo').touched;
     }
 
     get formNoValidTime() {
-      return this.form.get('duracion').invalid && this.form.get('duracion').touched;
+        return this.form.get('duracion').invalid && this.form.get('duracion').touched;
     }
 
     get formNoValidDescription() {
-      return this.form.get('descripcion').invalid && this.form.get('descripcion').touched;
+        return this.form.get('descripcion').invalid && this.form.get('descripcion').touched;
     }
 
     get formNoValidPhoto() {
-      return this.form.get('foto').invalid && this.form.get('foto').touched;
+        return this.form.get('foto').invalid && this.form.get('foto').touched;
     }
 
     
 
     showIngredients() {
-      this.apiSearchRecipe.showIngredients().subscribe((data: Ingredients[]) => {
-          this.ingredients = data;
-          for (let i = 0; i < this.ingredients.length; i++) {
-              this.dropdownList[i].ingredients = this.ingredients[i].name;
-          }
-      });
+        this.apiSearchRecipe.showIngredients().subscribe((data: Ingredients[]) => {
+            this.ingredients = data;
+            for (let i = 0; i < this.ingredients.length; i++) {
+                this.dropdownList[i].ingredients = this.ingredients[i].name;
+            }
+        });
     }
 
     onAdd(event: any) {
-      this.ingredientsSelected.push(event.$ngOptionLabel);
-      console.log(this.ingredientsSelected)
+        this.ingredientsSelected.push(event.$ngOptionLabel);
     }
 
     onRemove(event: any) {
-      let ingredientRemove;
-      let value = event.label;
-      ingredientRemove = this.ingredientsSelected.filter(ingredient => ingredient !== value);
-      this.ingredientsSelected = ingredientRemove;
+        let ingredientRemove;
+        let value = event.label;
+        ingredientRemove = this.ingredientsSelected.filter(ingredient => ingredient !== value);
+        this.ingredientsSelected = ingredientRemove;
     }
     valueDificulty(element) {
-      this.fb.control(element);
+        this.fb.control(element);
     }
   
     valueFood(element){
-      this.fb.control(element);
+        this.fb.control(element);
     }
 
     onSubmit(){
         if (this.form.invalid) {
           Object.values (this.form.controls).forEach(control =>  control.markAsTouched());
+
       } else {
         let updatedRecipe = new Recipe(this.userService.userProfile.user_id, this.form.value.titulo, this.ingredientsSelected, this.form.value.duracion, this.form.value.dificultad, this.form.value.comida, this.form.value.descripcion, this.form.value.foto, this.resultRecipe.recipe_id);
 
-        this.apiSearchRecipe.updateRecipe(updatedRecipe).subscribe(data=>data)
-        this.ngOnInit;
+        this.apiSearchRecipe.updateRecipe(updatedRecipe).subscribe(data=>{
+          this.ngOnInit();
+        })
+        
       }
     }
 
     updateRecipeBtn() {
-
       if (document.getElementById('udpateRecipe').style.visibility === 'visible') {
-        this.animation = false;
-        this.update = false;
-        document.getElementById('udpateRecipe').style.visibility = 'hidden';
-        this.ngOnInit;
+          this.animation = false;
+          this.update = false;
+          document.getElementById('udpateRecipe').style.visibility = 'hidden';
+        
 
       } else {
-        document.getElementById('udpateRecipe').style.visibility = 'visible';
-        document.getElementById('udpateRecipe').style.opacity = '1';
-
-        this.animation = true;
-        this.update = true;
+          document.getElementById('udpateRecipe').style.visibility = 'visible';
+          document.getElementById('udpateRecipe').style.opacity = '1';
+          this.router.navigate(['/', 'recipe']);
+          this.animation = true;
+          this.update = true;
       }
     }
 
-
-
-
   ngOnInit(): void {
        this.showRecipeResult();
-       this.showIngredients()
+       this.showIngredients();
   }
 
-  changeColor() {
-
-    if (this.colorHat === false) {
-      this.colorHat = true;
-      this.count++;
-
-    } else if (this.count > 0) {
-      this.colorHat = false;
-      this.count--;
-    }
-  }
 }
 
 

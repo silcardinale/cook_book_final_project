@@ -54,10 +54,10 @@ export class FollowersService {
     return this.http.get(this.url + '/followers/count/' + id);
   }
 
-  insertFollower(followers_id, user_id){
+  /*insertFollower(followers_id, user_id){
      return this.http.post(this.url + '/followed/', followers_id, user_id)
     }
-
+*/
   insertFollowing(user: Followed) {
 
     return this.http.post(this.url + '/followed/', user)

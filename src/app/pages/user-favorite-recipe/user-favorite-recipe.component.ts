@@ -46,7 +46,6 @@ export class UserFavoriteRecipeComponent implements OnInit {
         this.followers.followersAmount(this.profile.user_id).subscribe((data: number) =>
         this.followersAmount = data);
         this.favService.getFavoritefromUser(this.userService.userProfile.user_id).subscribe((data)=> {
-      
   
         return this.resultRecipe = data;
         })
@@ -55,7 +54,6 @@ export class UserFavoriteRecipeComponent implements OnInit {
    
     goToRecipe(recipe_id: number) {
       [this.apiSearchRecipe.resultRecipe] = this.resultRecipe.filter(recipe => recipe.recipe_id === recipe_id);
-
       this.router.navigate(['/', 'recipe']);
     }
 
