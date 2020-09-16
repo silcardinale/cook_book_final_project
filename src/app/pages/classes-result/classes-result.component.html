@@ -16,7 +16,7 @@
          
         <p class="card-title">{{lesson.title}}</p>
         <p class="card-text"><br>
-          <i class="far fa-calendar-alt"></i> {{ lesson.date }} -
+          <i class="far fa-calendar-alt"></i> {{ lesson.date  | date: 'dd - MMMM'}} -
           <i class="far fa-clock"></i>  {{ lesson.timetable }} h -
           <i class="fas fa-question"></i> {{ lesson.dificulty}} -
           <i class="fas fa-euro-sign"></i>  {{ lesson.price }} 

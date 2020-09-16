@@ -7,17 +7,17 @@
         <div class="form-group">
             <div>
                 <input type="text" placeholder="Nombre de usuario" formControlName="user_name" [class.is-invalid]="invalidName">
-                <small *ngIf="invalidName">Ingrese un nombre de ususario</small>
+                <small *ngIf="invalidName" class="text-danger">Ingrese un nombre de ususario</small>
             </div>
         </div>
         <div class="form-group">
             <input type="email" placeholder="Correo electrónico" formControlName="email" [class.is-invalid]="invalidEmail">
-            <small *ngIf="invalidName" >Ingrese un correo válido</small>
+            <small *ngIf="invalidName" class="text-danger">Ingrese un correo válido</small>
         </div>
         <div class="form-group">
             <div>
                 <input type="password" placeholder="Contraseña" formControlName="password" [class.is-invalid]="invalidPassword">
-                <small *ngIf="invalidName" >Ingrese un mínimo de 8 caracteres</small>
+                <small *ngIf="invalidName" class="text-danger">Ingrese un mínimo de 8 caracteres</small>
             </div>
             <small *ngIf="regis" class="text-danger">Email ya registrado</small>
         </div>

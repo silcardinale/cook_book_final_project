@@ -44,20 +44,6 @@ export class FollowPageComponent implements OnInit {
     })
 
   }
-
-  changeColor() {
-
-    if (this.colorHat === false) {
-
-      this.colorHat = true;
-      this.count++;
-
-    } else if (this.count > 0) {
-      this.colorHat = false;
-      this.count--;
-
-    }
-  }
   
   goBack(){
     this.arrow = this.cookbookService.backClicked()

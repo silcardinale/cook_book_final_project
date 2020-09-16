@@ -46,7 +46,7 @@
         </div>
         <div class="form-group">
             <div>
-                <input type="text" name="duracion" placeholder="Duración" formControlName="duracion" [class.is-invalid]="formNoValidTime">
+                <input type="text" name="duracion" placeholder="Duración. Ej: 15min" formControlName="duracion" [class.is-invalid]="formNoValidTime">
                 <small *ngIf="formNoValidTime" class="text-danger">Introduce la duración</small>
             </div>
         </div>

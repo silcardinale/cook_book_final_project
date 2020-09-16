@@ -34,8 +34,6 @@ export class UserRecipesComponent implements OnInit {
   showProfile(){
 
     this.profile = this.userService.userProfile;
-    
-
     this.apiSearchRecipe.showRecipesUser(this.profile.user_id).subscribe((data: Recipe[]) => this.resultRecipe = data);
     this.followers.followAmount(this.profile.user_id).subscribe((data: number) => console.log(this.followingAmount = data));
     this.followers.followersAmount(this.profile.user_id).subscribe((data: number) => console.log(this.followersAmount = data));

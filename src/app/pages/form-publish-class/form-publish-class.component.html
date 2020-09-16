@@ -41,8 +41,8 @@
         </div>
         <div class="form-group">
             <div>
-                <input type="text" #price
-                name="precio" placeholder="Precio" formControlName="precio" [class.is-invalid]="formNoValidPrice">
+                <input type="number" #price
+                name="precio" placeholder="Introduce un numero" formControlName="precio" [class.is-invalid]="formNoValidPrice">
                 <small *ngIf="formNoValidPrice" class="text-danger">Añade el precio de la clase</small>
             </div>
         </div>

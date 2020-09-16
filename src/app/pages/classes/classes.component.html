@@ -40,14 +40,14 @@
                 
 
                 <p class="card-text"><br>
-                    <i class="far fa-calendar-alt"></i> {{ teacher.date }} <br>
+                    <i class="far fa-calendar-alt"></i> {{ teacher.date | date: 'dd - MMMM' }} <br>
                     <i class="far fa-clock"></i>  {{ teacher.timetable }} h <br>
                     <i class="fas fa-question"></i> {{ teacher.dificulty}} <br>
                     <i class="fas fa-euro-sign"></i>  {{ teacher.price }} 
                    </p>
 
 
-                <button >Comprar</button>
+                <button>Comprar</button>
             </div>
         </div>
         <div class = "description">

@@ -12,10 +12,15 @@ $size3: 1200px;
 .header-title {
     font-size: 1.4rem;
 }
+.mainContainer {
+    margin-top: -23px;
+}
+hr {
+    width: 80%;
+}
 
 .container-columns {
     @include display-flex(flex, row , space-around, center);
-    padding-top: 50px;
     align-items: flex-start;
     width: 100%;
     .column 
@@ -70,6 +75,7 @@ $size3: 1200px;
         }
     }
 }
+
 
 .color-hat {
     fill:var(--brand-color) !important;

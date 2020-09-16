@@ -80,7 +80,6 @@ export class RecipeComponent implements OnInit {
 
          });
 
-
         if (this.resultRecipe.user_id === this.userService.userProfile.user_id) {
             this.updateOwner = true;
         }
@@ -94,6 +93,15 @@ export class RecipeComponent implements OnInit {
             descripcion: [this.resultRecipe.description, Validators.minLength(20)],
             foto: [this.resultRecipe.picture]
         });
+
+        let myFav = new Favorite(0, this.resultRecipe.recipe_id, this.userService.userProfile.user_id);
+    
+        this.favService.comprobarFav(myFav).subscribe((data: any) => {
+         if(data.length != 0 ) {
+          this.favorites = false;
+         }
+      
+       })
     
        this.likesNumber() 
     }
@@ -118,41 +126,33 @@ export class RecipeComponent implements OnInit {
         }
 
     }
-    
 
-    /*following(){
-        let status = true;
-        this.follow = new Followed(this.resultRecipe.user_id, this.userService.userProfile.user_id, status);
-        this.followers.insertFollowing(this.follow).subscribe((data: Followed) => this.followers.followStatus = true)
-        //this.followers.insertFollower(this.resultRecipe.user_id, this.userService.userProfile).subscribe((data:any) => this.followers.followStatus = true)
-        this.followers.getFollowing(this.userService.userProfile.user_id).subscribe((data: User[]) => this.followers.following = data)
-      
-      }
 
-    unfollow() {
+   unfollow() {
         this.followers.unfollow(this.resultRecipe.user_id,this.resultRecipe.user_id).subscribe((data) => {
             this.followers.followStatus = false;
         });
     }
 
-*/
+
     followUser(){
       let seguidor = new Followed(this.resultRecipe.user_id, this.userService.userProfile.user_id, true)
-      this.followers.nuevoSeguidor(seguidor).subscribe((data)=> {
-        console.log("data",data)
-    });
+      this.followers.nuevoSeguidor(seguidor).subscribe((data)=> {});
+      this.followers.followStatus = true;
     }
-    
+
     addFav(){
       let myFav = new Favorite(0, this.resultRecipe.recipe_id, this.userService.userProfile.user_id)
       this.favService.comprobarFav(myFav).subscribe((data: any) => {
-        if(data.length>0){ 
+        if(data.length>0){
           myFav=data[0]
+          this.favorites = false;
          this.favService.removeFavorite(myFav.user_fav_id).subscribe((data)=>{
-          })
+         console.log(data) })
         }else {
           this.favService.addFavorite(myFav).subscribe((data)=> {
-            console.log(data)
+            this.favorites = true;
+
         })
       }
     })

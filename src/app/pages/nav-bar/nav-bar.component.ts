@@ -52,6 +52,9 @@ export class NavBarComponent implements OnInit {
       let user1 = new User(this.profileUser.user_name, password, email, picture,  this.profileUser.user_id);
 
       this.userService.editUserProfile(user1).subscribe( data => this.user = data);
+      this.animation = false;
+
+      document.getElementById('edit-profile').style.visibility = 'hidden';
     }
 
 
@@ -63,8 +66,10 @@ export class NavBarComponent implements OnInit {
 
     deleteProfile() {
       this.userService.deleteUser(this.userService.userProfile.user_id).subscribe((data) => {
-
-        this.userService.userProfile.user_id
+        this.userService.userProfile.user_id;
+        this.profileUser = {user_name: ''};
+        this.localStorage.clear();
+        this.router.navigate(['/', 'welcome']);
       });
     }
 
