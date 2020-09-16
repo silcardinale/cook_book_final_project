@@ -54,7 +54,8 @@
                 </div>   
 
                 <div class="follow">
-                    <p>Seguir</p>
+                    <a *ngIf="this.followers.followStatus"(click)="unfollow(followers.profile_id)">Dejar de seguir</a>
+                    <a *ngIf="this.followers.followStatus == false"  click)="followUser(followers.profile_id)">Seguir</a>
                 </div>
             </div> 
         </div>
@@ -74,7 +75,8 @@
                 </div>   
 
                 <div class="follow">
-                    <p>Dejar de seguir</p>
+                    <a (click)="unfollow(follow.followers_id)">Dejar de seguir</a>
+                    <a *ngIf="this.followers.followStatus == false"  (click)="followingUser(follow.followers_id)">Seguir</a>
                 </div>
             </div> 
         </div>    
