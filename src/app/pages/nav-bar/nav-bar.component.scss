@@ -21,6 +21,7 @@ $size:990px;
     }
     .logo {
         img {
+          
             height:60px;
         }
     }
@@ -41,7 +42,14 @@ $size:990px;
         } 
         .nav-link:nth-child(1):nth-child(-n-3) {
             margin-left: 40px !important; 
-        }    
+        }
+        .nav-link_lesson{
+            img {
+                height:110px;
+            }
+
+        } 
+    
     }  
     a  {
         color: var(--brand-color);
