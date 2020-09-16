@@ -102,7 +102,7 @@ export class RecipeComponent implements OnInit {
        
         
 
-       // this.likesNumber()
+      this.likesNumber()
     }
 
     postComment(description: string, recipe_id: number){
@@ -153,23 +153,18 @@ export class RecipeComponent implements OnInit {
 
     addLike(){
       let like = new Likes (this.userService.userProfile.user_id,this.resultRecipe.recipe_id,0)
-      this.likeService.comprobarLikes(like).subscribe((data:[])=>{
-        
+      this.likeService.comprobarLikes(like).subscribe((data: any)=>{
         if(data.length>0){ //Da este error pero dejarlo asi
-          console.log("comp", like=data[0])
+          console.log(like=data[0])
          this.likeService.removeLike(like.likes_id).subscribe((data)=>{
           this.likesNumber()
           })
-
         }else {
           this.likeService.addLike(like).subscribe((data)=> {
             this.likesNumber();
-            this.changeColor();
           })
         }
       })
-     
-
     }
 
     likesNumber(){
