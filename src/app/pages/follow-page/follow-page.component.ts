@@ -31,19 +31,33 @@ export class FollowPageComponent implements OnInit {
 
   showProfile(){
     this.profile = this.userService.userProfile;
-   this.followers.followingAmount(this.userService.userProfile.user_id).subscribe((data: number) => this.followingAmount = data)
-    this.followers.getFollowing(this.userService.userProfile.user_id).subscribe((data: User[]) => {
-        console.log(this.userFollowing = data);
-    })
-  
-
+    this.followers.followingAmount(this.userService.userProfile.user_id).subscribe((data: number) => this.followingAmount = data)
+    this.followers.getFollowing(this.userService.userProfile.user_id).subscribe((data: User[]) => { })
     this.followers.followersAmount(this.profile.user_id).subscribe((data: number) => console.log(this.followersAmount = data));
-
-   this.followers.getFollowers(this.userService.userProfile.user_id).subscribe((data) =>{
-     this.followers.followers = data   
-    })
-
+    this.followers.getFollowers(this.userService.userProfile.user_id).subscribe((data) =>{
+    this.followers.followers = data})
+   /* this.followers.getFollowingStatus(this.userService.userProfile.user_id, this.resultRecipe.user_id).subscribe((data) => {
+      if (this.userService.userProfile.user_id ===  this.apiSearchRecipe.resultRecipe.user_id) {
+          return;
+      } else if (data[0].status === 'true') {
+          return this.followers.followStatus = data[0].status;
+      }
+  });*/
   }
+
+  unfollow(user_id) {
+    this.followers.unfollow(this.userService.userProfile.user_id, user_id, ).subscribe((data) => {
+        this.followers.followStatus = false;
+    });
+  }
+
+
+  followUser(user_id){
+  let seguidor = new Followed(this.userService.userProfile.user_id, user_id, true)
+    this.followers.nuevoSeguidor(seguidor).subscribe((data)=> {});
+    this.followers.followStatus = true;
+}
+
   
   goBack(){
     this.arrow = this.cookbookService.backClicked()

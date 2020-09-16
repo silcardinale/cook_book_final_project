@@ -127,9 +127,8 @@ export class RecipeComponent implements OnInit {
 
     }
 
-
-   unfollow() {
-        this.followers.unfollow(this.resultRecipe.user_id,this.resultRecipe.user_id).subscribe((data) => {
+    unfollow() {
+        this.followers.unfollow(this.resultRecipe.user_id, this.userService.userProfile.user_id).subscribe((data) => {
             this.followers.followStatus = false;
         });
     }
@@ -137,8 +136,8 @@ export class RecipeComponent implements OnInit {
 
     followUser(){
       let seguidor = new Followed(this.resultRecipe.user_id, this.userService.userProfile.user_id, true)
-      this.followers.nuevoSeguidor(seguidor).subscribe((data)=> {});
-      this.followers.followStatus = true;
+        this.followers.nuevoSeguidor(seguidor).subscribe((data)=> {});
+        this.followers.followStatus = true;
     }
 
     addFav(){

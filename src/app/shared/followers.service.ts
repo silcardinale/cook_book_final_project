@@ -68,13 +68,13 @@ export class FollowersService {
     return this.http.post(this.url + '/followed/', user)
   }
 
-  unfollow(id: number, profile_id:number) {
+  unfollow(id: number, user_id:number) {
     const httpOptions = {
       headers: new HttpHeaders({ 
         'Content-Type': 'application/json' }),
         body: {
           id: id,
-          profile_id: profile_id
+          user_id: user_id
         }};
     return this.http.delete(this.url + '/followed',  httpOptions);
   }
