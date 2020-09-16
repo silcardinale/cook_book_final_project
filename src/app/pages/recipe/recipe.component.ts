@@ -47,6 +47,7 @@ export class RecipeComponent implements OnInit {
   public update: boolean;
   public updateOwner: boolean;
   public favorites: boolean;
+ 
 
     constructor( public router: Router, private fb: FormBuilder, private likeService: LikesService, private favService: FavoriteService, private userService: UserService, public apiSearchRecipe: SearchRecipeService, private cookbookService: CookbookService, public apiComments: CommentsService, public followers: FollowersService) {
      
@@ -94,16 +95,28 @@ export class RecipeComponent implements OnInit {
             foto: [this.resultRecipe.picture]
         });
 
+        this.likesNumber() 
+
+
         let myFav = new Favorite(0, this.resultRecipe.recipe_id, this.userService.userProfile.user_id);
-    
-        this.favService.comprobarFav(myFav).subscribe((data: any) => {
-         if(data.length != 0 ) {
-          this.favorites = false;
-         }
+            this.favService.comprobarFav(myFav).subscribe((data: any) =>  {
+              if(data.length != 0 ) {
+                this.favorites = true;
+              }else {
+                  this.favorites = false;
+              }
+          })
+
+          let like = new Likes (this.userService.userProfile.user_id,this.resultRecipe.recipe_id,0)
+        this.likeService.comprobarLikes(like).subscribe((data:any)=>{
+            if(data.length != 0 ) {
+              this.colorHat = true;
+            }else {
+                this.colorHat = false;
+            }
+        })
+   
       
-       })
-    
-       this.likesNumber() 
     }
 
     postComment(description: string, recipe_id: number){

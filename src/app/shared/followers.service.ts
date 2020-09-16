@@ -24,7 +24,8 @@ export class FollowersService {
   }
 
   nuevoSeguidor(seguidor: Followed){
-    return this.http.post(this.url + '/seguir',seguidor )
+    this.followers= this.http.post(this.url + '/seguir',seguidor )
+    return this.followers
   }
 
   getFollowing(id: number) {
