@@ -142,12 +142,20 @@ export class RecipeComponent implements OnInit {
         console.log("data",data)
     });
     }
+    
     addFav(){
-        this.favorites = false;
-        let myFav = new Favorite(0, this.resultRecipe.recipe_id, this.userService.userProfile.user_id)
-        this.favService.addFavorite(myFav).subscribe((data) => {
-            this.favorites = true;
+      let myFav = new Favorite(0, this.resultRecipe.recipe_id, this.userService.userProfile.user_id)
+      this.favService.comprobarFav(myFav).subscribe((data: any) => {
+        if(data.length>0){ 
+          myFav=data[0]
+         this.favService.removeFavorite(myFav.user_fav_id).subscribe((data)=>{
+          })
+        }else {
+          this.favService.addFavorite(myFav).subscribe((data)=> {
+            console.log(data)
         })
+      }
+    })
     }
 
     addLike(){
