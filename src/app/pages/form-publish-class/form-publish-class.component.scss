@@ -1,19 +1,12 @@
 @import '../../../styles.scss';
 
-textarea,
-select {
-    width: 100%;
-}
-.profile-edit {
-    width: 40%;
-    display: flex;
-    justify-content: center;
-}
-
+//confirmation publish recipe
+$size:800px;
 .descrp{
     visibility:  hidden;
+    display: flex;;
     height: 200px;
-    width: 45   0px;
+    width: 450px;
     top: 50px;
     right: 0;
     left: 0;
@@ -40,33 +33,30 @@ select {
     .container-text{
         font-size: 1rem;
         color: black;
-      
+        text-align: center;
         padding-left: 20px;
         padding-right:20px;
         margin-top:10px;
     }
 }
 
-.button {
-    background-color: white;
-    color: var(--brand-color);
-    border: 1px solid var(--brand-color);
-    font-weight: bold;
-    &:hover {
-        opacity: 0.9;
-    }
-    &:active {
-        background-color: var(--brand-color);
-        color: white;
-    }
-}
-
-//radio-buttons dificulty
+//radio-buttons food
 .radio-group {
+    padding-top: 10px;
+    .food,
     .dificulty {
        display: flex;
        justify-content: space-evenly;
         width: 100%;   
+    }
+    .food {
+        .outer-circle-left,
+        .outer-circle-right{
+            left: 12px;     
+        }
+        .outer-circle-middle{
+            left: 18px; 
+        }
     }
     .dificulty {
         .outer-circle-left,
@@ -76,7 +66,7 @@ select {
         .outer-circle-middle{
             left: 8px; 
         }
+        
     }
+
 }
-
-
