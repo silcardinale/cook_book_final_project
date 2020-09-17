@@ -27,6 +27,32 @@
 
     </div>
 
+    <div class="descrp" id="window" [ngClass]= "{'animation': animation == true}">    
+        <div class="header-title">
+            <div class="window">
+                <a (click)="popUp2()">X</a>
+            </div>
+            <p>Eliminar cuenta</p>
+            <hr>
+           <div class ="container-text">
+                <p>¿Seguro que quieres eliminar la cuenta?
+                </p>
+            </div> 
+        </div>
+        <div class ="container-data">
+            <div >
+                <div>
+                    <a  class= "button" (click)="deleteProfile()">Sí</a>
+                </div>
+            </div>
+            <div >
+                <div>
+                    <a class= "button"  (click)="popUp2()">No, me he equivocado</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="profile" class="profile-edit" >
 
         <a (click)="show()"><img src="../../../assets/img/settings.svg"></a>
@@ -88,8 +114,13 @@
                 </div>
     
                 <div class="remove">
-                    <a (click)="deleteProfile()">Eliminar cuenta</a>
                     <a (click)="logOut()">Cerrar sesión</a>
+                </div>
+                <br>
+                <div class="delete">
+                
+                   <a (click)="popUp2()" >Eliminar cuenta</a>
+                    
                 </div>
             
             </form>
@@ -101,3 +132,5 @@
 </nav>
 
 <hr>
+
+

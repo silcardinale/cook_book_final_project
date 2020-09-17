@@ -125,7 +125,8 @@ $size:990px;
         .remove {
             color:var(--brand-color);
             text-align: right;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
+            padding-top: 5%;
             a {
                 display: block
             }
@@ -137,9 +138,73 @@ $size:990px;
         .remove:last-of-type {
             padding-right: 20px;
         }
+        .delete{
+            a{
+                color: rgba(128, 128, 128, 0.781) !important;
+            }
+            font-size:0.8rem;
+            padding-top: 5%;
+            text-align: right;
+        }
         
     }
 }  
+// popup delete
+.descrp{
+    visibility: hidden;
+    height: 300px;
+    width: 400px;
+    bottom: 0;
+    top:0;
+    background-color:var(--brand-color);
+    transition: opacity .24s ease-out;
+    position: absolute;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    
+    
+
+    .header-title{
+        font-size: 2rem;
+        color: white;
+        margin-top: 5px;
+        padding-bottom: 30px;
+        hr{
+            border: 1px solid white;
+            width: 90%;
+        }
+        .window a{
+            margin-left: 80%;
+            margin-top: 5px;
+            font-size: 1.3rem;
+            color: white !important;
+        }
+    }
+    .container-text{
+        font-size: 1rem;
+        color: white;
+        text-align: center;
+        padding-left: 20px;
+        padding-right:20px;
+        margin-top:5px;
+    }
+    .container-data {
+        display: flex;
+        justify-content:  space-around;
+        a {
+            padding: 10px 20px;
+            transition: opacity .9s ease-out;
+            background-color: white;
+            color: var(--brand-color) !important;
+        }
+        :hover {
+            color: grey;
+            opacity: 0.9;
+        }
+    }
+
+}
 
 
 

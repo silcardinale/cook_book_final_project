@@ -55,6 +55,10 @@ export class NavBarComponent implements OnInit {
       this.animation = false;
 
       document.getElementById('edit-profile').style.visibility = 'hidden';
+
+
+      location.reload();
+      
     }
 
 
@@ -73,6 +77,20 @@ export class NavBarComponent implements OnInit {
       });
     }
 
+    popUp2() {
+      document.getElementById('edit-profile').style.visibility = 'hidden';
+      this.profileUser = this.userService.userProfile.user_id;
+      if ( document.getElementById('window').style.visibility === 'visible') {
+          document.getElementById('window').style.visibility = 'hidden';
+          this.animation = false;
+      } else {
+          document.getElementById('window').style.visibility = 'visible';
+          document.getElementById('edit_profile').style.opacity = '1';
+          this.animation = true;
+      }
+  
+    }
+
 
     logOut(){
       this.localStorage.remove('log');
@@ -81,6 +99,7 @@ export class NavBarComponent implements OnInit {
       this.profileUser = {user_name: ''};
       this.router.navigate(['/', 'welcome']);
     }
+
 
 
   ngOnInit(): void {

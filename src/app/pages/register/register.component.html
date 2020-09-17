@@ -11,17 +11,28 @@
             </div>
         </div>
         <div class="form-group">
-            <input type="email" placeholder="Correo electrónico" formControlName="email" [class.is-invalid]="invalidEmail">
+            <input type="email" placeholder="Correo electrónico" formControlName="email" [class.is-invalid]="invalidEmail" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
             <small *ngIf="invalidName" class="text-danger">Ingrese un correo válido</small>
         </div>
         <div class="form-group">
             <div>
                 <input type="password" placeholder="Contraseña" formControlName="password" [class.is-invalid]="invalidPassword">
-                <small *ngIf="invalidName" class="text-danger">Ingrese un mínimo de 8 caracteres</small>
+                <div *ngIf="f.password.touched && f.password.invalid" class="text-danger">
+                    <small *ngIf="f.password.errors.required">Se requiere una contraseña.</small>
+                </div>
             </div>
-            <small *ngIf="regis" class="text-danger">Email ya registrado</small>
-        </div>
+        </div>    
+            <div class="form-group">
+                <div>
+                    <input type="password" placeholder="Ingresa tu contraseña nuevamente" formControlName="confirmPassword" [class.is-invalid]="invalidPassword">
+                    <div *ngIf="f.confirmPassword.touched && f.confirmPassword.invalid" class="text-danger">
+                        <small *ngIf="f.confirmPassword.errors.required">Se requiere una contraseña.</small>
+                        <small *ngIf="f.confirmPassword.errors.confirmedValidator">Las contraseñas ingresadas no coinciden.</small>
+                    </div>
+                    <small *ngIf="regis" class="text-danger">Usuario ya registrado</small>
 
+                </div>
+        </div>
         <button type= "submit">Registrarse</button>
     </form>
     <br>

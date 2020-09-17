@@ -3,7 +3,9 @@ import { User } from '../../models/user';
 import { UserService } from '../../shared/user.service';
 import { Router } from '@angular/router';
 import { LocalStorageService } from './../../shared/local-storage.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators} from '@angular/forms';
+
+
 
 @Component({
   selector: 'app-register',
@@ -41,6 +43,15 @@ export class RegisterComponent implements OnInit {
     return this.forma.get('password').invalid && this.forma.get('password').touched;
   }
 
+  get invalidConfirmPassword(){
+    return this.forma.get('confirmPassword').invalid && this.forma.get('confirmPassword').touched;
+  }
+
+  get f(){
+    return this.forma.controls;
+  }
+
+
   createForm(){
 
     this.forma = this.fb.group({
@@ -48,16 +59,33 @@ export class RegisterComponent implements OnInit {
       user_name : ['',[Validators.required]],
       email     : ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]],
       password  : ['', [Validators.required, Validators.minLength(8)]],
-
-    });
-
-  }
+      confirmPassword : ['', [Validators.required, Validators.minLength(8)]]
+    },
+       { 
+      validator: this.confirmedValidator('password', 'confirmPassword')
+  });
+  
+}
+   confirmedValidator(controlName: string, matchingControlName: string){
+    return (formGroup: FormGroup) => {
+        const control = formGroup.controls[controlName];
+        const matchingControl = formGroup.controls[matchingControlName];
+        if (matchingControl.errors && !matchingControl.errors.confirmedValidator) {
+            return;
+        }
+        if (control.value !== matchingControl.value) {
+            matchingControl.setErrors({ confirmedValidator: true });
+        } else {
+            matchingControl.setErrors(null);
+        }
+    }
+}
 
   save(forma){     
       if(this.forma.valid){
        
         this.userService.getUsers().subscribe((data: User[])=>{
-        const dataFiltered = data.filter(item => item.email === this.forma.value.email);
+        const dataFiltered = data.filter(item => item.user_name === this.forma.value.user_name);
        
         if(dataFiltered.length === 0){
          

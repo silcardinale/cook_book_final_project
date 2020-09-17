@@ -47,6 +47,7 @@ export class RecipeComponent implements OnInit {
   public update: boolean;
   public updateOwner: boolean;
   public favorites: boolean;
+  
  
 
     constructor( public router: Router, private fb: FormBuilder, private likeService: LikesService, private favService: FavoriteService, private userService: UserService, public apiSearchRecipe: SearchRecipeService, private cookbookService: CookbookService, public apiComments: CommentsService, public followers: FollowersService) {
@@ -276,8 +277,13 @@ export class RecipeComponent implements OnInit {
           this.router.navigate(['/', 'recipe']);
           this.animation = true;
           this.update = true;
+          
       }
+    
     }
+
+  
+
 
   ngOnInit(): void {
        this.showRecipeResult();
