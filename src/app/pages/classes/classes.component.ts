@@ -4,9 +4,6 @@ import { Lessons } from './../../models/lessons';
 import { LessonServiceService } from "../../shared/lesson-service.service"
 import { UserService } from 'src/app/shared/user.service';
 
-
-
-
 @Component({
   selector: 'app-classes',
   templateUrl: './classes.component.html',
@@ -24,15 +21,11 @@ export class ClassesComponent implements OnInit {
     this.teacher = this.userService.teacher 
   }
 
-
   goBack(){
     this.arrow = this.cookbookService.backClicked()
   }
-
  
   ngOnInit(): void {
-  
-    
   }
 
 }

@@ -1,4 +1,3 @@
-
 import { Lessons } from './../../models/lessons';
 import { Component, OnInit } from '@angular/core';
 import { LessonServiceService } from "../../shared/lesson-service.service"
@@ -22,19 +21,15 @@ export class ClassesResultComponent implements OnInit {
 
    obtainLessons(){
     this.apiService.getLessons().subscribe((data:Lessons[])=> {
-      console.log("todasLasClases",data)
-      return this.lessons = data;
+      this.lessons = data;
       });      
   }
     
-
-
-showLesson(lesson_id){
-  this.userService.getLessonfromUser(lesson_id).subscribe((data)=> {
+  showLesson(lesson_id){
+    this.userService.getLessonfromUser(lesson_id).subscribe((data)=> {
     this.teacher = data[0];
     this.userService.teacher = data[0]
-    console.log("teacher",this.userService.teacher)
-  this.router.navigate(["/", "lesson"])
+    this.router.navigate(["/", "lesson"])
   })
 }
 

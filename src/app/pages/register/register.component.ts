@@ -4,6 +4,8 @@ import { UserService } from '../../shared/user.service';
 import { Router } from '@angular/router';
 import { LocalStorageService } from './../../shared/local-storage.service';
 import { FormGroup, FormBuilder, Validators} from '@angular/forms';
+import { ModalService } from 'src/app/_modal';
+
 
 
 
@@ -17,8 +19,9 @@ export class RegisterComponent implements OnInit {
   public user: User;
   public forma : FormGroup;
   public regis: boolean;
+  public bodyText: string
 
-  constructor( private fb : FormBuilder, private userService: UserService, private router: Router, private localStorage: LocalStorageService) {
+  constructor( private modalService:ModalService ,private fb : FormBuilder, private userService: UserService, private router: Router, private localStorage: LocalStorageService) {
   
     this.createForm()
     this.regis = false;
@@ -28,8 +31,15 @@ export class RegisterComponent implements OnInit {
     this.userService.registerSocial(provider);
   }
   
-
+openModal(id:string){
+this.modalService.open(id);
+}
+closeModal(id:string){
+  this.modalService.close(id);
+  
+}
   ngOnInit(): void {
+    this.bodyText = "Usuario registrado"
   }
 
   get invalidName(){
@@ -96,18 +106,24 @@ export class RegisterComponent implements OnInit {
               
               this.userService.userProfile = data[0];
               this.localStorage.set('log', this.userService.userProfile);
-              this.router.navigate(['/', 'searchRecipe']);
+              this.forma.reset()
+             
+              
+              
+             
 
             })
+            this.openModal("register-ok")
+           
+
             })
           
 
             }else{
 
               this.regis = true;
-              
-
             }
+            
           })
           if(this.forma.invalid){
             Object.values( this.forma.controls ).forEach ( control =>{
@@ -116,9 +132,6 @@ export class RegisterComponent implements OnInit {
     
             })
           }
-          console.log(this.forma.value);
-        
-
   }
 
 }}

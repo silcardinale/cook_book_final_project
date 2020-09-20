@@ -88,7 +88,7 @@ export class RecipeComponent implements OnInit {
 
         this.form = this.fb.group({
             titulo: [ this.resultRecipe.title, Validators.minLength(5)],
-            ingredientes: [this.resultRecipe.ingredients, Validators.minLength(1)],
+            ingredientes: [Validators.minLength(1)],
             duracion: [this.resultRecipe.duration, [Validators.minLength(1), Validators.maxLength(7)]],
             dificultad: [this.resultRecipe.dificulty],
             comida: [this.resultRecipe.type],
@@ -160,12 +160,10 @@ export class RecipeComponent implements OnInit {
         if(data.length>0){
           myFav=data[0]
           this.favorites = false;
-         this.favService.removeFavorite(myFav.user_fav_id).subscribe((data)=>{
-         console.log(data) })
+         this.favService.removeFavorite(myFav.user_fav_id).subscribe((data)=>{})
         }else {
           this.favService.addFavorite(myFav).subscribe((data)=> {
             this.favorites = true;
-
         })
       }
     })
@@ -255,12 +253,21 @@ export class RecipeComponent implements OnInit {
           Object.values (this.form.controls).forEach(control =>  control.markAsTouched());
 
       } else {
+          
         let updatedRecipe = new Recipe(this.userService.userProfile.user_id, this.form.value.titulo, this.ingredientsSelected, this.form.value.duracion, this.form.value.dificultad, this.form.value.comida, this.form.value.descripcion, this.form.value.foto, this.resultRecipe.recipe_id);
 
         this.apiSearchRecipe.updateRecipe(updatedRecipe).subscribe(data=>{
-          this.ngOnInit();
+          
         })
-        
+        this.resultRecipe.title = this.form.value.titulo
+        this.resultRecipe.type = this.form.value.comida
+        this.resultRecipe.dificulty = this.form.value.dificultad
+        this.resultRecipe.duration =  this.form.value.duracion
+        this.resultRecipe.description =  this.form.value.descripcion
+        this.resultRecipe.picture =  this.form.value.foto
+      
+        this.ingredientsRecipe = this.ingredientsSelected
+       
       }
     }
 

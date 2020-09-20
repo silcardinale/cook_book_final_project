@@ -80,7 +80,7 @@ export class FormPublishClassComponent implements OnInit {
    this.fb.control(element);
   }
 
-  /*[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$*/
+ 
   onSubmit() {
     if (this.form.invalid) {
       Object.values (this.form.controls).forEach(control => {
@@ -89,12 +89,8 @@ export class FormPublishClassComponent implements OnInit {
     } else {
       document.getElementById('sucess').style.visibility = 'visible';
       this.animation = true;
-    
-     
-      
+
       let myLesson = new Lessons(this.form.value.titulo, this.form.value.fecha, this.form.value.horario, this.form.value.dificultad, this.form.value.precio, this.form.value.ingredientes, this.form.value.descripcion, this.form.value.foto, this.userService.userProfile.user_id)
-      console.log(myLesson)
-      
       this.apiService.addLesson(myLesson).subscribe((data) => {
         this.resetForm();
       })

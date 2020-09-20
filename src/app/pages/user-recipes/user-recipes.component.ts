@@ -1,6 +1,5 @@
 import { LikesService } from 'src/app/shared/likes.service';
 import { FollowersService } from './../../shared/followers.service';
-import { CommentsService } from './../../shared/comments.service';
 import { SearchRecipeService } from './../../shared/search-recipe.service';
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from 'src/app/models/recipe';
@@ -35,8 +34,8 @@ export class UserRecipesComponent implements OnInit {
 
     this.profile = this.userService.userProfile;
     this.apiSearchRecipe.showRecipesUser(this.profile.user_id).subscribe((data: Recipe[]) => this.resultRecipe = data);
-    this.followers.followAmount(this.profile.user_id).subscribe((data: number) => console.log(this.followingAmount = data));
-    this.followers.followersAmount(this.profile.user_id).subscribe((data: number) => console.log(this.followersAmount = data));
+    this.followers.followAmount(this.profile.user_id).subscribe((data: number) => this.followingAmount = data);
+    this.followers.followersAmount(this.profile.user_id).subscribe((data: number) => this.followersAmount = data);
     
   }
 

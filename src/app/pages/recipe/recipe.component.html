@@ -99,8 +99,7 @@
 </div>
     <br>
     <p>
-      <i class="fas fa-info-circle"></i> {{ resultRecipe.dificulty }} - <i class="fas fa-utensils"></i
-      > (porciones) - <i class="far fa-clock"></i>
+      <i class="fas fa-info-circle"></i> {{ resultRecipe.dificulty }}  - <i class="far fa-clock"></i>
       {{ resultRecipe.duration }}.
     </p>
   </div>
@@ -205,15 +204,15 @@
         </div> 
         <div class="dificulty">
             <label>
-                <input type="radio"  value="facil"   (click) ="valueDificulty(facil)" #facil>Fácil
+                <input type="radio" formControlName="dificultad" value="facil"   (click) ="valueDificulty(facil)" #facil>Fácil
                 <span class="outer-circle-left"></span>
             </label>   
             <label> 
-                <input type="radio" value="media" (click) ="valueDificulty(media)" #media>Media
+                <input type="radio" formControlName="dificultad"  value="media" (click) ="valueDificulty(media)" #media>Media
                 <span class="outer-circle-middle"></span>
             </label>
             <label>
-                <input type="radio"  value="dificil"  (click) ="valueDificulty(dificil)" #dificil>Difícil
+                <input type="radio" formControlName="dificultad"  value="dificil"  (click) ="valueDificulty(dificil)" #dificil>Difícil
                 <span class="outer-circle-right"></span>
             </label>
         </div>
@@ -231,12 +230,12 @@
         <p>Foto</p>
       </div>
       <div>
-          <input type="text" value="{{ resultRecipe.picture }}"  name="foto" placeholder="{{resultRecipe.picture}}">
+          <input type="text"  formControlName="foto" value="{{ resultRecipe.picture }}"  name="foto" placeholder="{{resultRecipe.picture}}">
           
       </div>
   </div>
   <div class="btn">
-      <button class="button"  (click)=" updateRecipeBtn()">Actualizar</button>  
+      <button class="button" (click)=" updateRecipeBtn()">Actualizar</button>  
         <a class="button"  (click)=" updateRecipeBtn()">Cancelar</a>
 </div>
     </form>

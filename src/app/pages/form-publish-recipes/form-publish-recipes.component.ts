@@ -54,7 +54,6 @@ export class FormPublishRecipesComponent implements OnInit {
     let ingredientRemove;
     let value = event.label;
     ingredientRemove = this.ingredientsSelected.filter(ingredient => ingredient !== value);
-    console.log(this.ingredientsSelected);
 }
 
 

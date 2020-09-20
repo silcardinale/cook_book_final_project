@@ -79,9 +79,7 @@ export class LoginComponent implements OnInit {
           control.markAsTouched();
 
         })
-      }
-      console.log(userForm.value);
-    
+      }       
     }
 
 
