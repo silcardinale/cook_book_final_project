@@ -48,17 +48,13 @@ export class NavBarComponent implements OnInit {
     }
 
     editProfile( password: string, email: string, picture: string){
-      
       let user1 = new User(this.profileUser.user_name, password, email, picture,  this.profileUser.user_id);
-
       this.userService.editUserProfile(user1).subscribe( data => this.user = data);
       this.animation = false;
-
       document.getElementById('edit-profile').style.visibility = 'hidden';
-
-
-      location.reload();
-      
+      this.profileUser.email = email
+      this.profileUser.password = password
+      this.profileUser.picture =picture
     }
 
 
